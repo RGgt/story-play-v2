@@ -30,10 +30,10 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 18.x
-      - name: Use Node.js 18.x
+      - name: Install pnpm 7
         uses: pnpm/action-setup@v2
         with:
-          version: 7.25.0
+          version: 7.x
       - name: Install dependencies
         run: pnpm install
       - name: Generate build
