@@ -30,14 +30,22 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 18.x
-      - name: Install pnpm 7
-        uses: pnpm/action-setup@v2
-        with:
-          version: 7.x
+      # ❗ build using pnpm
+      # - name: Install pnpm 7
+      #   uses: pnpm/action-setup@v2
+      #   with:
+      #     version: 7.x
+      # - name: Install dependencies
+      #   run: pnpm install
+      # - name: Generate build
+      #   run: pnpm run git --filter @rggt/experimental-mix-1
+      # ❗ / build using pnpm
+      # ✔ build using npm
       - name: Install dependencies
-        run: pnpm install
+        run: npm install
       - name: Generate build
-        run: pnpm run git --filter @rggt/experimental-mix-1
+        run: cd ./pages/experimental-mix-1/ && npm run git
+      # ✔ / build using npm
       - name: Setup Pages
         uses: actions/configure-pages@v2
       - name: Upload artifact
