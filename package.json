@@ -30,6 +30,7 @@
     "test:ui": "pnpm --filter @rggt/experimental-mix-1 test:view",
     "test:coverage": "pnpm --filter @rggt/experimental-mix-1 test:coverage",
     "dev": "pnpm --filter @rggt/experimental-mix-1 dev",
+    "git": "pnpm --filter @rggt/experimental-mix-1 git",
     "compile": "pnpm --filter * tsc"
   },
   "devDependencies": {
