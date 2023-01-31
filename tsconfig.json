@@ -22,6 +22,7 @@
   },
   "include": [
     "pages/*/src/*.ts",
+    "pages/*/__tests__/*.spec.ts",
     ".eslintrc.cjs",
     ".prettierrc.cjs",
     "vite.config.ts"

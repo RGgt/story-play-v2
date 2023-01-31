@@ -23,7 +23,18 @@
     "vite": "^4.0.4"
   },
   "scripts": {
+    "test:all": "vitest",
+    "test:all:ui": "vitest --ui",
+    "test:all:coverage": "vitest run --coverage",
+    "test": "pnpm --filter @rggt/experimental-mix-1 test",
+    "test:ui": "pnpm --filter @rggt/experimental-mix-1 test:view",
+    "test:coverage": "pnpm --filter @rggt/experimental-mix-1 test:coverage",
     "dev": "pnpm --filter @rggt/experimental-mix-1 dev",
     "compile": "pnpm --filter * tsc"
+  },
+  "devDependencies": {
+    "@vitest/coverage-c8": "^0.28.3",
+    "@vitest/ui": "^0.28.3",
+    "vitest": "^0.28.3"
   }
 }

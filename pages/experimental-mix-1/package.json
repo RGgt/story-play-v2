@@ -6,7 +6,13 @@
   "keywords": [],
   "author": "",
   "scripts": {
+    "test": "vitest",
+    "test:view": "vitest --ui",
+    "test:coverage": "vitest run --coverage",
     "dev": "vite --host",
     "tsc": "tsc"
+  },
+  "devDependencies": {
+    "vitest": "^0.28.3"
   }
 }
