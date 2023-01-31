@@ -1,0 +1,13 @@
+// node modules
+node_modules
+
+// compiled javascript
+pages/*/lib
+titles/*/lib
+games/*/lib
+framework/*/lib
+
+//local env files
+pnpm-lock.yaml
+pnpm-workspace.yaml
+story-play-v2.code-workspace
