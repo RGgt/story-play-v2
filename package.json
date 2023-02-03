@@ -31,11 +31,15 @@
     "test:coverage": "pnpm --filter @rggt/experimental-mix-page-1 test:coverage",
     "dev": "pnpm --filter @rggt/experimental-mix-page-1 dev",
     "git": "pnpm --filter @rggt/experimental-mix-page-1 git",
+    "build": "pnpm --filter @rggt/experimental-mix-page-1 build",
+    "offline": "pnpm --filter @rggt/experimental-mix-page-1 offline",
+    "inline": "html-inline pages/experimental-mix-page-1/dist/index.html > final_output/index.html",
     "compile": "pnpm --filter * tsc"
   },
   "devDependencies": {
     "@vitest/coverage-c8": "^0.28.3",
     "@vitest/ui": "^0.28.3",
+    "html-inline": "^1.2.0",
     "vitest": "^0.28.3"
   }
 }

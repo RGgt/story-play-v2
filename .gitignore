@@ -1,6 +1,10 @@
 // node modules
 node_modules
 
+// dist folders
+pages/*/__dist
+pages/*/__dist_offline
+
 // compiled javascript
 pages/*/lib
 titles/*/lib

@@ -11,6 +11,8 @@
     "test:coverage": "vitest run --coverage",
     "dev": "vite --host",
     "git": "tsc && vite build --base=/story-play/ --outDir=./gitHubPages",
+    "build": "vite build --outDir __dist",
+    "offline": "html-inline __dist/index.html > __dist_offline/experimental-mix-page-1.html",
     "tsc": "tsc"
   },
   "devDependencies": {
