@@ -1,0 +1,22 @@
+{
+  "name": "@rggt/experimental-mix-game",
+  "version": "1.0.0",
+  "description": "",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "main": "src/index.ts",
+  "typings": "src/index.d.ts",
+  "files": [
+    "src",
+    "src/index.d.ts"
+  ],
+  "scripts": {
+    "tsc": "tsc",
+    "lint": "eslint src",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "phaser": "^3.55.2"
+  }
+}

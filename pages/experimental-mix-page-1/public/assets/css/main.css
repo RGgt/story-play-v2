@@ -3,3 +3,30 @@ body {
   margin: 0px;
   padding: 0;
 }
+
+#game-container canvas {
+  width: 94px;
+  height: 54px;
+  cursor: none;
+}
+
+@media (min-width: 320px) {
+  @media (max-aspect-ratio: 16/9) {
+    #game-container canvas {
+      width: 100vw;
+      height: 56.25vw;
+    }
+  }
+  @media (min-aspect-ratio: 16/9) {
+    #game-container canvas {
+      width: 177.78vh;
+      height: 100vh;
+    }
+  }
+}
+@media ((min-width: 1920px) and (min-height: 1080px)) {
+  #game-container canvas {
+    width: 1920px;
+    height: 1080px;
+  }
+}

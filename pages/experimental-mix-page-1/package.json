@@ -15,5 +15,8 @@
   },
   "devDependencies": {
     "vitest": "^0.28.3"
+  },
+  "dependencies": {
+    "@rggt/experimental-mix-title": "workspace:*"
   }
 }

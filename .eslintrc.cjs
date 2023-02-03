@@ -18,7 +18,7 @@ module.exports = {
     sourceType: 'module',
     project: './tsconfig.json',
   },
-  ignorePatterns: ['pages/*/lib/*.js'],
+  ignorePatterns: ['*/*/lib/*.js', '*/*/src/index.d.ts'],
   plugins: ['prettier', '@typescript-eslint'],
   rules: { 'prettier/prettier': 'warn' },
 };

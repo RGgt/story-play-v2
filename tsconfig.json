@@ -21,8 +21,9 @@
     "noEmit": true,
   },
   "include": [
-    "pages/*/src/*.ts",
-    "pages/*/__tests__/*.spec.ts",
+    "*/*/src/*.ts",
+    "*/*/src/*.d.ts",
+    "*/*/__tests__/*.spec.ts",
     ".eslintrc.cjs",
     ".prettierrc.cjs",
     "vite.config.ts"
