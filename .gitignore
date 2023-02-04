@@ -2,11 +2,11 @@
 node_modules
 
 // dist folders
-pages/*/__dist
-pages/*/__dist_offline
+web-pages/*/__dist
+web-pages/*/__dist_offline
 
 // compiled javascript
-pages/*/lib
+web-pages/*/lib
 titles/*/lib
 games/*/lib
 framework/*/lib

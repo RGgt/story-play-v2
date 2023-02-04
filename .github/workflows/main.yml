@@ -38,13 +38,13 @@ jobs:
       # - name: Install dependencies
       #   run: pnpm install
       # - name: Generate build
-      #   run: pnpm run git --filter @rggt/experimental-mix-page-1
+      #   run: pnpm run git --filter @rggt/experimental-mix-page
       # ❗ / build using pnpm
       # ✔ build using npm
       - name: Install dependencies
         run: npm install
       - name: Generate build
-        run: cd ./pages/experimental-mix-page-1/ && npm run git
+        run: cd ./web-pages/experimental-mix-page/ && npm run git
       # ✔ / build using npm
       - name: Setup Pages
         uses: actions/configure-pages@v2
@@ -52,7 +52,7 @@ jobs:
         uses: actions/upload-pages-artifact@v1
         with:
           # Upload only the build output
-          path: './pages/experimental-mix-page-1/gitHubPages/'
+          path: './web-pages/experimental-mix-page/gitHubPages/'
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v1
