@@ -20,5 +20,5 @@ module.exports = {
   },
   ignorePatterns: ['*/*/lib/*.js', '*/*/src/index.d.ts'],
   plugins: ['prettier', '@typescript-eslint'],
-  rules: { 'prettier/prettier': 'warn' },
+  rules: { 'prettier/prettier': 'warn', 'no-underscore-dangle': 0 },
 };
