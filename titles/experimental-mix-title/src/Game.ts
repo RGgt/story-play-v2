@@ -5,9 +5,7 @@ export default class Game extends BaseGame {
   constructor() {
     super({
       ...defaultConfig,
-      parent: GameConfiguration.get(
-        GameConfigurationKeys.HtmlContainer
-      ) as string,
+      parent: GameConfiguration.get(GameConfigurationKeys.HtmlContainer),
     });
   }
 }

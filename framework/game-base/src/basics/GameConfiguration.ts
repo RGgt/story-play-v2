@@ -3,7 +3,7 @@ enum GameConfigurationKeys {
   HtmlContainer,
 }
 
-type GameConfigurationValue = undefined | string | number;
+type GameConfigurationValue = undefined | string;
 
 class GameConfigurationSingleton {
   private static _instance: GameConfigurationSingleton;
