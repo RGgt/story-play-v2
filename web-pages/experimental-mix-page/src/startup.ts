@@ -6,8 +6,9 @@ window.addEventListener('load', () => {
   const urlParams = new URLSearchParams(window.location.search);
   const customFolder = urlParams.get('customFolder') || defaultFolder;
   GameConfiguration.set(GameConfigurationKeys.AssetsFolder, customFolder);
+  GameConfiguration.set(GameConfigurationKeys.HtmlContainer, 'game-container');
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const game = new Game('game-container');
+  const game = new Game();
 });
 export {};

@@ -1,5 +1,6 @@
 enum GameConfigurationKeys {
   AssetsFolder,
+  HtmlContainer,
 }
 
 type GameConfigurationValue = undefined | string | number;
