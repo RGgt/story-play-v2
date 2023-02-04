@@ -1,4 +1,5 @@
 import Phaser from 'phaser';
+import StartupScene from './scenes/StartupScene';
 
 export default class Game extends Phaser.Game {
   constructor(config: Phaser.Types.Core.GameConfig) {
@@ -8,6 +9,6 @@ export default class Game extends Phaser.Game {
   }
 
   private static getScenes = (): Array<Phaser.Scene> => {
-    return [];
+    return [new StartupScene()];
   };
 }

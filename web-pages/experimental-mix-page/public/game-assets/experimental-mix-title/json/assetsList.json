@@ -1,0 +1,43 @@
+{
+  "json": {
+    "story-flow": "assets/json/story-flow.json",
+    "translation": "assets/json/translation-en-GB.json"
+  },
+  "image": {
+    "SAMPLE_screenshot_0_5": "assets/images/SAMPLE_screenshot_0_5.jpg",
+    "main": "assets/images/frame_001.png",
+    "click_areas": "assets/images/click_areas.png",
+    "frame_1_01": "assets/images/frame_1_01.jpg",
+    "frame_1_05": "assets/images/frame_1_05.jpg",
+    "frame_13_05": "assets/images/frame_13_05.jpg",
+    "beta": "assets/images/MET_DP18371_001.jpg",
+    "btnNormal": "assets/images/gui/normal.png",
+    "btnHover": "assets/images/gui/hover.png",
+    "btnPressed": "assets/images/gui/press.png",
+    "btnPushed": "assets/images/gui/push.png",
+    "btnDisabledPushed": "assets/images/gui/disable_push.png",
+    "btnDisabled": "assets/images/gui/disable.png",
+    "icon_check_on": "assets/images/gui/icon_check_on.png",
+    "icon_check_off": "assets/images/gui/icon_check_off.png",
+    "cursor_enabled": "assets/images/gui/cursor_enabled.png",
+    "cursor_disabled": "assets/images/gui/cursor_disabled.png",
+    "panel": "assets/images/gui/panel.png",
+    "group_box": "assets/images/gui/group_box.png",
+    "frame_1_08_10": "assets/images/frame_1_08_10.jpg",
+    "frame_1_08_11": "assets/images/frame_1_08_11.jpg",
+    "frame_1_08_12": "assets/images/frame_1_08_12.jpg",
+    "frame_1_08_13": "assets/images/frame_1_08_13.jpg",
+    "frame_1_08_14": "assets/images/frame_1_08_14.jpg",
+    "frame_1_08_15": "assets/images/frame_1_08_15.jpg",
+    "frame_1_08_16": "assets/images/frame_1_08_16.jpg",
+    "frame_1_08_17": "assets/images/frame_1_08_17.jpg"
+  },
+  "svg": {
+    "test": "assets/images/vite.svg"
+  },
+  "audio": {
+    "music": {
+      "wav": "assets/audio/music.wav"
+    }
+  }
+}
