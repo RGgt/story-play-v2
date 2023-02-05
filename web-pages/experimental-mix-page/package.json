@@ -12,7 +12,7 @@
     "dev": "vite --host",
     "git": "tsc && vite build --base=/story-play/ --outDir=./gitHubPages",
     "build": "vite build --outDir __dist",
-    "offline": "html-inline __dist/index.html > __dist_offline/experimental-mix-page.html",
+    "offline": "vite build --outDir __dist && html-inline __dist/index.html > __dist_offline/experimental-mix-page.html",
     "tsc": "tsc"
   },
   "devDependencies": {
