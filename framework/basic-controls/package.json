@@ -1,5 +1,5 @@
 {
-  "name": "@rggt/experimental-mix-game",
+  "name": "@rggt/basic-controls",
   "version": "1.0.0",
   "description": "",
   "keywords": [],
@@ -17,8 +17,6 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "@rggt/basic-controls": "workspace:*",
-    "@rggt/game-base": "workspace:*",
     "phaser": "^3.55.2"
   }
 }

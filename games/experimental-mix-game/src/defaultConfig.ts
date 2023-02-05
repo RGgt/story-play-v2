@@ -5,8 +5,8 @@ export default {
   parent: 'phaser',
   backgroundColor: '#4488aa',
   scale: {
-    width: 192,
-    height: 108,
+    width: 1920,
+    height: 1080,
     mode: Phaser.Scale.NONE,
     autoCenter: Phaser.Scale.CENTER_BOTH,
   },

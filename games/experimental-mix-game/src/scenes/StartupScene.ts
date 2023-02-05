@@ -16,6 +16,6 @@ export default class StartupScene extends Phaser.Scene {
   }
 
   create() {
-    // this.scene.start(SPScenes.Loader);
+    this.scene.start(EScenes.InitialLoader);
   }
 }
