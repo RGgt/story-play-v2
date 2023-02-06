@@ -1,11 +1,3 @@
-/**
- * Load an asset from a JSON object.
- * @param scene - The scene object from Phaser.
- * @param json - The JSON object to load the asset from.
- * @param group - The group name in the JSON object to load the asset from.
- * @param key - The key name in the JSON object to load the asset from.
- * @warning ❗ Make sure `group` and `key` are valid elements in `json`❗
- */
 const loadAsset = async (
   scene: Phaser.Scene,
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
