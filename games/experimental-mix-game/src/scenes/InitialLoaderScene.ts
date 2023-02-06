@@ -32,6 +32,8 @@ export default class InitialLoaderScene extends Phaser.Scene {
       group: string,
       key: string
     ) => {
+      // WARNING: ❗ Make sure `group` and `key` are valid elements in
+      // `json` as `loadAssets` assumes it! ❗
       await loadAsset(this, jsonData, group, key, pathFixer);
       crt += 1;
       veryBasicProgressbar?.update(crt, count);
