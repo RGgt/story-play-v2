@@ -1,5 +1,6 @@
 import { GameConfiguration, GameConfigurationKeys } from '@rggt/game-base';
 import Phaser from 'phaser';
+import CriticalErrorScene from './CriticalErrorScene';
 import EScenes from './EScenes';
 
 export default class StartupScene extends Phaser.Scene {
@@ -22,5 +23,11 @@ export default class StartupScene extends Phaser.Scene {
   create() {
     this.scene.start(EScenes.InitialLoader);
     this.scene.start(EScenes.Cursor);
+    this.scene.start(EScenes.CriticalError);
+    const scene = this.game.scene.getScene(EScenes.CriticalError);
+    const errorScene = scene as unknown as CriticalErrorScene;
+    errorScene.setErrorMessage(
+      'Failed to load image from file: \r\ngame-assets/experimental-mix-title/images/frame_0991.jpg'
+    );
   }
 }

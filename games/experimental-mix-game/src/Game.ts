@@ -1,4 +1,5 @@
 import Phaser from 'phaser';
+import CriticalErrorScene from './scenes/CriticalErrorScene';
 import CursorScene from './scenes/CursorScene';
 import InitialLoaderScene from './scenes/InitialLoaderScene';
 import StartupScene from './scenes/StartupScene';
@@ -11,6 +12,11 @@ export default class Game extends Phaser.Game {
   }
 
   private static getScenes = (): Array<Phaser.Scene> => {
-    return [new StartupScene(), new InitialLoaderScene(), new CursorScene()];
+    return [
+      new StartupScene(),
+      new InitialLoaderScene(),
+      new CursorScene(),
+      new CriticalErrorScene(),
+    ];
   };
 }
