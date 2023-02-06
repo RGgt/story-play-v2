@@ -13,9 +13,14 @@ export default class StartupScene extends Phaser.Scene {
     );
     this.load.json('assets', `${assetsFolder}/json/assetsList.json`);
     this.load.image('logo', `${assetsFolder}/images/logo.png`);
+    this.load.image(
+      'cursor_disabled',
+      `${assetsFolder}/images/gui/cursor_disabled.png`
+    );
   }
 
   create() {
     this.scene.start(EScenes.InitialLoader);
+    this.scene.start(EScenes.Cursor);
   }
 }
