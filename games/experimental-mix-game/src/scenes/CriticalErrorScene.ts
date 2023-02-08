@@ -11,7 +11,7 @@ export default class CriticalErrorScene extends Phaser.Scene {
       fontSize: '64px',
       color: '#ffffff',
       wordWrap: {
-        width: 1200,
+        width: 1920 * 0.6,
         useAdvancedWrap: true,
       },
     });
