@@ -1,0 +1,13 @@
+{
+  "foreword_01": "This is a story-like slideshow that feature some important components and behaviors that I want in my games.\r\n\r\n\r\nWhat do you see here is NOT a story, but a test ground for my code! Click anywhere to continue exploring.",
+  "story_title": "A Story About a Beautiful\r\nDate",
+  "narration_on_story_title": "Did you notice the green and orange rectangles in the previous screen?\r\nClicking on the left part of the screen, where the green rectangle was, will navigate back to previous frame.\r\n\r\nClicking on the top right corner, where the orange rectangle was, will open the game's menu. Play with these!",
+  "story_subtitle_1": "- A story by Author -",
+  "story_subtitle_2": "- Illustrated by Illustrator1 and Illustrator2 -",
+  "story_subtitle_3": "- Translated into English by Translator -",
+  "txt_intro_001": "Background should have disappeared and there should be a text area for subtitles, where you read this text.",
+  "txt_intro_002": "This frame has a background and some subtitles.",
+  "txt_intro_003": "Previous screen should have some area reserved for subtitles, but NO subtitle should be actually shown. Also, it should have NO background.\r\n\r\nThis screen should have a zoom in/out animation that loops ONLY TWICE.",
+  "txt_intro_004": "Previous screen should have NO area reserved for subtitles at all. Also, it should have NO background.\r\n\r\nThis screen should have an animation that loops ONLY ONCE.",
+  "txt_intro_005": "This screen should have an animation that loops FOREVER."
+}
