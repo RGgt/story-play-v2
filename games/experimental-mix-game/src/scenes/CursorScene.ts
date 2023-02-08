@@ -27,9 +27,11 @@ export default class CursorScene extends Phaser.Scene {
     this._sprite?.setPosition(pointer.x, pointer.y);
 
     if (this._isCursorEnabled) {
-      this._sprite.setTexture('cursor_enabled');
-      this._isUsingEnabledTexture = true;
-    } else {
+      if (!this._isUsingEnabledTexture) {
+        this._sprite.setTexture('cursor_enabled');
+        this._isUsingEnabledTexture = true;
+      }
+    } else if (this._isUsingEnabledTexture) {
       this._sprite.setTexture('cursor_disabled');
       this._isUsingEnabledTexture = false;
     }
