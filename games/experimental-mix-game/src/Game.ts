@@ -15,8 +15,8 @@ export default class Game extends Phaser.Game {
     return [
       new StartupScene(),
       new InitialLoaderScene(),
-      new CursorScene(),
       new CriticalErrorScene(),
+      new CursorScene(),
     ];
   };
 }
