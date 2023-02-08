@@ -27,6 +27,7 @@ export default class StartupScene extends Phaser.Scene {
         'assets',
         `${assetsFolder}/json/assetsList.json`
       );
+      this.scene.stop(this);
     } catch (err: unknown) {
       this.scene.start(EScenes.Cursor);
       reactOnError(this.game, err as Error);

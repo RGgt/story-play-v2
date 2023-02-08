@@ -3,6 +3,7 @@ const EScenes = {
   InitialLoader: 'InitialLoader',
   Cursor: 'Cursor',
   CriticalError: 'CriticalError',
+  DialogWindows: 'DialogWindows',
 };
 
 export default EScenes;

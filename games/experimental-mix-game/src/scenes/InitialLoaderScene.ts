@@ -45,6 +45,8 @@ export default class InitialLoaderScene extends Phaser.Scene {
         veryBasicProgressbar?.update(crt, count);
       };
       await loadAssets(json, loadIndividualAsset);
+      this.scene.start(EScenes.DialogWindows);
+      this.scene.stop(this);
     } catch (err: unknown) {
       reactOnError(this.game, err as Error);
     }
