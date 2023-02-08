@@ -27,12 +27,6 @@ export default class StartupScene extends Phaser.Scene {
         'assets',
         `${assetsFolder}/json/assetsList.json`
       );
-      await loadAsset(
-        this,
-        'image',
-        'logoMissing',
-        `${assetsFolder}/images/logoMissing.png`
-      );
     } catch (err: unknown) {
       this.scene.start(EScenes.Cursor);
       reactOnError(this.game, err as Error);
