@@ -15,7 +15,7 @@ export default class InitialLoaderScene extends Phaser.Scene {
     super(EScenes.InitialLoader);
   }
 
-  preload() {
+  async preload() {
     const { countAssets, loadAssets } = getAssetsLoader();
     const json = this.cache.json.get('assets');
     const count = countAssets(json);
@@ -42,8 +42,7 @@ export default class InitialLoaderScene extends Phaser.Scene {
       crt += 1;
       veryBasicProgressbar?.update(crt, count);
     };
-    loadAssets(json, loadIndividualAsset);
-    this.load.start();
+    await loadAssets(json, loadIndividualAsset);
   }
 
   centerX() {

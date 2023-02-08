@@ -21,6 +21,6 @@ const loadImage = async (
       }
     );
   };
-  loader(data);
+  await loader(data);
 };
 export { loadImage };

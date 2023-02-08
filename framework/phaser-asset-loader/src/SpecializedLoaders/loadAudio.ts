@@ -27,24 +27,24 @@ const loadAudio = async (
     Object.hasOwnProperty.call(data, 'opus') &&
     scene.sys.game.device.audio.opus
   ) {
-    loader(data.opus);
+    await loader(data.opus);
   } else if (
     Object.hasOwnProperty.call(data, 'webm') &&
     scene.sys.game.device.audio.webm
   ) {
-    loader(data.webm);
+    await loader(data.webm);
   } else if (
     Object.hasOwnProperty.call(data, 'ogg') &&
     scene.sys.game.device.audio.ogg
   ) {
-    loader(data.ogg);
+    await loader(data.ogg);
   } else if (
     Object.hasOwnProperty.call(data, 'wav') &&
     scene.sys.game.device.audio.wav
   ) {
-    loader(data.wav);
+    await loader(data.wav);
   } else {
-    loader(data);
+    await loader(data);
   }
 };
 export { loadAudio };

@@ -21,7 +21,7 @@ const loadJson = async (
       }
     );
   };
-  loader(data);
+  await loader(data);
 };
 
 export { loadJson };

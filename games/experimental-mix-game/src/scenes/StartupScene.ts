@@ -9,37 +9,31 @@ export default class StartupScene extends Phaser.Scene {
     super(EScenes.Startup);
   }
 
-  preload() {
+  async preload() {
     const assetsFolder = GameConfiguration.get(
       GameConfigurationKeys.AssetsFolder
     );
-    loadAsset(this, 'json', 'assets', `${assetsFolder}/json/assetsList.json`);
-    loadAsset(this, 'image', 'logo', `${assetsFolder}/images/logo.png`);
-    loadAsset(
+    await loadAsset(
       this,
       'image',
       'cursor_disabled',
       `${assetsFolder}/images/gui/cursor_disabled.png`
     );
+    await loadAsset(this, 'image', 'logo', `${assetsFolder}/images/logo.png`);
+    await loadAsset(
+      this,
+      'json',
+      'assets',
+      `${assetsFolder}/json/assetsList.json`
+    );
+    await loadAsset(
+      this,
+      'image',
+      'logoMissing',
+      `${assetsFolder}/images/logoMissing.png`
+    );
 
-    // this.load.json('assets', `${assetsFolder}/json/assetsList.json`);
-    // this.load.image('logo', `${assetsFolder}/images/logo.png`);
-    // this.load.image(
-    //   'cursor_disabled',
-    //   `${assetsFolder}/images/gui/cursor_disabled.png`
-    // );
-    // this.load.svg('test', `${assetsFolder}/images/vite.svg`);
-    // this.load.audio('music', `${assetsFolder}/audio/music.wav`);
-  }
-
-  create() {
-    this.scene.start(EScenes.InitialLoader);
     this.scene.start(EScenes.Cursor);
-    this.scene.start(EScenes.CriticalError);
-    // const scene = this.game.scene.getScene(EScenes.CriticalError);
-    // const errorScene = scene as unknown as CriticalErrorScene;
-    // errorScene.setErrorMessage(
-    //   'Failed to load image from file: \r\ngame-assets/experimental-mix-title/images/frame_0991.jpg'
-    // );
+    this.scene.start(EScenes.InitialLoader);
   }
 }

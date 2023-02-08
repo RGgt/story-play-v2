@@ -1,3 +1,4 @@
+import Phaser from 'phaser';
 import { loadAudio } from '../SpecializedLoaders/loadAudio';
 import { loadImage } from '../SpecializedLoaders/loadImage';
 import { loadJson } from '../SpecializedLoaders/loadJson';
@@ -42,16 +43,16 @@ const loadAssetFromNode = async (
       // Normally something like: scene.load[type](key, pathFixer(data[0]), data[1], data[2], data[3]);
       throw new Error(`Loading of ${type} resources not implemented!'`);
     case 'audio':
-      loadAudio(scene, type, key, data, pathFixer);
+      await loadAudio(scene, type, key, data, pathFixer);
       break;
     case 'image':
-      loadImage(scene, type, key, data, pathFixer);
+      await loadImage(scene, type, key, data, pathFixer);
       break;
     case 'svg':
-      loadSvg(scene, type, key, data, pathFixer);
+      await loadSvg(scene, type, key, data, pathFixer);
       break;
     case 'json':
-      loadJson(scene, type, key, data, pathFixer);
+      await loadJson(scene, type, key, data, pathFixer);
       break;
     default:
       throw new Error(`Unknown asset type ${type} for '${key}'`);

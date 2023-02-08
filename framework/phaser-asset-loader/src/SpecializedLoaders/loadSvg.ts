@@ -21,6 +21,6 @@ const loadSvg = async (
       }
     );
   };
-  loader(data);
+  await loader(data);
 };
 export { loadSvg };
