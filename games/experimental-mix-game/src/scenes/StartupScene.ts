@@ -1,3 +1,4 @@
+import { loadAssetFromCommonNode as loadAsset } from '@rggt/phaser-asset-loader';
 import { GameConfiguration, GameConfigurationKeys } from '@rggt/game-base';
 import Phaser from 'phaser';
 // import CriticalErrorScene from './CriticalErrorScene';
@@ -12,13 +13,21 @@ export default class StartupScene extends Phaser.Scene {
     const assetsFolder = GameConfiguration.get(
       GameConfigurationKeys.AssetsFolder
     );
-
-    this.load.json('assets', `${assetsFolder}/json/assetsList.json`);
-    this.load.image('logo', `${assetsFolder}/images/logo.png`);
-    this.load.image(
+    loadAsset(this, 'json', 'assets', `${assetsFolder}/json/assetsList.json`);
+    loadAsset(this, 'image', 'logo', `${assetsFolder}/images/logo.png`);
+    loadAsset(
+      this,
+      'image',
       'cursor_disabled',
       `${assetsFolder}/images/gui/cursor_disabled.png`
     );
+
+    // this.load.json('assets', `${assetsFolder}/json/assetsList.json`);
+    // this.load.image('logo', `${assetsFolder}/images/logo.png`);
+    // this.load.image(
+    //   'cursor_disabled',
+    //   `${assetsFolder}/images/gui/cursor_disabled.png`
+    // );
     // this.load.svg('test', `${assetsFolder}/images/vite.svg`);
     // this.load.audio('music', `${assetsFolder}/audio/music.wav`);
   }

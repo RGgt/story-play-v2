@@ -1,4 +1,8 @@
-import { getAssetsLoader, loadAssetFromJson } from '@rggt/phaser-asset-loader';
+import {
+  getAssetsLoader,
+  loadAssetFromJson,
+  assetPathFixer as pathFixer,
+} from '@rggt/phaser-asset-loader';
 import { createVeryBasicProgressbar } from '@rggt/basic-controls';
 import EScenes from './EScenes';
 
@@ -12,7 +16,7 @@ export default class InitialLoaderScene extends Phaser.Scene {
   }
 
   preload() {
-    const { countAssets, pathFixer, loadAssets } = getAssetsLoader();
+    const { countAssets, loadAssets } = getAssetsLoader();
     const json = this.cache.json.get('assets');
     const count = countAssets(json);
 

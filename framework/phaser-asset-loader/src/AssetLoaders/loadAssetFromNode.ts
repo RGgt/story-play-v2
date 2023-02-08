@@ -2,6 +2,7 @@ import { loadAudio } from '../SpecializedLoaders/loadAudio';
 import { loadImage } from '../SpecializedLoaders/loadImage';
 import { loadJson } from '../SpecializedLoaders/loadJson';
 import { loadSvg } from '../SpecializedLoaders/loadSvg';
+import { assetPathFixer } from './getAssetsLoader';
 
 const loadAssetFromNode = async (
   scene: Phaser.Scene,
@@ -56,4 +57,12 @@ const loadAssetFromNode = async (
       throw new Error(`Unknown asset type ${type} for '${key}'`);
   }
 };
-export { loadAssetFromNode };
+const loadAssetFromCommonNode = async (
+  scene: Phaser.Scene,
+  type: string,
+  key: string,
+  data: any
+) => {
+  await loadAssetFromNode(scene, type, key, data, assetPathFixer);
+};
+export { loadAssetFromNode, loadAssetFromCommonNode };

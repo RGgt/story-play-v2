@@ -1,19 +1,19 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { GameConfiguration, GameConfigurationKeys } from '@rggt/game-base';
 
-const getAssetsLoader = () => {
+const assetPathFixer = (path: string): string => {
   const assetsFolder = GameConfiguration.get(
     GameConfigurationKeys.AssetsFolder
   );
+  if (assetsFolder) return path.replaceAll('{assets}', assetsFolder);
+  return path;
+};
+
+const getAssetsLoader = () => {
   const countAssets = (json: any) => {
     return Object.keys(json).reduce((count, group) => {
       return count + Object.keys(json[group]).length;
     }, 0);
-  };
-
-  const pathFixer = (path: string): string => {
-    if (assetsFolder) return path.replaceAll('{assets}', assetsFolder);
-    return path;
   };
 
   const loadAssets = async (
@@ -31,9 +31,8 @@ const getAssetsLoader = () => {
   };
   return {
     countAssets,
-    pathFixer,
     loadAssets,
   };
 };
 
-export { getAssetsLoader };
+export { assetPathFixer, getAssetsLoader };
