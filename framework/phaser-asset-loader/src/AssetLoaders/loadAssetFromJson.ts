@@ -8,6 +8,6 @@ const loadAssetFromJson = async (
   pathFixer: (path: string) => string
 ) => {
   const data = json[group][key];
-  loadAssetFromNode(scene, group, key, data, pathFixer);
+  await loadAssetFromNode(scene, group, key, data, pathFixer);
 };
 export { loadAssetFromJson };
