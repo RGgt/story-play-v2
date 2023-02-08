@@ -4,6 +4,7 @@ const loadImage = async (
   scene: Phaser.Scene,
   type: string,
   key: string,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   data: any,
   pathFixer: (path: string) => string
 ) => {
