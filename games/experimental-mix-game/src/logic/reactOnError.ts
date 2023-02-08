@@ -7,8 +7,8 @@ const reactOnError = (game: Phaser.Game, err: Error) => {
     EScenes.CriticalError
   ) as CriticalErrorScene;
   errorScene.setErrorMessage(err.message);
-  game.scene.getScenes(true, false).forEach(
-    (scene) => {game.scene.pause(scene); console.log("paused", scene)}
-    );
+  game.scene.getScenes(true, false).forEach((scene) => {
+    game.scene.pause(scene);
+  });
 };
 export { reactOnError };

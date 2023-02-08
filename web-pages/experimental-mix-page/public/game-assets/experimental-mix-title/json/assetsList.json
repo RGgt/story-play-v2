@@ -14,6 +14,7 @@
     "icon_check_off": "{assets}/images/gui/icon_check_off.png",
     "cursor_enabled": "{assets}/images/gui/cursor_enabled.png",
     "panel": "{assets}/images/gui/panel.png",
+    "btnNormalMissing": "{assets}/images/gui/normalMissing.png",
     "group_box": "{assets}/images/gui/group_box.png"
   },
   "svg": {
