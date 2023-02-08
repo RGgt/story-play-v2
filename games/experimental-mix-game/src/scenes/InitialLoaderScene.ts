@@ -1,4 +1,4 @@
-import { getAssetsLoader, loadAsset } from '@rggt/game-base';
+import { getAssetsLoader, loadAssetFromJson } from '@rggt/phaser-asset-loader';
 import { createVeryBasicProgressbar } from '@rggt/basic-controls';
 import EScenes from './EScenes';
 
@@ -34,11 +34,12 @@ export default class InitialLoaderScene extends Phaser.Scene {
     ) => {
       // WARNING: ❗ Make sure `group` and `key` are valid elements in
       // `json` as `loadAssets` assumes it! ❗
-      await loadAsset(this, jsonData, group, key, pathFixer);
+      await loadAssetFromJson(this, jsonData, group, key, pathFixer);
       crt += 1;
       veryBasicProgressbar?.update(crt, count);
     };
     loadAssets(json, loadIndividualAsset);
+    this.load.start();
   }
 
   centerX() {

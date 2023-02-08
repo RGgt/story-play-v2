@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { GameConfiguration, GameConfigurationKeys } from './GameConfiguration';
+import { GameConfiguration, GameConfigurationKeys } from '@rggt/game-base';
 
 const getAssetsLoader = () => {
   const assetsFolder = GameConfiguration.get(

@@ -1,5 +1,5 @@
 {
-  "name": "@rggt/experimental-mix-game",
+  "name": "@rggt/phaser-asset-loader",
   "version": "1.0.0",
   "description": "",
   "keywords": [],
@@ -17,9 +17,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "@rggt/basic-controls": "workspace:*",
     "@rggt/game-base": "workspace:*",
-    "@rggt/phaser-asset-loader": "workspace:*",
     "phaser": "^3.55.2"
   }
 }
