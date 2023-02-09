@@ -1,3 +1,5 @@
+import { GameReactions } from '../@types/GameReactions';
+
 enum GameConfigurationKeys {
   AssetsFolder,
   HtmlContainer,
@@ -28,6 +30,12 @@ class GameConfigurationSingleton {
   public set(key: GameConfigurationKeys, value: GameConfigurationValue): void {
     this._values.set(key, value);
   }
+
+  public gameReactions: GameReactions = {
+    reactToCursorOption: () => {},
+    reactToError: () => {},
+    reactToNewDialogRequest: () => {},
+  };
 }
 
 export const GameConfiguration = GameConfigurationSingleton.Instance;
