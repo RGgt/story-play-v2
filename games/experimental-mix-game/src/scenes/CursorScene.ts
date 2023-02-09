@@ -1,3 +1,4 @@
+import { ECursorOptions } from '@rggt/game-base';
 import EScenes from './EScenes';
 
 export default class CursorScene extends Phaser.Scene {
@@ -7,7 +8,7 @@ export default class CursorScene extends Phaser.Scene {
 
   private _sprite?: Phaser.GameObjects.Sprite;
 
-  public setEnabled() {
+  private setEnabled() {
     this._isCursorEnabled = true;
   }
 
@@ -37,5 +38,15 @@ export default class CursorScene extends Phaser.Scene {
     }
     this._isCursorEnabled = false;
     super.update(time, delta);
+  }
+
+  reactToCursorOption(cursorOption: string) {
+    switch (cursorOption) {
+      case ECursorOptions.CanClick:
+        this.setEnabled();
+        break;
+      default:
+        throw new Error('Invalid cursor option!');
+    }
   }
 }
