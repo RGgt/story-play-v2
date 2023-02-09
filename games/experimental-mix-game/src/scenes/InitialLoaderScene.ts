@@ -4,8 +4,8 @@ import {
   assetPathFixer as pathFixer,
 } from '@rggt/phaser-asset-loader';
 import { createVeryBasicProgressbar } from '@rggt/basic-controls';
+import { GameConfiguration } from '@rggt/game-base';
 import EScenes from './EScenes';
-import { reactOnError } from '../logic/reactOnError';
 
 /* This is a very crude Loader Scene, that only uses a very basic
  * progressbar and a log. More advanced controls are not user here
@@ -48,7 +48,7 @@ export default class InitialLoaderScene extends Phaser.Scene {
       this.scene.start(EScenes.DialogWindows);
       this.scene.stop(this);
     } catch (err: unknown) {
-      reactOnError(this.game, err as Error);
+      GameConfiguration.gameReactions.reactToError(err as Error);
     }
   }
 

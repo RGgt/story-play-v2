@@ -2,7 +2,6 @@ import { loadAssetFromCommonNode as loadAsset } from '@rggt/phaser-asset-loader'
 import { GameConfiguration, GameConfigurationKeys } from '@rggt/game-base';
 import Phaser from 'phaser';
 import EScenes from './EScenes';
-import { reactOnError } from '../logic/reactOnError';
 
 export default class StartupScene extends Phaser.Scene {
   constructor() {
@@ -30,7 +29,7 @@ export default class StartupScene extends Phaser.Scene {
       this.scene.stop(this);
     } catch (err: unknown) {
       this.scene.start(EScenes.Cursor);
-      reactOnError(this.game, err as Error);
+      GameConfiguration.gameReactions.reactToError(err as Error);
       return;
     }
     this.scene.start(EScenes.Cursor);
