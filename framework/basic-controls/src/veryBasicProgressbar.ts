@@ -1,3 +1,5 @@
+import Phaser from 'phaser';
+
 interface VeryBasicProgressbarOptions {
   left?: number;
   top?: number;
