@@ -1,4 +1,8 @@
+import { DialogLifetimeController, GameConfiguration } from '@rggt/game-base';
 import Phaser from 'phaser';
+import { reactToCursorOption } from './logic/reactToCursorOption';
+import { reactToError } from './logic/reactToError';
+import { reactToNewDialogRequest } from './logic/reactToNewDialogRequest';
 import CriticalErrorScene from './scenes/CriticalErrorScene';
 import CursorScene from './scenes/CursorScene';
 import DialogWindowsScene from './scenes/DialogWindowsScene';
@@ -10,6 +14,20 @@ export default class Game extends Phaser.Game {
     const scenes = Game.getScenes();
     const realConfig = { ...config, scene: scenes };
     super(realConfig);
+
+    GameConfiguration.gameReactions.reactToError = (err: unknown) => {
+      reactToError(this, err);
+    };
+    GameConfiguration.gameReactions.reactToCursorOption = (
+      cursorOption: string
+    ) => {
+      reactToCursorOption(this, cursorOption);
+    };
+    GameConfiguration.gameReactions.reactToNewDialogRequest = (
+      lifetimeController: DialogLifetimeController
+    ) => {
+      reactToNewDialogRequest(this, lifetimeController);
+    };
   }
 
   private static getScenes = (): Array<Phaser.Scene> => {
