@@ -1,4 +1,4 @@
-import { ECursorOptions } from '@rggt/game-base';
+import { ECursorOptions, GameInputPointer } from '@rggt/game-base';
 import EScenes from './EScenes';
 
 export default class CursorScene extends Phaser.Scene {
@@ -24,8 +24,8 @@ export default class CursorScene extends Phaser.Scene {
 
   override update(time: number, delta: number): void {
     if (!this._sprite) return;
-    const pointer = this.input.activePointer;
-    this._sprite?.setPosition(pointer.x, pointer.y);
+
+    this._sprite?.setPosition(GameInputPointer.x, GameInputPointer.y);
 
     if (this._isCursorEnabled) {
       if (!this._isUsingEnabledTexture) {
