@@ -1,8 +1,9 @@
 export type BackgroundBlockerStyle = {
-  x?: number;
-  y?: number;
-  width?: number;
-  height?: number;
+  holeX?: number;
+  holeY?: number;
+  holeWidth?: number;
+  holeHeight?: number;
   fillAlpha?: number;
   fillColor?: number;
+  reactionToClick?: () => void;
 };
