@@ -9,6 +9,11 @@ export type { TextCoordType, TextStyle } from './components/Text/types';
 export { createVeryBasicProgressbar } from './components/VeryBasicProgressbar/main';
 export { createText } from './components/Text/main';
 export {
+  createBackgroundImage,
+  createBackgroundImagePulsing,
+  createBackgroundAnimation,
+} from './components/Background/main';
+export {
   createTitleText,
   createSubtitleTextAlignCenter,
   createSubtitleTextAlignRight,
