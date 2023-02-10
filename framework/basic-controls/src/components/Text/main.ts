@@ -60,5 +60,5 @@ export function createText(
       throw new Error('Unknown coordinates system!');
   }
   scene.add.existing(customComponent);
-  return { customComponent };
+  return { text: customComponent };
 }

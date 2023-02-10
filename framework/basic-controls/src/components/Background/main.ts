@@ -4,7 +4,7 @@ function createBackgroundImage(scene: Phaser.Scene, name: string) {
   const screenCenterY =
     scene.cameras.main.worldView.y + scene.cameras.main.height / 2;
   const sprite = scene.add.sprite(screenCenterX, screenCenterY, name);
-  return { sprite };
+  return { background: sprite };
 }
 
 function createBackgroundImagePulsing(
@@ -26,7 +26,7 @@ function createBackgroundImagePulsing(
     yoyo: config.yoyo, // make the animation go back and forth
     repeat: config.repeats, // repeat indefinitely
   });
-  return { sprite, pulseTween };
+  return { background: sprite, pulseTween };
 }
 
 function createBackgroundAnimation(
@@ -52,7 +52,7 @@ function createBackgroundAnimation(
     (animation as Phaser.Animations.Animation).repeat = -1;
   }
   sprite.play(name);
-  return { sprite, animation };
+  return { background: sprite, animation };
 }
 export {
   createBackgroundImage,
