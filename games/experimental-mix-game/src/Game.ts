@@ -1,4 +1,8 @@
-import { DialogLifetimeController, GameConfiguration } from '@rggt/game-base';
+import {
+  DialogLifetimeController,
+  GameConfiguration,
+  GameInputPointer,
+} from '@rggt/game-base';
 import Phaser from 'phaser';
 import { reactToCursorOption } from './logic/reactToCursorOption';
 import { reactToError } from './logic/reactToError';
@@ -28,6 +32,16 @@ export default class Game extends Phaser.Game {
     ) => {
       reactToNewDialogRequest(this, lifetimeController);
     };
+  }
+
+  override step(time: number, delta: number): void {
+    const pointer = this.input.activePointer;
+    GameInputPointer.x = pointer.x;
+    GameInputPointer.y = pointer.y;
+    GameInputPointer.button = pointer.button;
+    GameInputPointer.isDown = pointer.isDown;
+    GameInputPointer.alreadyHandled = false;
+    Phaser.Game.prototype.step.call(this, time, delta);
   }
 
   private static getScenes = (): Array<Phaser.Scene> => {
