@@ -1,18 +1,5 @@
 import Phaser from 'phaser';
-
-interface VeryBasicProgressbarOptions {
-  left?: number;
-  top?: number;
-  width?: number;
-  height?: number;
-  borderColor?: number;
-  borderSize?: number;
-  borderAlpha?: number;
-  fillColor?: number;
-  fillAlpha?: number;
-  backColor?: number;
-  backAlpha?: number;
-}
+import { VeryBasicProgressbarOptions } from './types';
 
 // An internal type used to ensure the parameters are not undefined.
 interface VeryBasicProgressbarConfig {
@@ -43,10 +30,6 @@ const defaultOptions: VeryBasicProgressbarOptions = {
   backAlpha: 1,
 };
 
-interface VeryBasicProgressbar {
-  update: (value: number, max: number) => void;
-  destroy: () => void;
-}
 const createVeryBasicProgressbar = (
   scene: Phaser.Scene,
   options: VeryBasicProgressbarOptions = defaultOptions
@@ -95,5 +78,4 @@ const createVeryBasicProgressbar = (
   return { update, destroy };
 };
 
-export type { VeryBasicProgressbarOptions, VeryBasicProgressbar };
 export { createVeryBasicProgressbar };
