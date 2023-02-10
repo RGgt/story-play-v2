@@ -6,6 +6,7 @@ export {
   GameConfiguration,
   GameConfigurationKeys,
 } from './basics/GameConfiguration';
+export { GameInputPointer } from './basics/GameInputPointer';
 export type { GameConfigurationValue } from './basics/GameConfiguration';
 export type { DialogLifetimeController } from './@types/DialogLifetimeController';
 export type { GameReactions } from './@types/GameReactions';
