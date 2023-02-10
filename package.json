@@ -18,7 +18,7 @@
     "build": "pnpm --filter @rggt/experimental-mix-page build",
     "offline": "pnpm --filter @rggt/experimental-mix-page offline",
     "inline": "html-inline web-pages/experimental-mix-page/dist/index.html > final_output/index.html",
-    "compile": "pnpm --filter * tsc"
+    "tsc": "pnpm --filter * tsc"
   },
   "devDependencies": {
     "@types/node": "^18.11.18",
