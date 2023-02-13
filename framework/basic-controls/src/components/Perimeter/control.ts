@@ -24,9 +24,9 @@ const defaultOptions: PerimeterConfig = {
 };
 
 class Perimeter extends Phaser.GameObjects.Rectangle {
-  public reactToClick: undefined | ((x: number, y: number) => void);
+  public reactToClick: (x: number, y: number) => void;
 
-  protected _bounds = new Phaser.Geom.Rectangle(0, 0, 1920, 1080);
+  protected _bounds: Phaser.Geom.Rectangle;
 
   protected _lPressed = false;
 
