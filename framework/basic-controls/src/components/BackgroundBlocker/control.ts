@@ -26,13 +26,13 @@ const defaultOptions: BackgroundBlockerConfig = {
 };
 
 class BackgroundBlocker extends Phaser.GameObjects.Rectangle {
-  protected _holeBounds = new Phaser.Geom.Rectangle(0, 0, 1920, 1080);
+  protected _holeBounds: Phaser.Geom.Rectangle;
 
-  protected _bounds = new Phaser.Geom.Rectangle(0, 0, 1920, 1080);
+  protected _bounds: Phaser.Geom.Rectangle;
 
   protected _lPressed = false;
 
-  private onClick: () => void;
+  public reactToClick: (x: number, y: number) => void;
 
   constructor(scene: Phaser.Scene, style: BackgroundBlockerStyle) {
     const fillColor = style.fillColor ?? defaultOptions.fillColor;
@@ -50,9 +50,10 @@ class BackgroundBlocker extends Phaser.GameObjects.Rectangle {
       holeWidth,
       holeHeight
     );
+    this._bounds = new Phaser.Geom.Rectangle(0, 0, 1920, 1080);
     this.fillColor = fillColor;
     this.fillAlpha = fillAlpha;
-    this.onClick = reactionToClick;
+    this.reactToClick = reactionToClick;
     this.setOrigin(0, 0);
     //TODO: remove
     const fill = scene.add.graphics();
@@ -75,8 +76,8 @@ class BackgroundBlocker extends Phaser.GameObjects.Rectangle {
         if (GameInputPointer.button === 0 && GameInputPointer.isDown) {
           this._lPressed = true;
         } else {
-          if (this._lPressed && this.onClick) {
-            this.onClick();
+          if (this._lPressed && this.reactToClick) {
+            this.reactToClick(GameInputPointer.x, GameInputPointer.y);
           }
           this._lPressed = false;
         }
@@ -91,7 +92,7 @@ class BackgroundBlocker extends Phaser.GameObjects.Rectangle {
 
   setActiveCursor() {
     if (!this.scene.game) return;
-    if (!this.onClick) return;
+    if (!this.reactToClick) return;
     GameConfiguration.gameReactions.reactToCursorOption(
       ECursorOptions.CanClick
     );
