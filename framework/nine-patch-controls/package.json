@@ -17,7 +17,8 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "@rggt/game-base": "workspace:^1.0.0",
+    "@rggt/basic-controls": "workspace:*",
+    "@rggt/game-base": "workspace:*",
     "@rggt/nine-patch": "workspace:*",
     "phaser": "^3.55.2"
   }
