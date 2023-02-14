@@ -1,3 +1,10 @@
+export type TextOptions = {
+  x?: number;
+  y?: number;
+  text?: string | string[];
+  maxWidth?: number;
+};
+
 export type TextCoordType =
   | 'TopLeft'
   | 'TopCenter'

@@ -1,13 +1,7 @@
-import { TextStyle } from './types';
+import { TextOptions, TextStyle } from './types';
 import { createText } from './main';
 
-function createTitleText(
-  scene: Phaser.Scene,
-  x: number,
-  y: number,
-  text: string | string[],
-  maxWidth: number
-) {
+function createTitleText(scene: Phaser.Scene, options: TextOptions) {
   const style: TextStyle = {
     shadowColor: '#000000',
     shadowBlur: 4,
@@ -22,15 +16,12 @@ function createTitleText(
     alignment: 'center',
     coords: 'MiddleCenter',
   };
-  return createText(scene, x, y, text, maxWidth, style);
+  return createText(scene, options, style);
 }
 
 function createSubtitleTextAlignCenter(
   scene: Phaser.Scene,
-  x: number,
-  y: number,
-  text: string | string[],
-  maxWidth: number
+  options: TextOptions
 ) {
   const style: TextStyle = {
     shadowColor: '#000000',
@@ -46,15 +37,12 @@ function createSubtitleTextAlignCenter(
     alignment: 'center',
     coords: 'TopCenter',
   };
-  return createText(scene, x, y, text, maxWidth, style);
+  return createText(scene, options, style);
 }
 
 function createSubtitleTextAlignRight(
   scene: Phaser.Scene,
-  x: number,
-  y: number,
-  text: string | string[],
-  maxWidth: number
+  options: TextOptions
 ) {
   const style: TextStyle = {
     shadowColor: '#000000',
@@ -70,16 +58,13 @@ function createSubtitleTextAlignRight(
     alignment: 'right',
     coords: 'TopRight',
   };
-  return createText(scene, x, y, text, maxWidth, style);
+  return createText(scene, options, style);
 }
 
 function createNarrationTextColored(
   scene: Phaser.Scene,
-  x: number,
-  y: number,
-  text: string | string[],
-  textColor: string,
-  maxWidth: number
+  options: TextOptions,
+  textColor: string
 ) {
   const style: TextStyle = {
     shadowColor: '#000000',
@@ -95,26 +80,14 @@ function createNarrationTextColored(
     alignment: 'left',
     coords: 'TopLeft',
   };
-  return createText(scene, x, y, text, maxWidth, style);
+  return createText(scene, options, style);
 }
 
-function createNarrationText(
-  scene: Phaser.Scene,
-  x: number,
-  y: number,
-  text: string | string[],
-  maxWidth: number
-) {
-  return createNarrationTextColored(scene, x, y, text, 'white', maxWidth);
+function createNarrationText(scene: Phaser.Scene, options: TextOptions) {
+  return createNarrationTextColored(scene, options, 'white');
 }
 
-function createScrollingLetterText(
-  scene: Phaser.Scene,
-  x: number,
-  y: number,
-  text: string | string[],
-  maxWidth: number
-) {
+function createScrollingLetterText(scene: Phaser.Scene, options: TextOptions) {
   const style: TextStyle = {
     shadowColor: '#000000',
     shadowBlur: 0,
@@ -129,15 +102,12 @@ function createScrollingLetterText(
     alignment: 'center',
     coords: 'TopCenter',
   };
-  return createText(scene, x, y, text, maxWidth, style);
+  return createText(scene, options, style);
 }
 
 function createSubtitleTextAlignLeft(
   scene: Phaser.Scene,
-  x: number,
-  y: number,
-  text: string | string[],
-  maxWidth: number
+  options: TextOptions
 ) {
   const style: TextStyle = {
     shadowColor: '#000000',
@@ -153,16 +123,10 @@ function createSubtitleTextAlignLeft(
     alignment: 'left',
     coords: 'TopLeft',
   };
-  return createText(scene, x, y, text, maxWidth, style);
+  return createText(scene, options, style);
 }
 
-function createButtonText(
-  scene: Phaser.Scene,
-  x: number,
-  y: number,
-  text: string | string[],
-  maxWidth: number
-) {
+function createButtonText(scene: Phaser.Scene, options: TextOptions) {
   const style: TextStyle = {
     shadowColor: '#000000',
     shadowBlur: 0,
@@ -177,16 +141,10 @@ function createButtonText(
     alignment: 'center',
     coords: 'MiddleCenter',
   };
-  return createText(scene, x, y, text, maxWidth, style);
+  return createText(scene, options, style);
 }
 
-function createIconTextButtonText(
-  scene: Phaser.Scene,
-  x: number,
-  y: number,
-  text: string | string[],
-  maxWidth: number
-) {
+function createIconTextButtonText(scene: Phaser.Scene, options: TextOptions) {
   const style: TextStyle = {
     shadowColor: '#000000',
     shadowBlur: 0,
@@ -201,16 +159,10 @@ function createIconTextButtonText(
     alignment: 'center',
     coords: 'MiddleLeft',
   };
-  return createText(scene, x, y, text, maxWidth, style);
+  return createText(scene, options, style);
 }
 
-function createSaveButtonText(
-  scene: Phaser.Scene,
-  x: number,
-  y: number,
-  text: string | string[],
-  maxWidth: number
-) {
+function createSaveButtonText(scene: Phaser.Scene, options: TextOptions) {
   const style: TextStyle = {
     shadowColor: '#000000',
     shadowBlur: 0,
@@ -225,7 +177,7 @@ function createSaveButtonText(
     alignment: 'center',
     coords: 'MiddleCenter',
   };
-  return createText(scene, x, y, text, maxWidth, style);
+  return createText(scene, options, style);
 }
 
 export {

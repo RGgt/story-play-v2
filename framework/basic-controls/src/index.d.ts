@@ -4,7 +4,11 @@ export type {
   VeryBasicProgressbar,
   VeryBasicProgressbarOptions,
 } from './components/VeryBasicProgressbar/types';
-export type { TextCoordType, TextStyle } from './components/Text/types';
+export type {
+  TextCoordType,
+  TextStyle,
+  TextOptions,
+} from './components/Text/types';
 
 export { createVeryBasicProgressbar } from './components/VeryBasicProgressbar/main';
 export { BackgroundBlocker } from './components/BackgroundBlocker/control';

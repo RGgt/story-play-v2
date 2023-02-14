@@ -1,13 +1,16 @@
-import { TextStyle } from './types';
+import { TextOptions, TextStyle } from './types';
+import { defaultOptions } from './_types';
 
 export function createText(
   scene: Phaser.Scene,
-  x: number,
-  y: number,
-  text: string | string[],
-  maxWidth: number,
+  options: TextOptions,
   style: TextStyle
 ) {
+  const x = options.x ?? defaultOptions.x;
+  const y = options.y ?? defaultOptions.y;
+  const maxWidth = options.maxWidth ?? defaultOptions.maxWidth;
+  const text = options.text ?? defaultOptions.text;
+
   const textShadow: Phaser.Types.GameObjects.Text.TextShadow = {
     offsetX: style.shadowOffsetX,
     offsetY: style.shadowOffsetY,
