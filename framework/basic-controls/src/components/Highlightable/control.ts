@@ -24,11 +24,11 @@ const defaultOptions: HighlightableConfig = {
   y: 0,
   width: 1920,
   height: 1080,
-  fillAlphaInactive: 0.03, // alpha inactive
+  fillAlphaInactive: 0.0, // alpha inactive
   fillColorInactive: 0xffbf00, // color inactive
   fillAlphaHovered: 0.125, // alpha hovered
   fillColorHovered: 0xffbf00, // color hovered
-  fillAlphaActive: 0.3, // alpha inactive
+  fillAlphaActive: 0.175, // alpha inactive
   fillColorActive: 0xffbf00, // color inactive
   reactionToClick: () => console.log('clicked'),
 };
