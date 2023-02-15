@@ -5,24 +5,7 @@ import {
 } from '@rggt/game-base';
 import { NinePatch, NinePatchData } from '@rggt/nine-patch';
 import { ButtonOptions } from './types';
-
-type ButtonConfig = {
-  x: number;
-  y: number;
-  width: number;
-  height: number;
-  disabled: boolean;
-  reactionToClick: (x: number, y: number) => void;
-};
-
-const defaultOptions: ButtonConfig = {
-  x: 0,
-  y: 0,
-  width: 1920,
-  height: 1080,
-  disabled: false,
-  reactionToClick: () => console.log('clicked'),
-};
+import { defaultOptions } from './_types';
 
 class Button extends NinePatch {
   public Disabled = false;

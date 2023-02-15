@@ -12,4 +12,8 @@ export { createCentralPanelBox } from './components/PanelBox/templates';
 export type { ButtonOptions } from './components/Button/types';
 export { Button } from './components/Button/control';
 export { createButton } from './components/Button/main';
+export {
+  createButtonWithSimpleText,
+  createButtonWithIconAndText,
+} from './composites/buttonsWithText';
 // export { createSimpleButton } from './components/Button/templates';
