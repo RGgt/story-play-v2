@@ -1,4 +1,5 @@
 import {
+  createButtonSubText,
   createButtonText,
   createIconTextButtonText,
   TextOptions,
@@ -21,6 +22,39 @@ function createButtonWithSimpleText(
   };
   const { text } = createButtonText(scene, textConfig);
   return { button, text };
+}
+
+function createButtonWithTextAndSubText(
+  scene: Phaser.Scene,
+  options: ButtonOptions,
+  contentOptions: { text: string; subtext: string; subtextColor?: string }
+): {
+  button: Button;
+  text: Phaser.GameObjects.Text;
+  subtext: Phaser.GameObjects.Text;
+} {
+  const { button } = createButton(scene, options);
+  const textY =
+    button.getTop() + (button.getCenter().y - button.getTop()) * 0.8;
+  const subtextY =
+    button.getBottom() - (button.getCenter().y - button.getTop()) * 0.6;
+  const textConfig: TextOptions = {
+    x: button.getCenter().x,
+    y: textY,
+    text: contentOptions.text,
+    maxWidth: button.getBound().width,
+  };
+  const { text } = createButtonText(scene, textConfig);
+  const subtextConfig: TextOptions = {
+    x: button.getCenter().x,
+    y: subtextY,
+    text: contentOptions.subtext,
+    colorOverwrite: contentOptions.subtextColor,
+    maxWidth: button.getBound().width,
+  };
+  const { text: subtext } = createButtonSubText(scene, subtextConfig);
+
+  return { button, text, subtext };
 }
 
 function createButtonWithIconAndText(
@@ -63,4 +97,8 @@ function createButtonWithIconAndText(
   return { button, text: customComponent.text, icon: image };
 }
 
-export { createButtonWithSimpleText, createButtonWithIconAndText };
+export {
+  createButtonWithSimpleText,
+  createButtonWithIconAndText,
+  createButtonWithTextAndSubText,
+};

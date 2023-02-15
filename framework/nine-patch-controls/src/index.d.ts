@@ -15,5 +15,6 @@ export { createButton } from './components/Button/main';
 export {
   createButtonWithSimpleText,
   createButtonWithIconAndText,
+  createButtonWithTextAndSubText,
 } from './composites/buttonsWithText';
 // export { createSimpleButton } from './components/Button/templates';
