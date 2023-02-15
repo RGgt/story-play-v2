@@ -33,7 +33,7 @@ async function loadGameFonts() {
   return Promise.all(
     fonts.map((fontData) => {
       const font = new FontFace(fontData.family, fontData.src);
-      return font.load();
+      return font.load().then((loadedFont) => document.fonts.add(loadedFont));
     })
   );
 }
