@@ -19,6 +19,7 @@
   "dependencies": {
     "@rggt/basic-controls": "workspace:*",
     "@rggt/game-base": "workspace:*",
+    "@rggt/nine-patch-controls": "workspace:*",
     "@rggt/phaser-asset-loader": "workspace:*",
     "phaser": "^3.55.2"
   }
