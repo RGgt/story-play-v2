@@ -27,11 +27,11 @@ export {
   createTitleText,
   createSubtitleTextAlignCenter,
   createSubtitleTextAlignRight,
-  createNarrationTextColored,
   createNarrationText,
   createScrollingLetterText,
   createSubtitleTextAlignLeft,
   createButtonText,
+  createButtonSubText,
   createIconTextButtonText,
   createSaveButtonText,
 } from './components/Text/templates';

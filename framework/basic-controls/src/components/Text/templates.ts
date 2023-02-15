@@ -30,7 +30,7 @@ function createSubtitleTextAlignCenter(
     shadowOffsetY: 2,
     textSize: '36px',
     textFontFamily: 'SerifFont',
-    textColor: 'white',
+    textColor: options.colorOverwrite ?? 'white',
     textBackgroundColor: 'transparent',
     outlineTickness: 8,
     outlineColor: 'black',
@@ -51,7 +51,7 @@ function createSubtitleTextAlignRight(
     shadowOffsetY: 2,
     textSize: '36px',
     textFontFamily: 'SerifFont',
-    textColor: 'white',
+    textColor: options.colorOverwrite ?? 'white',
     textBackgroundColor: 'transparent',
     outlineTickness: 8,
     outlineColor: 'black',
@@ -61,11 +61,7 @@ function createSubtitleTextAlignRight(
   return createText(scene, options, style);
 }
 
-function createNarrationTextColored(
-  scene: Phaser.Scene,
-  options: TextOptions,
-  textColor: string
-) {
+function createNarrationText(scene: Phaser.Scene, options: TextOptions) {
   const style: TextStyle = {
     shadowColor: '#000000',
     shadowBlur: 0,
@@ -73,7 +69,7 @@ function createNarrationTextColored(
     shadowOffsetY: 0,
     textSize: '36px',
     textFontFamily: 'SerifFont',
-    textColor,
+    textColor: options.colorOverwrite ?? 'white',
     textBackgroundColor: 'transparent',
     outlineTickness: 6,
     outlineColor: 'black',
@@ -81,10 +77,6 @@ function createNarrationTextColored(
     coords: 'TopLeft',
   };
   return createText(scene, options, style);
-}
-
-function createNarrationText(scene: Phaser.Scene, options: TextOptions) {
-  return createNarrationTextColored(scene, options, 'white');
 }
 
 function createScrollingLetterText(scene: Phaser.Scene, options: TextOptions) {
@@ -95,7 +87,7 @@ function createScrollingLetterText(scene: Phaser.Scene, options: TextOptions) {
     shadowOffsetY: 0,
     textSize: '36px',
     textFontFamily: 'SerifFont',
-    textColor: 'white',
+    textColor: options.colorOverwrite ?? 'white',
     textBackgroundColor: 'transparent',
     outlineTickness: 6,
     outlineColor: 'black',
@@ -116,7 +108,7 @@ function createSubtitleTextAlignLeft(
     shadowOffsetY: 2,
     textSize: '36px',
     textFontFamily: 'SerifFont',
-    textColor: 'white',
+    textColor: options.colorOverwrite ?? 'white',
     textBackgroundColor: 'transparent',
     outlineTickness: 8,
     outlineColor: 'black',
@@ -134,9 +126,26 @@ function createButtonText(scene: Phaser.Scene, options: TextOptions) {
     shadowOffsetY: 0,
     textSize: '36px',
     textFontFamily: 'SerifFont',
-    textColor: 'white',
+    textColor: options.colorOverwrite ?? 'white',
     textBackgroundColor: 'transparent',
     outlineTickness: 2,
+    outlineColor: 'black',
+    alignment: 'center',
+    coords: 'MiddleCenter',
+  };
+  return createText(scene, options, style);
+}
+function createButtonSubText(scene: Phaser.Scene, options: TextOptions) {
+  const style: TextStyle = {
+    shadowColor: '#000000',
+    shadowBlur: 0,
+    shadowOffsetX: 0,
+    shadowOffsetY: 0,
+    textSize: '24px',
+    textFontFamily: 'SerifBoldFont',
+    textColor: options.colorOverwrite ?? 'white',
+    textBackgroundColor: 'transparent',
+    outlineTickness: 1.5,
     outlineColor: 'black',
     alignment: 'center',
     coords: 'MiddleCenter',
@@ -152,7 +161,7 @@ function createIconTextButtonText(scene: Phaser.Scene, options: TextOptions) {
     shadowOffsetY: 0,
     textSize: '36px',
     textFontFamily: 'SerifFont',
-    textColor: 'white',
+    textColor: options.colorOverwrite ?? 'white',
     textBackgroundColor: 'transparent',
     outlineTickness: 2,
     outlineColor: 'black',
@@ -170,7 +179,7 @@ function createSaveButtonText(scene: Phaser.Scene, options: TextOptions) {
     shadowOffsetY: 0,
     textSize: '24px',
     textFontFamily: 'SerifBoldFont',
-    textColor: 'white',
+    textColor: options.colorOverwrite ?? 'white',
     textBackgroundColor: 'transparent',
     outlineTickness: 2,
     outlineColor: 'black',
@@ -184,11 +193,11 @@ export {
   createTitleText,
   createSubtitleTextAlignCenter,
   createSubtitleTextAlignRight,
-  createNarrationTextColored,
   createNarrationText,
   createScrollingLetterText,
   createSubtitleTextAlignLeft,
   createButtonText,
+  createButtonSubText,
   createIconTextButtonText,
   createSaveButtonText,
 };

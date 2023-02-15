@@ -3,6 +3,7 @@ export type TextOptions = {
   y?: number;
   text?: string | string[];
   maxWidth?: number;
+  colorOverwrite?: string;
 };
 
 export type TextCoordType =
