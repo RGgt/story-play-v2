@@ -1,3 +1,5 @@
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import { ImportMeta } from '@rggt/env-types';
 import { TextOptions, TextStyle } from './types';
 import { defaultOptions } from './_types';
 
@@ -10,6 +12,12 @@ export function createText(
   const y = options.y ?? defaultOptions.y;
   const maxWidth = options.maxWidth ?? defaultOptions.maxWidth;
   const text = options.text ?? defaultOptions.text;
+
+  if (import.meta.env.VITE_DRAW_DEBUG_RECTANGLE.toUpperCase() === 'YES') {
+    const fill = scene.add.graphics();
+    fill.fillStyle(0x00ffff, 1);
+    fill.fillRect(x, y, maxWidth, 10);
+  }
 
   const textShadow: Phaser.Types.GameObjects.Text.TextShadow = {
     offsetX: style.shadowOffsetX,

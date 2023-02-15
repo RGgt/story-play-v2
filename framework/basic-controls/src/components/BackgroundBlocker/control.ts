@@ -55,12 +55,12 @@ class BackgroundBlocker extends Phaser.GameObjects.Rectangle {
     this.fillAlpha = fillAlpha;
     this.reactToClick = reactionToClick;
     this.setOrigin(0, 0);
-    //TODO: remove
-    const fill = scene.add.graphics();
-
-    fill.fillStyle(0x00ffff, 1);
-    fill.fillRect(holeX, holeY, holeWidth, holeHeight);
-    //TODO: /remove
+    // TODO: refactor/remove?
+    if (import.meta.env.VITE_DRAW_DEBUG_RECTANGLE.toUpperCase() === 'YES') {
+      const fill = scene.add.graphics();
+      fill.fillStyle(0x00ffff, 1);
+      fill.fillRect(holeX, holeY, holeWidth, holeHeight);
+    }
   }
 
   preUpdate() {
