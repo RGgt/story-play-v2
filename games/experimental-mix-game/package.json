@@ -18,6 +18,7 @@
   },
   "dependencies": {
     "@rggt/basic-controls": "workspace:*",
+    "@rggt/common-dialogs": "workspace:*",
     "@rggt/game-base": "workspace:*",
     "@rggt/nine-patch-controls": "workspace:*",
     "@rggt/phaser-asset-loader": "workspace:*",
