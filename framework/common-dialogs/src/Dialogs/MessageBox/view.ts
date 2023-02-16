@@ -4,14 +4,15 @@ import {
   createLine,
 } from '@rggt/nine-patch-controls';
 import { createDialogText, createDialogTitleText } from '@rggt/basic-controls';
+import { CommonWindowStyles } from '@rggt/game-base';
 import { BehaviorModel, DataModel } from './_types';
 
 class View {
-  private readonly SPACING = 24;
+  private readonly SPACING = CommonWindowStyles.spacing;
 
-  private readonly BUTTON_HEIGHT = 100;
+  private readonly BUTTON_HEIGHT = CommonWindowStyles.dialogButton.height;
 
-  private readonly LINE_TICKNESS = 5;
+  private readonly LINE_TICKNESS = CommonWindowStyles.line.tickness;
 
   private innerStructure: {
     background: { destroy: () => void };
