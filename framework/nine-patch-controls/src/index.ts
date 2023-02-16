@@ -7,9 +7,6 @@ export { createCentralPanelBox } from './components/PanelBox/templates';
 
 export { Button } from './components/Button/control';
 export { createButton } from './components/Button/main';
-export {
-  createButtonWithSimpleText,
-  createButtonWithIconAndText,
-  createButtonWithTextAndSubText,
-} from './composites/buttonsWithText';
-// export { createSimpleButton } from './components/Button/templates';
+export { createButtonWithSimpleText } from './composites/ButtonWithSimpleText/main';
+export { createButtonWithIconAndText } from './composites/ButtonWithIconAndText/main';
+export { createButtonWithTextAndSubText } from './composites/ButtonWithTextAndSubText/main';
