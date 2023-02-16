@@ -14,6 +14,8 @@ class View {
 
   private readonly LINE_TICKNESS = CommonWindowStyles.line.tickness;
 
+  public returnValue?: number;
+
   private innerStructure: {
     background: { destroy: () => void };
     titleText: { destroy: () => void };

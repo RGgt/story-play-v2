@@ -1,7 +1,7 @@
 interface MessageBoxParameters {
   title?: string;
   message: string;
-  ButtonText?: string;
+  buttonText?: string;
   width?: number;
   callback: () => void;
 }

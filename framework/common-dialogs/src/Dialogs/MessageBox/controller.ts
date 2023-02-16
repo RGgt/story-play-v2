@@ -1,44 +1,37 @@
-import { DialogLifetimeController } from '@rggt/game-base';
-import { BehaviorModel, DataModel } from './_types';
 import { View } from './view';
 import { MessageBoxParameters } from './types';
+import { IWindowController } from '../IWindowController';
 
-class Controller implements DialogLifetimeController {
-  public dataModel: DataModel;
-
-  public behaviorModel: BehaviorModel;
-
+class Controller implements IWindowController {
   public view?: View;
 
-  public constructor(
-    public scene: Phaser.Scene,
-    parameters: MessageBoxParameters
+  public createDialogWindow(
+    scene: Phaser.Scene,
+    p: unknown,
+    onDestroy: () => void
   ) {
+    const parameters = p as MessageBoxParameters;
     const callback = parameters.callback ?? (() => {});
-    this.dataModel = {
-      buttonText: parameters.ButtonText ?? 'Ok',
+    const dataModel = {
+      buttonText: parameters.buttonText ?? 'Ok',
       message: parameters.message,
       title: parameters.title ?? 'Attention!',
       width: parameters.width ?? 1000,
     };
-    this.behaviorModel = {
+    const behaviorModel = {
       onButtonClick: () => {
         this.destroy();
+        onDestroy();
         callback();
       },
     };
-  }
-
-  public createDialog() {
-    this.view = new View(this.scene, this.dataModel, this.behaviorModel);
-    // code here
+    this.view = new View(scene, dataModel, behaviorModel);
   }
 
   public destroy() {
     if (this.view) {
       this.view.destroy();
     }
-    // code
   }
 }
 

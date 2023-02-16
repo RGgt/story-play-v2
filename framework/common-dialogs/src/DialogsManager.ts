@@ -1,30 +1,56 @@
 import Phaser from 'phaser';
-import { Controller as MessageBoxController } from './Dialogs/MessageBox/controller';
-import { MessageBoxParameters } from './Dialogs/MessageBox/types';
+import { createWindowController } from './createWindowController';
 
 class DialogsManager {
+  private _backgroundBlocker?: Phaser.GameObjects.Rectangle;
+
+  private _blockersCount = 0;
+
   public constructor(protected scene: Phaser.Scene) {
     // code goes here
   }
 
-  public createDialog(dialogTypeCode: string, windowParameters: unknown) {
-    let controller: { createDialog: () => void };
-    switch (dialogTypeCode) {
-      case 'MessageBox':
-        controller = new MessageBoxController(
-          this.scene,
-          windowParameters as MessageBoxParameters
-        );
-        break;
-
-      default:
-        throw new Error('Unknown dialog type!');
+  private addBackgroundBlocker() {
+    if (this._backgroundBlocker) {
+      this._blockersCount += 1;
+    } else {
+      this._backgroundBlocker = this.scene.add.rectangle(
+        0,
+        0,
+        1920,
+        1080,
+        0x000000,
+        0.3
+      );
+      this._backgroundBlocker.setOrigin(0, 0);
+      this.scene.add.existing(this._backgroundBlocker);
+      this._blockersCount = 1;
     }
-    controller.createDialog();
   }
 
-  public destroy() {
-    // code
+  private removeBackgroundBlocker() {
+    if (this._blockersCount > 0) {
+      this._blockersCount -= 1;
+    }
+    if (this._blockersCount === 0) {
+      if (this._backgroundBlocker) this._backgroundBlocker.destroy();
+      this._backgroundBlocker = undefined;
+    }
+  }
+
+  public createDialog(windowTypeCode: string, windowParameters: unknown) {
+    const controller = createWindowController(windowTypeCode);
+    this.addBackgroundBlocker();
+
+    controller.createDialogWindow(
+      this.scene,
+      windowParameters,
+      this.destroy.bind(this)
+    );
+  }
+
+  private destroy() {
+    this.removeBackgroundBlocker();
   }
 }
 export { DialogsManager };
