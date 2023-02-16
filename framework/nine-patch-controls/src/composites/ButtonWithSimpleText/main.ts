@@ -7,7 +7,11 @@ function createButtonWithSimpleText(
   scene: Phaser.Scene,
   options: ButtonOptions,
   contentOptions: { text: string }
-): { button: Button; text: Phaser.GameObjects.Text } {
+): {
+  button: Button;
+  text: Phaser.GameObjects.Text;
+  destroy: () => void;
+} {
   const { button } = createButton(scene, options);
   const textConfig: TextOptions = {
     x: button.getCenter().x,
@@ -15,8 +19,15 @@ function createButtonWithSimpleText(
     text: contentOptions.text,
     maxWidth: button.getBound().width,
   };
-  const { text } = createButtonText(scene, textConfig);
-  return { button, text };
+  const text = createButtonText(scene, textConfig);
+  return {
+    button,
+    text: text.text,
+    destroy: () => {
+      text.destroy();
+      button.destroy();
+    },
+  };
 }
 
 export { createButtonWithSimpleText };
