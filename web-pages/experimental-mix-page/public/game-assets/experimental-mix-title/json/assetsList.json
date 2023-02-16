@@ -14,7 +14,8 @@
     "icon_check_off": "{assets}/images/gui/icon_check_off.png",
     "cursor_enabled": "{assets}/images/gui/cursor_enabled.png",
     "panel": "{assets}/images/gui/panel.png",
-    "group_box": "{assets}/images/gui/group_box.png"
+    "group_box": "{assets}/images/gui/group_box.png",
+    "line": "{assets}/images/gui/line.png"
   },
   "svg": {
     "test": "{assets}/images/vite.svg"
