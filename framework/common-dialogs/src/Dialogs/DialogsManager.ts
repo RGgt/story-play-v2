@@ -1,3 +1,4 @@
+import { CommonWindowStyles } from '@rggt/game-base';
 import Phaser from 'phaser';
 import { createWindowController } from './createWindowController';
 
@@ -17,10 +18,10 @@ class DialogsManager {
       this._backgroundBlocker = this.scene.add.rectangle(
         0,
         0,
-        1920,
-        1080,
-        0x000000,
-        0.3
+        CommonWindowStyles.screen.width,
+        CommonWindowStyles.screen.height,
+        CommonWindowStyles.backgroundBlockerColor,
+        CommonWindowStyles.backgroundBlockerAlpha
       );
       this._backgroundBlocker.setOrigin(0, 0);
       this.scene.add.existing(this._backgroundBlocker);
