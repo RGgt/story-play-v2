@@ -1,5 +1,5 @@
 import { IWindowController } from './IWindowController';
-import { Controller as MessageBoxController } from './Dialogs/MessageBox/controller';
+import { Controller as MessageBoxController } from './MessageBox/controller';
 
 function createWindowController(windowTypeCode: string) {
   let controller: IWindowController;

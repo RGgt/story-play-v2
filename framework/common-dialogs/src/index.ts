@@ -1,1 +1,1 @@
-export { DialogsManager } from './DialogsManager';
+export { DialogsManager } from './Dialogs/DialogsManager';
