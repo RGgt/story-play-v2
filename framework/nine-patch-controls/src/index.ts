@@ -1,5 +1,7 @@
 export { GroupBox } from './components/GroupBox/control';
 export { createGroupBox } from './components/GroupBox/main';
+export { Line } from './components/Line/control';
+export { createLine } from './components/Line/main';
 
 export { PanelBox } from './components/PanelBox/control';
 export { createPanelBox } from './components/PanelBox/main';
