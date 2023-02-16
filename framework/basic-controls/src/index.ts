@@ -22,4 +22,6 @@ export {
   createButtonSubText,
   createIconTextButtonText,
   createSaveButtonText,
+  createDialogTitleText,
+  createDialogText,
 } from './components/Text/templates';
