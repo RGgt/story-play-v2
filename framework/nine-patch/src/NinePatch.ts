@@ -221,6 +221,7 @@ export default class NinePatch extends Phaser.GameObjects.Group {
   }
 
   protected setTexture(textureName: string) {
+    if (!this.scene) return;
     this.spriteTL?.setTexture(textureName, 'frmTL');
     this.spriteT?.setTexture(textureName, 'frmT');
     this.spriteTR?.setTexture(textureName, 'frmTR');
@@ -308,5 +309,9 @@ export default class NinePatch extends Phaser.GameObjects.Group {
   public getBottom() {
     if (!this._bounds) return 0;
     return this._bounds.y + this._bounds.height;
+  }
+
+  public destroy(): void {
+    super.destroy(true, true);
   }
 }
