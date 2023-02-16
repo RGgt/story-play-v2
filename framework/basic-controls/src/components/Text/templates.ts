@@ -189,6 +189,42 @@ function createSaveButtonText(scene: Phaser.Scene, options: TextOptions) {
   return createText(scene, options, style);
 }
 
+function createDialogTitleText(scene: Phaser.Scene, options: TextOptions) {
+  const style: TextStyle = {
+    shadowColor: '#000000',
+    shadowBlur: 4,
+    shadowOffsetX: 4,
+    shadowOffsetY: 4,
+    textSize: '48px',
+    textFontFamily: 'SerifFont',
+    textColor: 'white',
+    textBackgroundColor: 'transparent',
+    outlineTickness: 8,
+    outlineColor: 'black',
+    alignment: 'center',
+    coords: 'MiddleCenter',
+  };
+  return createText(scene, options, style);
+}
+
+function createDialogText(scene: Phaser.Scene, options: TextOptions) {
+  const style: TextStyle = {
+    shadowColor: '#000000',
+    shadowBlur: 0,
+    shadowOffsetX: 0,
+    shadowOffsetY: 0,
+    textSize: '36px',
+    textFontFamily: 'SerifFont',
+    textColor: options.colorOverwrite ?? 'white',
+    textBackgroundColor: 'transparent',
+    outlineTickness: 6,
+    outlineColor: 'black',
+    alignment: 'left',
+    coords: 'TopLeft',
+  };
+  return createText(scene, options, style);
+}
+
 export {
   createTitleText,
   createSubtitleTextAlignCenter,
@@ -200,4 +236,6 @@ export {
   createButtonSubText,
   createIconTextButtonText,
   createSaveButtonText,
+  createDialogTitleText,
+  createDialogText,
 };
