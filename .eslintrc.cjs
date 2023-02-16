@@ -26,5 +26,6 @@ module.exports = {
     'import/prefer-default-export': 0,
     'class-methods-use-this': 0,
     'no-extra-boolean-cast': 0,
+    'no-param-reassign': ['error', { props: false }],
   },
 };
