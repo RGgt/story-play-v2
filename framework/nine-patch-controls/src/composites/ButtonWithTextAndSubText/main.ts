@@ -15,6 +15,7 @@ function createButtonWithTextAndSubText(
   button: Button;
   text: Phaser.GameObjects.Text;
   subtext: Phaser.GameObjects.Text;
+  destroy: () => void;
 } {
   const { button } = createButton(scene, options);
   const textY =
@@ -27,7 +28,7 @@ function createButtonWithTextAndSubText(
     text: contentOptions.text,
     maxWidth: button.getBound().width,
   };
-  const { text } = createButtonText(scene, textConfig);
+  const text = createButtonText(scene, textConfig);
   const subtextConfig: TextOptions = {
     x: button.getCenter().x,
     y: subtextY,
@@ -35,9 +36,18 @@ function createButtonWithTextAndSubText(
     colorOverwrite: contentOptions.subtextColor,
     maxWidth: button.getBound().width,
   };
-  const { text: subtext } = createButtonSubText(scene, subtextConfig);
+  const subtext = createButtonSubText(scene, subtextConfig);
 
-  return { button, text, subtext };
+  return {
+    button,
+    text: text.text,
+    subtext: subtext.text,
+    destroy: () => {
+      text.destroy();
+      button.destroy();
+      subtext.destroy();
+    },
+  };
 }
 
 export { createButtonWithTextAndSubText };
