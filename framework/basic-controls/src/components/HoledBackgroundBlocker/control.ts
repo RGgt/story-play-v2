@@ -3,9 +3,9 @@ import {
   ECursorOptions,
   GameInputPointer,
 } from '@rggt/game-base';
-import { BackgroundBlockerStyle } from './types';
+import { HoledBackgroundBlockerStyle } from './types';
 
-type BackgroundBlockerConfig = {
+type HoledBackgroundBlockerConfig = {
   holeX: number;
   holeY: number;
   holeWidth: number;
@@ -15,7 +15,7 @@ type BackgroundBlockerConfig = {
   reactionToClick: () => void;
 };
 
-const defaultOptions: BackgroundBlockerConfig = {
+const defaultOptions: HoledBackgroundBlockerConfig = {
   holeX: 0,
   holeY: 0,
   holeWidth: 1920,
@@ -25,7 +25,7 @@ const defaultOptions: BackgroundBlockerConfig = {
   reactionToClick: () => console.log('clicked'),
 };
 
-class BackgroundBlocker extends Phaser.GameObjects.Rectangle {
+class HoledBackgroundBlocker extends Phaser.GameObjects.Rectangle {
   protected _holeBounds: Phaser.Geom.Rectangle;
 
   protected _bounds: Phaser.Geom.Rectangle;
@@ -34,7 +34,7 @@ class BackgroundBlocker extends Phaser.GameObjects.Rectangle {
 
   public reactToClick: (x: number, y: number) => void;
 
-  constructor(scene: Phaser.Scene, style: BackgroundBlockerStyle) {
+  constructor(scene: Phaser.Scene, style: HoledBackgroundBlockerStyle) {
     const fillColor = style.fillColor ?? defaultOptions.fillColor;
     const fillAlpha = style.fillAlpha ?? defaultOptions.fillAlpha;
     const holeX = style.holeX ?? defaultOptions.holeX;
@@ -55,7 +55,6 @@ class BackgroundBlocker extends Phaser.GameObjects.Rectangle {
     this.fillAlpha = fillAlpha;
     this.reactToClick = reactionToClick;
     this.setOrigin(0, 0);
-    // TODO: refactor/remove?
     if (import.meta.env.VITE_DRAW_DEBUG_RECTANGLE.toUpperCase() === 'YES') {
       const fill = scene.add.graphics();
       fill.fillStyle(0x00ffff, 1);
@@ -98,4 +97,4 @@ class BackgroundBlocker extends Phaser.GameObjects.Rectangle {
     );
   }
 }
-export { BackgroundBlocker };
+export { HoledBackgroundBlocker as BackgroundBlocker };

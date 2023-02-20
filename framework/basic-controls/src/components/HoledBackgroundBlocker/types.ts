@@ -1,4 +1,4 @@
-export type BackgroundBlockerStyle = {
+export type HoledBackgroundBlockerStyle = {
   holeX?: number;
   holeY?: number;
   holeWidth?: number;

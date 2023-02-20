@@ -1,9 +1,9 @@
 import { BackgroundBlocker } from './control';
-import { BackgroundBlockerStyle } from './types';
+import { HoledBackgroundBlockerStyle } from './types';
 
-export function createBackgroundBlocker(
+export function createHoledBackgroundBlocker(
   scene: Phaser.Scene,
-  style: BackgroundBlockerStyle
+  style: HoledBackgroundBlockerStyle
 ) {
   const customComponent = new BackgroundBlocker(scene, style);
   scene.add.existing(customComponent);
