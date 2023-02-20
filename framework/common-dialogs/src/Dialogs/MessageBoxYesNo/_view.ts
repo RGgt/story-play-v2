@@ -118,7 +118,7 @@ class View {
       text: dataModel.message,
     });
     const textHeight = tempText.text.getBounds().bottom;
-    tempText.text.destroy();
+    tempText.destroy();
     return textHeight;
   }
 
@@ -133,7 +133,7 @@ class View {
       text: dataModel.title,
     });
     const textHeight = tempText.text.getBounds().height;
-    tempText.text.destroy();
+    tempText.destroy();
     return textHeight;
   }
 
