@@ -15,7 +15,9 @@ export function createText(
   const textDebugHeight = 10;
 
   let fill: Phaser.GameObjects.Graphics | undefined;
-  if (import.meta.env.VITE_DRAW_DEBUG_RECTANGLE.toUpperCase() === 'YES') {
+  if (
+    import.meta.env.VITE_DRAW_DEBUG_RECTANGLE_FOR_TEXTS.toUpperCase() === 'YES'
+  ) {
     fill = scene.add.graphics();
     fill.fillStyle(0x00ffff, 1);
     fill.fillRect(x, y, maxWidth, textDebugHeight);
