@@ -1,6 +1,6 @@
-import { IWindowController } from './IWindowController';
-import { Controller as MessageBoxController } from './MessageBox/controller';
-import { Controller as MessageBoxYesNoController } from './MessageBoxYesNo/controller';
+import { IWindowController } from './_IWindowController';
+import { Controller as MessageBoxController } from './MessageBox/_controller';
+import { Controller as MessageBoxYesNoController } from './MessageBoxYesNo/_controller';
 
 function createWindowController(windowTypeCode: string) {
   let controller: IWindowController;

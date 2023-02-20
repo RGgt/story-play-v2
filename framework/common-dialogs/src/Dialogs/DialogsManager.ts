@@ -1,6 +1,6 @@
 import { CommonWindowStyles } from '@rggt/game-base';
 import Phaser from 'phaser';
-import { createWindowController } from './createWindowController';
+import { createWindowController } from './_createWindowController';
 
 class DialogsManager {
   private _backgroundBlocker?: Phaser.GameObjects.Rectangle;
