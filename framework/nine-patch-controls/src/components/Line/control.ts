@@ -16,7 +16,7 @@ const defaultOptions: LineConfig = {
 };
 class Line extends SinglePatch {
   constructor(scene: Phaser.Scene, options: LineOptions) {
-    const data = new SinglePatchData('line', undefined, 310, 60); // TODO: correct!
+    const data = new SinglePatchData('line', undefined, 310, 4);
     super(data, scene);
     const x = options.x ?? defaultOptions.x;
     const y = options.y ?? defaultOptions.y;
