@@ -9,7 +9,7 @@
     "test:all": "vitest",
     "test:all:ui": "vitest --ui",
     "test:all:coverage": "vitest run --coverage",
-    "test": "pnpm --filter @rggt/experimental-mix-page test",
+    "test": "pnpm --filter @rggt/nine-patch-controls test",
     "test:ui": "pnpm --filter @rggt/experimental-mix-page test:view",
     "test:coverage": "pnpm --filter @rggt/experimental-mix-page test:coverage",
     "dev": "pnpm --filter @rggt/experimental-mix-page dev",
