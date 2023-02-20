@@ -1,6 +1,6 @@
 import { View } from './view';
 import { MessageBoxParameters } from './types';
-import { IWindowController } from '../_IWindowController';
+import { IWindowController } from '../IWindowController';
 import { BehaviorModel, DataModel } from './_types';
 
 class Controller implements IWindowController {
