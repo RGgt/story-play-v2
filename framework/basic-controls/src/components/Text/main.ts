@@ -1,5 +1,6 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { ImportMeta } from '@rggt/env-types';
+import { DrawDebug } from '@rggt/game-base';
 import { TextOptions, TextStyle } from './types';
 import { defaultOptions } from './_types';
 
@@ -12,14 +13,14 @@ export function createText(
   const y = options.y ?? defaultOptions.y;
   const maxWidth = options.maxWidth ?? defaultOptions.maxWidth;
   const text = options.text ?? defaultOptions.text;
-  const textDebugHeight = 10;
+  const textDebugHeight = DrawDebug.texts.lineHeight;
 
   let fill: Phaser.GameObjects.Graphics | undefined;
   if (
     import.meta.env.VITE_DRAW_DEBUG_RECTANGLE_FOR_TEXTS.toUpperCase() === 'YES'
   ) {
     fill = scene.add.graphics();
-    fill.fillStyle(0x00ffff, 1);
+    fill.fillStyle(DrawDebug.texts.lineColor, DrawDebug.texts.lineAlpha);
     fill.fillRect(x, y, maxWidth, textDebugHeight);
   }
 

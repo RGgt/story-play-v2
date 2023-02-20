@@ -12,6 +12,8 @@ export type { DialogLifetimeController } from './@types/DialogLifetimeController
 export type { GameReactions } from './@types/GameReactions';
 export { ECursorOptions };
 export { default as CommonWindowStyles } from './basics/Styles/CommonWindowStyles';
+export { default as DrawDebug } from './basics/Styles/DrawDebug';
+
 export {
   saveScreenshotToFileDownload,
   getMiniatureScreenshotBase64DataURL,
