@@ -11,6 +11,7 @@ function createButtonWithIconAndText(
   button: Button;
   text: Phaser.GameObjects.Text;
   icon: Phaser.GameObjects.Image;
+  destroy: () => void;
 } {
   const { button } = createButton(scene, options);
 
@@ -20,8 +21,8 @@ function createButtonWithIconAndText(
     text: contentOptions.text,
     maxWidth: button.getBound().width - button.getBound().height,
   };
-  const customComponent = createIconTextButtonText(scene, textConfig);
-  scene.add.existing(customComponent.text);
+  const text = createIconTextButtonText(scene, textConfig);
+  scene.add.existing(text.text);
 
   const image = scene.add.image(
     button.getLeft() + button.getBound().height / 2,
@@ -30,8 +31,9 @@ function createButtonWithIconAndText(
   );
   image.setOrigin(0.5, 0.5);
 
+  let fill: Phaser.GameObjects.Graphics | undefined;
   if (import.meta.env.VITE_DRAW_DEBUG_RECTANGLE.toUpperCase() === 'YES') {
-    const fill = scene.add.graphics();
+    fill = scene.add.graphics();
     fill.fillStyle(0x00ff00, 0.31);
     fill.fillRect(
       button.getLeft(),
@@ -40,7 +42,17 @@ function createButtonWithIconAndText(
       button.getBound().height
     );
   }
-  return { button, text: customComponent.text, icon: image };
+  return {
+    button,
+    text: text.text,
+    icon: image,
+    destroy: () => {
+      text.destroy();
+      button.destroy();
+      image.destroy();
+      fill?.destroy();
+    },
+  };
 }
 
 export { createButtonWithIconAndText };
