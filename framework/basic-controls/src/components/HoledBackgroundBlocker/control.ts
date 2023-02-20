@@ -2,6 +2,7 @@ import {
   GameConfiguration,
   ECursorOptions,
   GameInputPointer,
+  DrawDebug,
 } from '@rggt/game-base';
 import { HoledBackgroundBlockerStyle } from './types';
 
@@ -55,9 +56,12 @@ class HoledBackgroundBlocker extends Phaser.GameObjects.Rectangle {
     this.fillAlpha = fillAlpha;
     this.reactToClick = reactionToClick;
     this.setOrigin(0, 0);
-    if (import.meta.env.VITE_DRAW_DEBUG_RECTANGLE.toUpperCase() === 'YES') {
+    if (
+      import.meta.env.VITE_DRAW_DEBUG_RECTANGLE_FOR_HOLES.toUpperCase() ===
+      'YES'
+    ) {
       const fill = scene.add.graphics();
-      fill.fillStyle(0x00ffff, 1);
+      fill.fillStyle(DrawDebug.holes.hole1.color, DrawDebug.holes.hole1.alpha);
       fill.fillRect(holeX, holeY, holeWidth, holeHeight);
     }
   }
