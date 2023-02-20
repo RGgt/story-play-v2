@@ -26,7 +26,8 @@
     "*/*/__tests__/**/*.spec.ts",
     ".eslintrc.cjs",
     ".prettierrc.cjs",
-    "vite.config.ts"
+    "vite.config.ts",
+    "vitest.config.ts",
   ],
   "exclude": [
     "node_modules"
