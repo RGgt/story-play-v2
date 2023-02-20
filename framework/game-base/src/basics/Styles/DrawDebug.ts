@@ -10,7 +10,7 @@ const DrawDebug = {
       alpha: 0.31,
     },
     slot2: {
-      color: 0x0026ff, // FF0000, 0026FF
+      color: 0x0026ff,
       alpha: 0.31,
     },
     slot3: {
@@ -20,6 +20,12 @@ const DrawDebug = {
     slot4: {
       color: 0x007777,
       alpha: 0.75,
+    },
+  },
+  holes: {
+    hole1: {
+      color: 0xffe842,
+      alpha: 1,
     },
   },
 };
