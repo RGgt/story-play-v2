@@ -23,7 +23,8 @@
   "include": [
     "*/*/src/**/*.ts",
     "*/*/src/**/*.d.ts",
-    "*/*/__tests__/**/*.spec.ts",
+    "**/__tests__/**/*.spec.ts",
+    "**/__tests__/**/*.test.ts",
     ".eslintrc.cjs",
     ".prettierrc.cjs",
     "vite.config.ts",
