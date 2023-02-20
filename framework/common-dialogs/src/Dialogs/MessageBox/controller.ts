@@ -1,6 +1,7 @@
 import { View } from './view';
 import { MessageBoxParameters } from './types';
-import { IWindowController } from '../IWindowController';
+import { IWindowController } from '../_IWindowController';
+import { BehaviorModel, DataModel } from './_types';
 
 class Controller implements IWindowController {
   public view?: View;
@@ -12,13 +13,13 @@ class Controller implements IWindowController {
   ) {
     const parameters = p as MessageBoxParameters;
     const callback = parameters.callback ?? (() => {});
-    const dataModel = {
+    const dataModel: DataModel = {
       buttonText: parameters.buttonText ?? 'Ok',
       message: parameters.message,
       title: parameters.title ?? 'Attention!',
       width: parameters.width ?? 1000,
     };
-    const behaviorModel = {
+    const behaviorModel: BehaviorModel = {
       onButtonClick: () => {
         this.destroy();
         onDestroy();
