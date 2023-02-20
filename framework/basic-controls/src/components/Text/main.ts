@@ -12,11 +12,13 @@ export function createText(
   const y = options.y ?? defaultOptions.y;
   const maxWidth = options.maxWidth ?? defaultOptions.maxWidth;
   const text = options.text ?? defaultOptions.text;
+  const textDebugHeight = 10;
 
+  let fill: Phaser.GameObjects.Graphics | undefined;
   if (import.meta.env.VITE_DRAW_DEBUG_RECTANGLE.toUpperCase() === 'YES') {
-    const fill = scene.add.graphics();
+    fill = scene.add.graphics();
     fill.fillStyle(0x00ffff, 1);
-    fill.fillRect(x, y, maxWidth, 10);
+    fill.fillRect(x, y, maxWidth, textDebugHeight);
   }
 
   const textShadow: Phaser.Types.GameObjects.Text.TextShadow = {
@@ -56,15 +58,20 @@ export function createText(
       break;
     case 'MiddleCenter':
       customComponent.setOrigin(0.5, 0.5);
+      fill?.setPosition(-maxWidth / 2, -textDebugHeight / 2);
       break;
     case 'MiddleLeft':
       customComponent.setOrigin(0.0, 0.5);
+      fill?.setPosition(0, -textDebugHeight / 2);
       break;
     case 'TopCenter':
       customComponent.setOrigin(0.5, 0.0);
+      fill?.setPosition(-maxWidth / 2, 0);
       break;
     case 'TopRight':
       customComponent.setOrigin(1, 0.0);
+      fill?.setPosition(-maxWidth, 0);
+
       break;
 
     default:
@@ -75,6 +82,7 @@ export function createText(
     text: customComponent,
     destroy: () => {
       customComponent.destroy();
+      fill?.destroy();
     },
   };
 }
