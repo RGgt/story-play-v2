@@ -1,15 +1,3 @@
-// import { Highlightable } from '@rggt/basic-controls';
-// import { GroupBox } from '@rggt/nine-patch-controls';
-
-// interface GameSlot {
-//   hasData: boolean;
-//   slotBox: GroupBox;
-//   slotLargeText?: Phaser.GameObjects.Text;
-//   slotHighlightable: Highlightable;
-//   slotPreviewImage?: Phaser.GameObjects.Sprite;
-//   slotPreviewLabel?: Phaser.GameObjects.Text;
-// }
-
 interface GameSlotOptions {
   slotIndex: number;
   slotsAreaY: number;
