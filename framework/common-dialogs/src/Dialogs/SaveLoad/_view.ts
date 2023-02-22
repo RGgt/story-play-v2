@@ -19,6 +19,8 @@ interface InnerStructure {
   titleText: { destroy: () => void };
   topLine: { destroy: () => void };
   slotsArea: { destroy: () => void };
+  paginationArea: { destroy: () => void };
+  buttonClose: { destroy: () => void };
 }
 class View {
   private readonly SPACING = CommonWindowStyles.spacing;
@@ -119,7 +121,7 @@ class View {
       onPageChanged: () => {},
     });
 
-    const button = createButtonWithSimpleText(
+    const buttonClose = createButtonWithSimpleText(
       scene,
       {
         x: topLine.getLeft(),
@@ -142,6 +144,8 @@ class View {
       titleText,
       topLine,
       slotsArea,
+      paginationArea,
+      buttonClose,
     };
   }
 
@@ -165,6 +169,9 @@ class View {
     this.innerStructure.background.destroy();
     this.innerStructure.titleText.destroy();
     this.innerStructure.topLine.destroy();
+    this.innerStructure.slotsArea.destroy();
+    this.innerStructure.paginationArea.destroy();
+    this.innerStructure.buttonClose.destroy();
   }
 }
 
