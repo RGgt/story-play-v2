@@ -47,7 +47,10 @@ class GameSlot {
       height: slotHeight,
       x: slotLeft,
       y: slotTop,
-      reactionToClick: options.onClick,
+      reactionToClick: () => {
+        const index = options.slotIndex;
+        if (options.onClick) options.onClick(index);
+      },
     });
 
     const slotBox = createGroupBox(scene, {
