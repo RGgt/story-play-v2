@@ -1,5 +1,5 @@
 export { createVeryBasicProgressbar } from './components/VeryBasicProgressbar/main';
-export { BackgroundBlocker } from './components/HoledBackgroundBlocker/control';
+export { HoledBackgroundBlocker } from './components/HoledBackgroundBlocker/control';
 export { createHoledBackgroundBlocker } from './components/HoledBackgroundBlocker/main';
 export { Perimeter } from './components/Perimeter/control';
 export { createPerimeter } from './components/Perimeter/main';

@@ -111,4 +111,4 @@ class HoledBackgroundBlocker extends Phaser.GameObjects.Rectangle {
     super.destroy(true);
   }
 }
-export { HoledBackgroundBlocker as BackgroundBlocker };
+export { HoledBackgroundBlocker };
