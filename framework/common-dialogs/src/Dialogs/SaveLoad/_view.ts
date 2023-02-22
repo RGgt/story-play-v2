@@ -5,7 +5,7 @@ import {
 } from '@rggt/nine-patch-controls';
 import { createDialogTitleText } from '@rggt/basic-controls';
 import { CommonWindowStyles } from '@rggt/game-base';
-import { BehaviorModel, DataModel } from './_types';
+import { DataModel } from './_types';
 import {
   getPageSlotsAreaHeight,
   getPageSlotsAreaWidth,
@@ -33,11 +33,7 @@ class View {
 
   private innerStructure: InnerStructure;
 
-  constructor(
-    scene: Phaser.Scene,
-    dataModel: DataModel,
-    behaviorModel: BehaviorModel
-  ) {
+  constructor(scene: Phaser.Scene, dataModel: DataModel) {
     const dialogWidth = getPageSlotsAreaWidth();
     const dialogTitleTextHeight = this.measureDialogTitleTextHeight(
       scene,
@@ -80,37 +76,15 @@ class View {
     });
 
     const slotsArea = new GameSlotsArea(scene, {
-      pageIndex: 0,
+      pageIndex: dataModel.pageIndex,
       x: topLine.getLeft(),
       y: topLine.getTop() + this.SPACING,
-      slots: [
-        {
-          isEmptySlot: true,
-        },
-        {
-          isEmptySlot: false,
-          textureName: 'screenshot_0_5',
-          labelText: 'save game slot #1\r\na line with some details',
-        },
-        {
-          isEmptySlot: true,
-        },
-        {
-          isEmptySlot: false,
-          textureName: 'screenshot_0_5',
-          labelText: 'Friday, October 15 2021\r\n23:42',
-        },
-        {
-          isEmptySlot: true,
-        },
-        {
-          isEmptySlot: true,
-        },
-      ],
+      slots: dataModel.saveSlots,
+      onSlotClicked: dataModel.onSaveToSlot,
     });
 
     const paginationArea = new PaginationSlotsArea(scene, {
-      activePageIndex: 1,
+      activePageIndex: dataModel.pageIndex,
       availableWidth: dialogWidth - 2 * this.SPACING,
       x: topLine.getLeft(),
       y:
@@ -118,7 +92,7 @@ class View {
         this.SPACING +
         getPageSlotsAreaHeight() +
         this.SPACING,
-      onPageChanged: () => {},
+      onPageChanged: dataModel.onPageChanged,
     });
 
     const buttonClose = createButtonWithSimpleText(
@@ -134,7 +108,7 @@ class View {
           this.SPACING,
         width: bkgRect.width - 2 * this.SPACING,
         height: this.BUTTON_HEIGHT,
-        // reactionToClick: behaviorModel.onButtonClick,
+        reactionToClick: dataModel.onButtonClickClose,
       },
       { text: dataModel.buttonTextClose }
     );
