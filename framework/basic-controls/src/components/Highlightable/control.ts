@@ -16,7 +16,7 @@ type HighlightableConfig = {
   fillColorHovered: number;
   fillAlphaActive: number;
   fillColorActive: number;
-  reactionToClick: (x: number, y: number) => void;
+  reactionToClick?: (x: number, y: number) => void;
 };
 
 const defaultOptions: HighlightableConfig = {
@@ -30,7 +30,7 @@ const defaultOptions: HighlightableConfig = {
   fillColorHovered: 0xffbf00, // color hovered
   fillAlphaActive: 0.175, // alpha inactive
   fillColorActive: 0xffbf00, // color inactive
-  reactionToClick: () => console.log('clicked'),
+  reactionToClick: undefined,
 };
 
 class Highlightable extends Phaser.GameObjects.Rectangle {
@@ -50,7 +50,7 @@ class Highlightable extends Phaser.GameObjects.Rectangle {
 
   protected _lPressed = false;
 
-  public reactToClick: (x: number, y: number) => void;
+  public reactToClick?: (x: number, y: number) => void;
 
   constructor(scene: Phaser.Scene, options: HighlightableOptions) {
     const x = options.x ?? defaultOptions.x;
