@@ -18,6 +18,8 @@ export { createPerimeter } from './components/Perimeter/main';
 export { createText } from './components/Text/main';
 export { Highlightable } from './components/Highlightable/control';
 export { createHighlightable } from './components/Highlightable/main';
+export { Colored } from './components/Colored/control';
+export { createColored } from './components/Colored/main';
 export {
   createBackgroundImage,
   createBackgroundImagePulsing,
