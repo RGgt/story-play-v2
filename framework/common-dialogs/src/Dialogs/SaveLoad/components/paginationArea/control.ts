@@ -14,7 +14,7 @@ class PaginationSlotsArea {
       console.log(`clicked on index ${index}`);
     };
     this.innerStructure = {};
-    for (let i = 0; i < SaveAndLoadStyles.paginationSlots; i += 1) {
+    for (let i = 0; i < SaveAndLoadStyles.paginationSlots.count; i += 1) {
       this.innerStructure[`slot_${i}`] = PaginationSlotsArea.createSlot(
         i,
         scene,

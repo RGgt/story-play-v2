@@ -3,9 +3,9 @@ import { getGameSlotHeight, getGameSlotWidth } from '../paginationSlot/main';
 
 export function getPaginationAreaWidth() {
   const width =
-    getGameSlotWidth() * SaveAndLoadStyles.paginationSlots +
-    SaveAndLoadStyles.paginationSlotsSpacing *
-      (SaveAndLoadStyles.paginationSlots + 1);
+    getGameSlotWidth() * SaveAndLoadStyles.paginationSlots.count +
+    SaveAndLoadStyles.paginationSlots.spacing *
+      (SaveAndLoadStyles.paginationSlots.count + 1);
   return width;
 }
 export function getPaginationAreaHeight() {

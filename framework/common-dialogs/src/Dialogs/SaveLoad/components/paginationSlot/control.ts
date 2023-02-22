@@ -79,17 +79,17 @@ class PaginationSlot {
   ) {
     // there are N slots and the middle one is in the center
     const indexOfCentralSlot =
-      (SaveAndLoadStyles.paginationSlots -
-        (SaveAndLoadStyles.paginationSlots % 2)) /
+      (SaveAndLoadStyles.paginationSlots.count -
+        (SaveAndLoadStyles.paginationSlots.count % 2)) /
       2;
     const leftOfCentralSlot =
       slotsAreaX +
       slotsAreaWidth / 2 -
-      SaveAndLoadStyles.paginationSlotWidth / 2;
+      SaveAndLoadStyles.paginationSlots.width / 2;
     return (
       leftOfCentralSlot +
-      (SaveAndLoadStyles.paginationSlotWidth +
-        SaveAndLoadStyles.paginationSlotsSpacing) *
+      (SaveAndLoadStyles.paginationSlots.width +
+        SaveAndLoadStyles.paginationSlots.spacing) *
         (slotIndex - indexOfCentralSlot)
     );
   }
@@ -99,11 +99,11 @@ class PaginationSlot {
   }
 
   static getGameSlotWidth() {
-    return SaveAndLoadStyles.paginationSlotWidth;
+    return SaveAndLoadStyles.paginationSlots.width;
   }
 
   static getGameSlotHeight() {
-    return SaveAndLoadStyles.paginationSlotHeight;
+    return SaveAndLoadStyles.paginationSlots.height;
   }
 
   destroy() {

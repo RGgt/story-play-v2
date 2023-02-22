@@ -6,9 +6,11 @@ const SaveAndLoadStyles = {
     columns: 3,
     rows: 2,
   },
-  paginationSlots: 11,
-  paginationSlotsSpacing: 8,
-  paginationSlotWidth: 100,
-  paginationSlotHeight: 76,
+  paginationSlots: {
+    count: 11,
+    spacing: 8,
+    width: 100,
+    height: 76,
+  },
 };
 export default SaveAndLoadStyles;
