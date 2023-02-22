@@ -15,7 +15,8 @@
     "cursor_enabled": "{assets}/images/gui/cursor_enabled.png",
     "panel": "{assets}/images/gui/panel.png",
     "group_box": "{assets}/images/gui/group_box.png",
-    "line": "{assets}/images/gui/line.png"
+    "line": "{assets}/images/gui/line.png",
+    "screenshot_0_5": "{assets}/images/SAMPLE_screenshot_0_5.jpg"
   },
   "svg": {
     "test": "{assets}/images/vite.svg"
