@@ -60,6 +60,7 @@ class Button extends NinePatch {
       this._bounds.contains(GameInputPointer.x, GameInputPointer.y)
     ) {
       this.setActiveCursor();
+      GameInputPointer.alreadyHandled = true;
       if (GameInputPointer.button === 0 && GameInputPointer.isDown) {
         this._lPressed = true;
         this.setTexture(this.Pushed ? 'btnHover' : 'btnPressed');
