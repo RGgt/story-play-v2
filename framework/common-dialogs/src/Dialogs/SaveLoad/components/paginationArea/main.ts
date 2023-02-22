@@ -1,4 +1,4 @@
-import { CommonWindowStyles, SaveAndLoadStyles } from '@rggt/game-base';
+import { SaveAndLoadStyles } from '@rggt/game-base';
 import { getGameSlotHeight, getGameSlotWidth } from '../paginationSlot/main';
 
 export function getPaginationAreaWidth() {
