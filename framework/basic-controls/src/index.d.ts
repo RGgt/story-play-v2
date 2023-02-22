@@ -13,6 +13,8 @@ export type {
 export { createVeryBasicProgressbar } from './components/VeryBasicProgressbar/main';
 export { HoledBackgroundBlocker } from './components/HoledBackgroundBlocker/control';
 export { createHoledBackgroundBlocker } from './components/HoledBackgroundBlocker/main';
+export { BackgroundBlocker } from './components/BackgroundBlocker/control';
+export { createBackgroundBlocker } from './components/BackgroundBlocker/main';
 export { Perimeter } from './components/Perimeter/control';
 export { createPerimeter } from './components/Perimeter/main';
 export { createText } from './components/Text/main';
