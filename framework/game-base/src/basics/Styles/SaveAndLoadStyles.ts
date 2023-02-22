@@ -1,9 +1,11 @@
 const SaveAndLoadStyles = {
-  thumbnailWidth: 384,
-  thumbnailHeight: 216,
-  labelHeight: 72,
-  thumbnailsPerLine: 3,
-  thumbnailsPerColumn: 2,
+  saveSlots: {
+    thumbnailWidth: 384,
+    thumbnailHeight: 216,
+    labelHeight: 72,
+    columns: 3,
+    rows: 2,
+  },
   paginationSlots: 11,
   paginationSlotsSpacing: 8,
   paginationSlotWidth: 100,

@@ -3,13 +3,13 @@ import { getGameSlotHeight, getGameSlotWidth } from '../gameSlot/main';
 
 export function getPageSlotsAreaWidth() {
   const width =
-    getGameSlotWidth() * SaveAndLoadStyles.thumbnailsPerLine +
-    CommonWindowStyles.spacing * (SaveAndLoadStyles.thumbnailsPerLine + 1);
+    getGameSlotWidth() * SaveAndLoadStyles.saveSlots.columns +
+    CommonWindowStyles.spacing * (SaveAndLoadStyles.saveSlots.columns + 1);
   return width;
 }
 export function getPageSlotsAreaHeight() {
   const width =
-    getGameSlotHeight() * SaveAndLoadStyles.thumbnailsPerColumn +
-    CommonWindowStyles.spacing * (SaveAndLoadStyles.thumbnailsPerColumn - 1);
+    getGameSlotHeight() * SaveAndLoadStyles.saveSlots.rows +
+    CommonWindowStyles.spacing * (SaveAndLoadStyles.saveSlots.rows - 1);
   return width;
 }

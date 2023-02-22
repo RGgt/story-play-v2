@@ -78,7 +78,8 @@ class GameSlot {
     slotPreviewImage.setOrigin(0, 0);
 
     const textLeft = slotLeft + slotWidth / 2;
-    const textTop = slotTop + slotHeight - SaveAndLoadStyles.labelHeight / 2;
+    const textTop =
+      slotTop + slotHeight - SaveAndLoadStyles.saveSlots.labelHeight / 2;
     const slotLabel = createSaveButtonText(scene, {
       text: options.labelText,
       x: textLeft,
@@ -107,24 +108,27 @@ class GameSlot {
   }
 
   static getSlotLeft(slotIndex: number) {
-    const index = slotIndex % SaveAndLoadStyles.thumbnailsPerLine;
+    const index = slotIndex % SaveAndLoadStyles.saveSlots.columns;
     return index * (GameSlot.getGameSlotWidth() + CommonWindowStyles.spacing);
   }
 
   static getSlotTop(slotIndex: number) {
-    const index = slotIndex - (slotIndex % SaveAndLoadStyles.thumbnailsPerLine);
+    const index = slotIndex - (slotIndex % SaveAndLoadStyles.saveSlots.columns);
     return (
       (index * (GameSlot.getGameSlotHeight() + CommonWindowStyles.spacing)) /
-      SaveAndLoadStyles.thumbnailsPerLine
+      SaveAndLoadStyles.saveSlots.columns
     );
   }
 
   static getGameSlotWidth() {
-    return SaveAndLoadStyles.thumbnailWidth;
+    return SaveAndLoadStyles.saveSlots.thumbnailWidth;
   }
 
   static getGameSlotHeight() {
-    return SaveAndLoadStyles.thumbnailHeight + SaveAndLoadStyles.labelHeight;
+    return (
+      SaveAndLoadStyles.saveSlots.thumbnailHeight +
+      SaveAndLoadStyles.saveSlots.labelHeight
+    );
   }
 
   destroy() {
