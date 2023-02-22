@@ -17,7 +17,7 @@ export default class StoryPlayScene extends Phaser.Scene {
 
   onResumePlaying() {
     this.game.events.emit('show-dialog', 'MessageBox', {
-      message: 'You abandoned!',
+      message: 'You returned to playing the game.\r\n\r\nCongrats!',
     });
   }
 
