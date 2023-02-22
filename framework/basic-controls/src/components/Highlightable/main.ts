@@ -7,5 +7,5 @@ export function createHighlightable(
 ) {
   const customComponent = new Highlightable(scene, options);
   scene.add.existing(customComponent);
-  return { highlightable: customComponent };
+  return customComponent;
 }

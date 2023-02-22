@@ -129,5 +129,9 @@ class Highlightable extends Phaser.GameObjects.Rectangle {
     super.setActive(value);
     return this;
   }
+
+  public destroy(): void {
+    super.destroy(true);
+  }
 }
 export { Highlightable };
