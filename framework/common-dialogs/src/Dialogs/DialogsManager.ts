@@ -7,7 +7,6 @@ import Phaser from 'phaser';
 import { createWindowController } from './_createWindowController';
 
 class DialogsManager {
-  // private _backgroundBlocker?: Phaser.GameObjects.Rectangle;
   private _backgroundBlocker?: BackgroundBlocker;
 
   private _blockersCount = 0;
