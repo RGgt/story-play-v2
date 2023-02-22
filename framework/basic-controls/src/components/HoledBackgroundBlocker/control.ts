@@ -31,6 +31,8 @@ class HoledBackgroundBlocker extends Phaser.GameObjects.Rectangle {
 
   protected _bounds: Phaser.Geom.Rectangle;
 
+  protected _debugRectangle?: Phaser.GameObjects.Graphics;
+
   protected _lPressed = false;
 
   public reactToClick: (x: number, y: number) => void;
@@ -60,9 +62,12 @@ class HoledBackgroundBlocker extends Phaser.GameObjects.Rectangle {
       import.meta.env.VITE_DRAW_DEBUG_RECTANGLE_FOR_HOLES.toUpperCase() ===
       'YES'
     ) {
-      const fill = scene.add.graphics();
-      fill.fillStyle(DrawDebug.holes.hole1.color, DrawDebug.holes.hole1.alpha);
-      fill.fillRect(holeX, holeY, holeWidth, holeHeight);
+      this._debugRectangle = scene.add.graphics();
+      this._debugRectangle.fillStyle(
+        DrawDebug.holes.hole1.color,
+        DrawDebug.holes.hole1.alpha
+      );
+      this._debugRectangle.fillRect(holeX, holeY, holeWidth, holeHeight);
     }
   }
 
@@ -99,6 +104,11 @@ class HoledBackgroundBlocker extends Phaser.GameObjects.Rectangle {
     GameConfiguration.gameReactions.reactToCursorOption(
       ECursorOptions.CanClick
     );
+  }
+
+  public destroy(): void {
+    this._debugRectangle?.destroy();
+    super.destroy(true);
   }
 }
 export { HoledBackgroundBlocker as BackgroundBlocker };

@@ -7,5 +7,5 @@ export function createHoledBackgroundBlocker(
 ) {
   const customComponent = new BackgroundBlocker(scene, style);
   scene.add.existing(customComponent);
-  return { holedBackgroundBlocker: customComponent };
+  return customComponent;
 }
