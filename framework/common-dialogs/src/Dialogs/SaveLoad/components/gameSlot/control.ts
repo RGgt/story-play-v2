@@ -134,4 +134,4 @@ class GameSlot {
     this.innerStructure.slotPreviewImage?.destroy();
   }
 }
-export { GameSlot as GameSpot };
+export { GameSlot };

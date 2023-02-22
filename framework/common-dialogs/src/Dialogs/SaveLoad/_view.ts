@@ -3,16 +3,23 @@ import {
   createCentralPanelBox,
   createLine,
 } from '@rggt/nine-patch-controls';
-import { createDialogText, createDialogTitleText } from '@rggt/basic-controls';
+import { createDialogTitleText } from '@rggt/basic-controls';
 import { CommonWindowStyles } from '@rggt/game-base';
 import { BehaviorModel, DataModel } from './_types';
 import {
-  createPageSlotsArea,
   getPageSlotsAreaHeight,
   getPageSlotsAreaWidth,
 } from './components/gameSlotsArea/main';
 import { GameSlotsArea } from './components/gameSlotsArea/control';
+import { PaginationSlotsArea } from './components/paginationArea/control';
+import { getPaginationAreaHeight } from './components/paginationArea/main';
 
+interface InnerStructure {
+  background: { destroy: () => void };
+  titleText: { destroy: () => void };
+  topLine: { destroy: () => void };
+  slotsArea: { destroy: () => void };
+}
 class View {
   private readonly SPACING = CommonWindowStyles.spacing;
 
@@ -22,11 +29,7 @@ class View {
 
   public returnValue?: number;
 
-  private innerStructure: {
-    background: { destroy: () => void };
-    titleText: { destroy: () => void };
-    topLine: { destroy: () => void };
-  };
+  private innerStructure: InnerStructure;
 
   constructor(
     scene: Phaser.Scene,
@@ -46,6 +49,8 @@ class View {
       this.LINE_TICKNESS +
       this.SPACING +
       getPageSlotsAreaHeight() +
+      this.SPACING +
+      getPaginationAreaHeight() +
       this.SPACING +
       this.BUTTON_HEIGHT +
       this.SPACING;
@@ -72,20 +77,47 @@ class View {
         this.SPACING,
     });
 
-    // const slotsArea = createPageSlotsArea(scene, {
-    //   x: topLine.getLeft(),
-    //   y: topLine.getTop() + this.SPACING,
-    // });
-
-    const slotsArea2 = new GameSlotsArea(scene, {
+    const slotsArea = new GameSlotsArea(scene, {
+      pageIndex: 0,
       x: topLine.getLeft(),
       y: topLine.getTop() + this.SPACING,
     });
+
+    const paginationArea = new PaginationSlotsArea(scene, {
+      activePageIndex: 1,
+      availableWidth: dialogWidth - 2 * this.SPACING,
+      x: topLine.getLeft(),
+      y:
+        topLine.getTop() +
+        this.SPACING +
+        getPageSlotsAreaHeight() +
+        this.SPACING,
+      onPageChanged: () => {},
+    });
+
+    const button = createButtonWithSimpleText(
+      scene,
+      {
+        x: topLine.getLeft(),
+        y:
+          topLine.getTop() +
+          this.SPACING +
+          getPageSlotsAreaHeight() +
+          this.SPACING +
+          getPaginationAreaHeight() +
+          this.SPACING,
+        width: bkgRect.width - 2 * this.SPACING,
+        height: this.BUTTON_HEIGHT,
+        // reactionToClick: behaviorModel.onButtonClick,
+      },
+      { text: dataModel.buttonTextClose }
+    );
 
     this.innerStructure = {
       background,
       titleText,
       topLine,
+      slotsArea,
     };
   }
 

@@ -1,8 +1,8 @@
-import { GameSpot } from './control';
+import { GameSlot } from './control';
 
 export function getGameSlotWidth() {
-  return GameSpot.getGameSlotWidth();
+  return GameSlot.getGameSlotWidth();
 }
 export function getGameSlotHeight() {
-  return GameSpot.getGameSlotHeight();
+  return GameSlot.getGameSlotHeight();
 }

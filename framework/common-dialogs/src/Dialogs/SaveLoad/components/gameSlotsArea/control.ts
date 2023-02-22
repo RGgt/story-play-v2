@@ -1,4 +1,4 @@
-import { GameSpot } from '../gameSlot/control';
+import { GameSlot } from '../gameSlot/control';
 import { PageSlotsAreaOptions } from './types';
 
 interface InnerStructure {
@@ -17,7 +17,7 @@ class GameSlotsArea {
     const onClick = (index: number) => {
       console.log(`clicked on index ${index}`);
     };
-    const slot0 = new GameSpot(scene, {
+    const slot0 = new GameSlot(scene, {
       isEmptySlot: true,
       slotIndex: 0,
       textureName: 'screenshot_0_5',
@@ -27,7 +27,7 @@ class GameSlotsArea {
       slotsAreaY: options.y,
       onClick,
     });
-    const slot1 = new GameSpot(scene, {
+    const slot1 = new GameSlot(scene, {
       isEmptySlot: true,
       slotIndex: 1,
       textureName: 'screenshot_0_5',
@@ -37,7 +37,7 @@ class GameSlotsArea {
       slotsAreaY: options.y,
       onClick,
     });
-    const slot2 = new GameSpot(scene, {
+    const slot2 = new GameSlot(scene, {
       isEmptySlot: true,
       slotIndex: 2,
       textureName: 'screenshot_0_5',
@@ -47,7 +47,7 @@ class GameSlotsArea {
       slotsAreaY: options.y,
       onClick,
     });
-    const slot3 = new GameSpot(scene, {
+    const slot3 = new GameSlot(scene, {
       isEmptySlot: true,
       slotIndex: 3,
       textureName: 'screenshot_0_5',
@@ -57,7 +57,7 @@ class GameSlotsArea {
       slotsAreaY: options.y,
       onClick,
     });
-    const slot4 = new GameSpot(scene, {
+    const slot4 = new GameSlot(scene, {
       isEmptySlot: false,
       slotIndex: 4,
       textureName: 'screenshot_0_5',
@@ -67,7 +67,7 @@ class GameSlotsArea {
       slotsAreaY: options.y,
       onClick,
     });
-    const slot5 = new GameSpot(scene, {
+    const slot5 = new GameSlot(scene, {
       isEmptySlot: false,
       slotIndex: 5,
       textureName: 'screenshot_0_5',

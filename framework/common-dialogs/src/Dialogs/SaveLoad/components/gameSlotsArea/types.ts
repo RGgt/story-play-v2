@@ -1,9 +1,7 @@
 interface PageSlotsAreaOptions {
   pageIndex: number;
-  textureName: string;
-  labelText: string;
   x: number;
   y: number;
-  onClick: undefined | (() => void);
+  onSlotClicked?: (pageIndex: number, slotIndex: number) => void;
 }
 export type { PageSlotsAreaOptions };
