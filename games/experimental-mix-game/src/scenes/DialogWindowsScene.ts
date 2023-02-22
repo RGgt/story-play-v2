@@ -1,32 +1,19 @@
+import { DialogsManager } from '@rggt/common-dialogs';
 import EScenes from './EScenes';
 
 export default class DialogWindowsScene extends Phaser.Scene {
-  private _backgroundBlocker: Phaser.GameObjects.Rectangle | undefined;
+  private _dialogsManager: DialogsManager;
 
   constructor() {
     super(EScenes.DialogWindows);
+    this._dialogsManager = new DialogsManager(this);
   }
 
-  private ensureBackgroundBlocker() {
-    if (!this._backgroundBlocker) {
-      this._backgroundBlocker = this.add.rectangle(
-        0,
-        0,
-        1920,
-        1080,
-        0x000000,
-        0.3
-      );
-      this._backgroundBlocker.setOrigin(0, 0);
-      const text = this.add.text(32, 32, 'DialogWindows', {
-        fontSize: '32px',
-        color: '#ffffff',
-      });
-      text.setOrigin(0, 0);
-    }
+  doShowDialog(windowTypeCode: string, windowParameters: unknown) {
+    this._dialogsManager.createDialog(windowTypeCode, windowParameters);
   }
 
   create() {
-    this.ensureBackgroundBlocker();
+    this.game.events.on('show-dialog', this.doShowDialog.bind(this), this);
   }
 }

@@ -4,6 +4,7 @@ const EScenes = {
   Cursor: 'Cursor',
   CriticalError: 'CriticalError',
   DialogWindows: 'DialogWindows',
+  StoryPlay: 'StoryPlayScene',
 };
 
 export default EScenes;

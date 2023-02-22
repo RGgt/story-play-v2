@@ -12,6 +12,7 @@ import CursorScene from './scenes/CursorScene';
 import DialogWindowsScene from './scenes/DialogWindowsScene';
 import InitialLoaderScene from './scenes/InitialLoaderScene';
 import StartupScene from './scenes/StartupScene';
+import StoryPlayScene from './scenes/StoryPlayScene';
 
 export default class Game extends Phaser.Game {
   constructor(config: Phaser.Types.Core.GameConfig) {
@@ -49,6 +50,7 @@ export default class Game extends Phaser.Game {
       new StartupScene(),
       new InitialLoaderScene(),
       new CriticalErrorScene(),
+      new StoryPlayScene(),
       new DialogWindowsScene(),
       new CursorScene(),
     ];
