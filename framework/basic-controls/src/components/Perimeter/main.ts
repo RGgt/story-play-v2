@@ -7,5 +7,5 @@ export function createPerimeter(
 ) {
   const customComponent = new Perimeter(scene, options);
   scene.add.existing(customComponent);
-  return { perimeter: customComponent };
+  return customComponent;
 }

@@ -74,5 +74,9 @@ class Perimeter extends Phaser.GameObjects.Rectangle {
       ECursorOptions.CanClick
     );
   }
+
+  public destroy(): void {
+    super.destroy(true);
+  }
 }
 export { Perimeter };
