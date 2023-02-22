@@ -81,6 +81,30 @@ class View {
       pageIndex: 0,
       x: topLine.getLeft(),
       y: topLine.getTop() + this.SPACING,
+      slots: [
+        {
+          isEmptySlot: true,
+        },
+        {
+          isEmptySlot: false,
+          textureName: 'screenshot_0_5',
+          labelText: 'save game slot #1\r\na line with some details',
+        },
+        {
+          isEmptySlot: true,
+        },
+        {
+          isEmptySlot: false,
+          textureName: 'screenshot_0_5',
+          labelText: 'Friday, October 15 2021\r\n23:42',
+        },
+        {
+          isEmptySlot: true,
+        },
+        {
+          isEmptySlot: true,
+        },
+      ],
     });
 
     const paginationArea = new PaginationSlotsArea(scene, {

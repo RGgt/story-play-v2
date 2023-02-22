@@ -1,13 +1,9 @@
+import { SaveAndLoadStyles } from '@rggt/game-base';
 import { GameSlot } from '../gameSlot/control';
 import { PageSlotsAreaOptions } from './types';
 
 interface InnerStructure {
-  slot0: { destroy: () => void };
-  slot1: { destroy: () => void };
-  slot2: { destroy: () => void };
-  slot3: { destroy: () => void };
-  slot4: { destroy: () => void };
-  slot5: { destroy: () => void };
+  [key: string]: { destroy: () => void };
 }
 
 class GameSlotsArea {
@@ -17,76 +13,42 @@ class GameSlotsArea {
     const onClick = (index: number) => {
       console.log(`clicked on save slot ${index + 1}`);
     };
-    const slot0 = new GameSlot(scene, {
-      isEmptySlot: true,
-      slotIndex: 0,
-      textureName: 'screenshot_0_5',
-      labelText: 'save game slot #1\r\na line with some details',
-      largeText: 'Empty \r\nslot',
+    this.innerStructure = {};
+    for (
+      let i = 0;
+      i <
+      SaveAndLoadStyles.saveSlots.columns * SaveAndLoadStyles.saveSlots.rows;
+      i += 1
+    ) {
+      this.innerStructure[`slot_${i}`] = GameSlotsArea.createSlot(
+        i,
+        scene,
+        options,
+        onClick
+      );
+    }
+  }
+
+  static createSlot(
+    index: number,
+    scene: Phaser.Scene,
+    options: PageSlotsAreaOptions,
+    onClick: (index: number) => void
+  ) {
+    return new GameSlot(scene, {
+      isEmptySlot: options.slots[index].isEmptySlot,
+      slotIndex: index,
+      textureName: options.slots[index].textureName ?? '',
+      labelText: options.slots[index].labelText ?? '',
+      largeText: options.slots[index].isEmptySlot ? 'EMPTY\r\nSLOT' : '',
       slotsAreaX: options.x,
       slotsAreaY: options.y,
       onClick,
     });
-    const slot1 = new GameSlot(scene, {
-      isEmptySlot: true,
-      slotIndex: 1,
-      textureName: 'screenshot_0_5',
-      labelText: 'save game slot #2\r\na line with some details',
-      largeText: 'empty \r\nslot',
-      slotsAreaX: options.x,
-      slotsAreaY: options.y,
-      onClick,
-    });
-    const slot2 = new GameSlot(scene, {
-      isEmptySlot: true,
-      slotIndex: 2,
-      textureName: 'screenshot_0_5',
-      labelText: 'save game slot #3\r\na line with some details',
-      largeText: 'EMPTY \r\nSLOT',
-      slotsAreaX: options.x,
-      slotsAreaY: options.y,
-      onClick,
-    });
-    const slot3 = new GameSlot(scene, {
-      isEmptySlot: true,
-      slotIndex: 3,
-      textureName: 'screenshot_0_5',
-      labelText: 'save game slot #4\r\na line with some details',
-      largeText: 'Empty \r\nSlot',
-      slotsAreaX: options.x,
-      slotsAreaY: options.y,
-      onClick,
-    });
-    const slot4 = new GameSlot(scene, {
-      isEmptySlot: false,
-      slotIndex: 4,
-      textureName: 'screenshot_0_5',
-      labelText: 'save game slot #5\r\na line with some details',
-      largeText: 'lugu lugu crocodilumeu',
-      slotsAreaX: options.x,
-      slotsAreaY: options.y,
-      onClick,
-    });
-    const slot5 = new GameSlot(scene, {
-      isEmptySlot: false,
-      slotIndex: 5,
-      textureName: 'screenshot_0_5',
-      labelText: 'save game slot #6\r\na line with some details',
-      largeText: 'lugu lugu crocodilumeu',
-      slotsAreaX: options.x,
-      slotsAreaY: options.y,
-      onClick,
-    });
-    this.innerStructure = { slot0, slot1, slot2, slot3, slot4, slot5 };
   }
 
   destroy() {
-    this.innerStructure.slot0.destroy();
-    this.innerStructure.slot1.destroy();
-    this.innerStructure.slot2.destroy();
-    this.innerStructure.slot3.destroy();
-    this.innerStructure.slot4.destroy();
-    this.innerStructure.slot5.destroy();
+    Object.values(this.innerStructure).forEach((value) => value.destroy());
   }
 }
 export { GameSlotsArea };
