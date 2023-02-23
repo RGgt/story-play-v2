@@ -11,7 +11,8 @@ class GameSlotsArea {
 
   constructor(scene: Phaser.Scene, options: PageSlotsAreaOptions) {
     const onClick = (index: number) => {
-      console.log(`clicked on save slot ${index + 1}`);
+      if (options.onSlotClicked)
+        options.onSlotClicked(options.pageIndex, index);
     };
     this.innerStructure = {};
     for (
