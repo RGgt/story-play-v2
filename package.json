@@ -45,6 +45,6 @@
     "vitest": "^0.28.5"
   },
   "dependencies": {
-    "@rggt/env-types": "workspace:^1.0.0"
+    "@rggt/env-types": "^1.0.0"
   }
 }
