@@ -31,20 +31,20 @@ jobs:
         with:
           node-version: 18.x
       # ❗ build using pnpm
-      # - name: Install pnpm 7
-      #   uses: pnpm/action-setup@v2
-      #   with:
-      #     version: 7.x
-      # - name: Install dependencies
-      #   run: pnpm install
-      # - name: Generate build
-      #   run: pnpm run git --filter @rggt/experimental-mix-page
+      - name: Install pnpm 7
+        uses: pnpm/action-setup@v2
+        with:
+          version: 7.x
+      - name: Install dependencies
+        run: pnpm install
+      - name: Generate build
+        run: pnpm run git --filter @rggt/experimental-mix-page
       # ❗ / build using pnpm
       # ✔ build using npm
-      - name: Install dependencies
-        run: npm install
-      - name: Generate build
-        run: cd ./web-pages/experimental-mix-page/ && npm run git
+      # - name: Install dependencies
+      #   run: npm install
+      # - name: Generate build
+      #   run: cd ./web-pages/experimental-mix-page/ && npm run git
       # ✔ / build using npm
       - name: Setup Pages
         uses: actions/configure-pages@v2
