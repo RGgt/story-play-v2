@@ -3,6 +3,7 @@ import { GameReactions } from '../@types/GameReactions';
 enum GameConfigurationKeys {
   AssetsFolder,
   HtmlContainer,
+  ActiveSaveLoadPage,
 }
 
 type GameConfigurationValue = undefined | string;
