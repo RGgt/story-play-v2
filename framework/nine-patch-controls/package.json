@@ -17,9 +17,9 @@
     "test": "vitest run"
   },
   "dependencies": {
-    "@rggt/basic-controls": "^1.0.0",
-    "@rggt/game-base": "^1.0.0",
-    "@rggt/nine-patch": "^1.0.0",
+    "@rggt/basic-controls": "workspace:*",
+    "@rggt/game-base": "workspace:*",
+    "@rggt/nine-patch": "workspace:*",
     "phaser": "^3.55.2"
   }
 }

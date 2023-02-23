@@ -19,7 +19,7 @@
     "vitest": "^0.28.3"
   },
   "dependencies": {
-    "@rggt/experimental-mix-title": "^1.0.0",
-    "@rggt/game-base": "^1.0.0"
+    "@rggt/experimental-mix-title": "workspace:*",
+    "@rggt/game-base": "workspace:*"
   }
 }

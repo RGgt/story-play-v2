@@ -16,9 +16,9 @@
     "lint": "eslint src"
   },
   "dependencies": {
-    "@rggt/basic-controls": "^1.0.0",
-    "@rggt/game-base": "^1.0.0",
-    "@rggt/nine-patch-controls": "^1.0.0",
+    "@rggt/basic-controls": "workspace:^1.0.0",
+    "@rggt/game-base": "workspace:*",
+    "@rggt/nine-patch-controls": "workspace:^1.0.0",
     "phaser": "^3.55.2"
   }
 }
