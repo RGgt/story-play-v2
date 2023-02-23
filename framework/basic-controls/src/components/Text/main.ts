@@ -16,14 +16,18 @@ export function createText(
   const textDebugHeight = DrawDebug.texts.lineHeight;
 
   let fill: Phaser.GameObjects.Graphics | undefined;
-  if (
-    import.meta.env.VITE_DRAW_DEBUG_RECTANGLE_FOR_TEXTS.toUpperCase() === 'YES'
-  ) {
-    fill = scene.add.graphics();
-    fill.fillStyle(DrawDebug.texts.lineColor, DrawDebug.texts.lineAlpha);
-    fill.fillRect(x, y, maxWidth, textDebugHeight);
+  try {
+    if (
+      import.meta.env.VITE_DRAW_DEBUG_RECTANGLE_FOR_TEXTS.toUpperCase() ===
+      'YES'
+    ) {
+      fill = scene.add.graphics();
+      fill.fillStyle(DrawDebug.texts.lineColor, DrawDebug.texts.lineAlpha);
+      fill.fillRect(x, y, maxWidth, textDebugHeight);
+    }
+  } catch {
+    /* empty */
   }
-
   const textShadow: Phaser.Types.GameObjects.Text.TextShadow = {
     offsetX: style.shadowOffsetX,
     offsetY: style.shadowOffsetY,
