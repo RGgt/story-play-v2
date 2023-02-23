@@ -10,9 +10,7 @@ class PaginationSlotsArea {
   private innerStructure: InnerStructure;
 
   constructor(scene: Phaser.Scene, options: PaginationAreaOptions) {
-    const onClick = (index: number) => {
-      console.log(`clicked on page slot: ${index}`);
-    };
+    const onClick = options.onPageChanged;
     this.innerStructure = {};
     for (let i = 0; i < SaveAndLoadStyles.paginationSlots.count; i += 1) {
       this.innerStructure[`slot_${i}`] = PaginationSlotsArea.createSlot(
