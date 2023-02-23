@@ -50,11 +50,11 @@ class DialogsManager {
     }
   }
 
-  public createDialog(windowTypeCode: string, windowParameters: unknown) {
+  public async createDialog(windowTypeCode: string, windowParameters: unknown) {
     const controller = createWindowController(windowTypeCode);
     this.addBackgroundBlocker();
 
-    controller.createDialogWindow(
+    await controller.createDialogWindow(
       this.scene,
       windowParameters,
       this.destroy.bind(this)

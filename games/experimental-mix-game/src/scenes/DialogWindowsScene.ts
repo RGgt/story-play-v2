@@ -9,8 +9,8 @@ export default class DialogWindowsScene extends Phaser.Scene {
     this._dialogsManager = new DialogsManager(this);
   }
 
-  doShowDialog(windowTypeCode: string, windowParameters: unknown) {
-    this._dialogsManager.createDialog(windowTypeCode, windowParameters);
+  async doShowDialog(windowTypeCode: string, windowParameters: unknown) {
+    await this._dialogsManager.createDialog(windowTypeCode, windowParameters);
   }
 
   create() {

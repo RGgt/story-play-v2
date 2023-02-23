@@ -3,6 +3,6 @@ interface IWindowController {
     scene: Phaser.Scene,
     parameters: unknown,
     onDestroy: () => void
-  ) => void;
+  ) => Promise<void>;
 }
 export type { IWindowController };
