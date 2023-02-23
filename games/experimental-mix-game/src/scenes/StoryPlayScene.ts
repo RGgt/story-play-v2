@@ -1,3 +1,4 @@
+import { SaveGameManager, StorageManager } from '@rggt/game-base';
 import { createButtonWithSimpleText } from '@rggt/nine-patch-controls';
 import EScenes from './EScenes';
 
@@ -7,11 +8,19 @@ export default class StoryPlayScene extends Phaser.Scene {
     this.events = new Phaser.Events.EventEmitter();
   }
 
+  private _storeManager: StorageManager = new StorageManager();
+
+  private _saveGameManager: SaveGameManager = new SaveGameManager(
+    this._storeManager
+  );
+
   onButtonClick() {
     this.game.events.emit('show-dialog', 'SaveLoad', {
       title: 'Save or load',
       buttonTextClose: 'Resume playing',
       callbackClose: this.onResumePlaying.bind(this),
+      serviceSaveLoad: this._saveGameManager,
+      game: this.game,
     });
   }
 
