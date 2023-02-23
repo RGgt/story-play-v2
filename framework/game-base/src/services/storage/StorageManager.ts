@@ -1,11 +1,11 @@
-import { CloudStorageProxy } from './_CloudStorageProxy';
 import { IStorageProxy } from './_IStorageProxy';
+import { SessionStorageProxy } from './_SessionStorageProxy';
 
 class StorageManager {
   private _storageProxy: IStorageProxy;
 
   constructor() {
-    this._storageProxy = new CloudStorageProxy();
+    this._storageProxy = new SessionStorageProxy();
   }
 
   async setItem(key: string, value: unknown): Promise<void> {
