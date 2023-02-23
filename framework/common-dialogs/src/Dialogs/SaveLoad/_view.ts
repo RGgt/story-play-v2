@@ -29,15 +29,21 @@ class View {
 
   private readonly LINE_TICKNESS = CommonWindowStyles.line.tickness;
 
+  private readonly _dialogWidth: number;
+
+  private readonly _contentStartX: number;
+
+  private readonly _contentStartY: number;
+
   public returnValue?: number;
 
   private innerStructure: InnerStructure;
 
   constructor(scene: Phaser.Scene, dataModel: DataModel) {
-    const dialogWidth = getPageSlotsAreaWidth();
+    this._dialogWidth = getPageSlotsAreaWidth();
     const dialogTitleTextHeight = this.measureDialogTitleTextHeight(
       scene,
-      dialogWidth,
+      this._dialogWidth,
       dataModel
     );
     const panelWindowBackgroundHeight =
@@ -54,14 +60,14 @@ class View {
       this.SPACING;
 
     const background = createCentralPanelBox(scene, {
-      width: dialogWidth,
+      width: this._dialogWidth,
       height: panelWindowBackgroundHeight,
     });
     const bkgRect = background.getBound();
     const titleText = createDialogTitleText(scene, {
       x: background.getCenter().x,
       y: background.getTop() + this.SPACING + dialogTitleTextHeight / 2,
-      maxWidth: dialogWidth - 2 * this.SPACING,
+      maxWidth: this._dialogWidth - 2 * this.SPACING,
       text: dataModel.title,
     });
     const topLine = createLine(scene, {
@@ -75,20 +81,23 @@ class View {
         this.SPACING,
     });
 
+    this._contentStartX = topLine.getLeft();
+    this._contentStartY = topLine.getTop();
+
     const slotsArea = new GameSlotsArea(scene, {
       pageIndex: dataModel.pageIndex,
-      x: topLine.getLeft(),
-      y: topLine.getTop() + this.SPACING,
+      x: this._contentStartX,
+      y: this._contentStartY + this.SPACING,
       slots: dataModel.saveSlots,
       onSlotClicked: dataModel.onSaveToSlot,
     });
 
     const paginationArea = new PaginationSlotsArea(scene, {
       activePageIndex: dataModel.pageIndex,
-      availableWidth: dialogWidth - 2 * this.SPACING,
-      x: topLine.getLeft(),
+      availableWidth: this._dialogWidth - 2 * this.SPACING,
+      x: this._contentStartX,
       y:
-        topLine.getTop() +
+        this._contentStartY +
         this.SPACING +
         getPageSlotsAreaHeight() +
         this.SPACING,
@@ -98,9 +107,9 @@ class View {
     const buttonClose = createButtonWithSimpleText(
       scene,
       {
-        x: topLine.getLeft(),
+        x: this._contentStartX,
         y:
-          topLine.getTop() +
+          this._contentStartY +
           this.SPACING +
           getPageSlotsAreaHeight() +
           this.SPACING +
@@ -121,6 +130,30 @@ class View {
       paginationArea,
       buttonClose,
     };
+  }
+
+  public updateOnPageChanged(scene: Phaser.Scene, dataModel: DataModel) {
+    this.innerStructure.slotsArea.destroy();
+    this.innerStructure.slotsArea = new GameSlotsArea(scene, {
+      pageIndex: dataModel.pageIndex,
+      x: this._contentStartX,
+      y: this._contentStartY + this.SPACING,
+      slots: dataModel.saveSlots,
+      onSlotClicked: dataModel.onSaveToSlot,
+    });
+
+    this.innerStructure.paginationArea.destroy();
+    this.innerStructure.paginationArea = new PaginationSlotsArea(scene, {
+      activePageIndex: dataModel.pageIndex,
+      availableWidth: this._dialogWidth - 2 * this.SPACING,
+      x: this._contentStartX,
+      y:
+        this._contentStartY +
+        this.SPACING +
+        getPageSlotsAreaHeight() +
+        this.SPACING,
+      onPageChanged: dataModel.onPageChanged,
+    });
   }
 
   private measureDialogTitleTextHeight(

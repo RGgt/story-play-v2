@@ -16,7 +16,8 @@ class Controller implements IWindowController {
   public async createDialogWindow(
     scene: Phaser.Scene,
     p: unknown,
-    onDestroy: () => void
+    onDestroy: () => void,
+    notifyControlsRecreated: () => void
   ) {
     const parameters = p as SaveLoadParameters;
     const activePageIndex = Controller._getActivePage();
@@ -37,7 +38,18 @@ class Controller implements IWindowController {
         onDestroy();
         callbackClose();
       },
-      onPageChanged: (pageIndex: number) => {},
+      onPageChanged: async (pageIndex: number) => {
+        Controller._setActivePage(pageIndex);
+        const newSlotsData = await Controller._getSlotsData(
+          parameters.game,
+          parameters.serviceSaveLoad,
+          pageIndex
+        );
+        dataModel.saveSlots = newSlotsData;
+        dataModel.pageIndex = pageIndex;
+        this.view?.updateOnPageChanged(scene, dataModel);
+        notifyControlsRecreated();
+      },
       onSaveToSlot: (pageIndex: number, slotIndex: number) => {},
       onLoadFromSlot: (pageIndex: number, slotIndex: number) => {},
     };
@@ -50,6 +62,10 @@ class Controller implements IWindowController {
     );
     if (!activeSaveLoadPage) return 0;
     return Number(activeSaveLoadPage);
+  }
+
+  private static _setActivePage(index: number) {
+    GameConfiguration.set(GameConfigurationKeys.ActiveSaveLoadPage, index + '');
   }
 
   private static async _getSlotsData(
