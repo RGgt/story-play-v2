@@ -32,12 +32,15 @@ jobs:
         with:
           node-version: 18.x
       # ❗ build using pnpm
+        if: success()
       - name: Install pnpm 7
         uses: pnpm/action-setup@v2
         with:
           version: 7.x
+        if: success()
       - name: Install dependencies
         run: pnpm install
+        if: success()
       - name: Generate build
         run: pnpm run git --filter @rggt/experimental-mix-page
       # ❗ / build using pnpm
@@ -49,11 +52,13 @@ jobs:
       # ✔ / build using npm
       - name: Setup Pages
         uses: actions/configure-pages@v2
+        if: success()
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
           # Upload only the build output
           path: './web-pages/experimental-mix-page/gitHubPages/'
+        if: success()
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v1
