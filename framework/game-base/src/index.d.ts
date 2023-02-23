@@ -27,3 +27,4 @@ export {
   nowToShortText,
 } from './services/dateTime';
 export { StorageManager } from './services/storage/StorageManager';
+export { SaveGameManager } from './services/storage/SaveGameManager';
