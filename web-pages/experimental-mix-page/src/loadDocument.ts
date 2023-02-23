@@ -3,6 +3,8 @@ async function loadDocument(): Promise<void> {
     window.onload = () => {
       resolve();
     };
+    if (window.document.readyState === 'complete') resolve();
+    resolve();
   });
 }
 export { loadDocument };
