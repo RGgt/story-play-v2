@@ -17,8 +17,8 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "@rggt/experimental-mix-game": "workspace:*",
-    "@rggt/game-base": "workspace:*",
+    "@rggt/experimental-mix-game": "workspace:^1.0.0",
+    "@rggt/game-base": "workspace:^1.0.0",
     "phaser": "^3.55.2"
   }
 }
