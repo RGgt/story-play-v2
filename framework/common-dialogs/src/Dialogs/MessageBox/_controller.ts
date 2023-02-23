@@ -6,7 +6,7 @@ import { BehaviorModel, DataModel } from './_types';
 class Controller implements IWindowController {
   public view?: View;
 
-  public createDialogWindow(
+  public async createDialogWindow(
     scene: Phaser.Scene,
     p: unknown,
     onDestroy: () => void
