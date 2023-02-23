@@ -26,41 +26,33 @@ jobs:
     steps:
       - name: Clone repository
         uses: actions/checkout@v3
-        if: success()
       - name: Use Node.js 18.x
         uses: actions/setup-node@v3
         with:
           node-version: 18.x
       # ❗ build using pnpm
-      #   if: success()
-      # - name: Install pnpm 7
-      #   uses: pnpm/action-setup@v2
-      #   with:
-      #     version: 7.x
-      #   if: success()
-      # - name: Install dependencies
-      #   run: pnpm install
-      #   if: success()
-      # - name: Generate build
-      #   run: pnpm run git --filter @rggt/experimental-mix-page
+      - name: Install pnpm 7
+        uses: pnpm/action-setup@v2
+        with:
+          version: 7.x
+      - name: Install dependencies
+        run: pnpm install
+      - name: Generate build
+        run: pnpm run git --filter @rggt/experimental-mix-page
       # ❗ / build using pnpm
       # ✔ build using npm
-      - name: Install dependencies
-        run: npm install
-        if: success()
+      # - name: Install dependencies
+      #   run: npm install
       - name: Generate build
         run: cd ./web-pages/experimental-mix-page/ && npm run git
-        if: success()
       # ✔ / build using npm
       - name: Setup Pages
         uses: actions/configure-pages@v2
-        if: success()
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
           # Upload only the build output
           path: './web-pages/experimental-mix-page/gitHubPages/'
-        if: success()
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v1
