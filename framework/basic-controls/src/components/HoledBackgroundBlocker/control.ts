@@ -76,6 +76,7 @@ class HoledBackgroundBlocker
   }
 
   public processSPInput() {
+    if (!this.visible) return;
     if (!this._holeBounds) return;
 
     // Check if the cursor is over the component

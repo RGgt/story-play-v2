@@ -91,6 +91,7 @@ class Highlightable
   }
 
   public processSPInput() {
+    if (!this.visible) return;
     if (!this._bounds) return;
 
     // Check if the cursor is over the component
