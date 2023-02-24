@@ -54,14 +54,14 @@ class DialogsManager {
     const controller = createWindowController(windowTypeCode);
     this.addBackgroundBlocker();
 
+    this.bringBackgroundBlockerToFront();
+
     await controller.createDialogWindow(
       this.scene,
       windowParameters,
       this.destroy.bind(this),
       this.notifyControlsRecreated.bind(this)
     );
-
-    this.bringBackgroundBlockerToFront();
   }
 
   private notifyControlsRecreated() {
