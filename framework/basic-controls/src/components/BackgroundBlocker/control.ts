@@ -2,6 +2,7 @@ import {
   GameConfiguration,
   ECursorOptions,
   GameInputPointer,
+  SPAwareControl,
 } from '@rggt/game-base';
 import { BackgroundBlockerStyle } from './types';
 
@@ -25,7 +26,10 @@ const defaultOptions: BackgroundBlockerConfig = {
   reactionToClick: undefined,
 };
 
-class BackgroundBlocker extends Phaser.GameObjects.Rectangle {
+class BackgroundBlocker
+  extends Phaser.GameObjects.Rectangle
+  implements SPAwareControl
+{
   protected _bounds: Phaser.Geom.Rectangle;
 
   protected _lPressed = false;
@@ -45,7 +49,7 @@ class BackgroundBlocker extends Phaser.GameObjects.Rectangle {
     this.setOrigin(0, 0);
   }
 
-  public processInput() {
+  public processSPInput() {
     // Check if the cursor is over the component
     if (
       !GameInputPointer.alreadyHandled &&
@@ -64,7 +68,7 @@ class BackgroundBlocker extends Phaser.GameObjects.Rectangle {
       } else {
         this._lPressed = false;
       }
-      GameInputPointer.alreadyHandled = true;
+      // GameInputPointer.alreadyHandled = true;
     } else {
       this._lPressed = false;
     }
@@ -78,7 +82,10 @@ class BackgroundBlocker extends Phaser.GameObjects.Rectangle {
     );
   }
 
+  public onDestroy = () => {};
+
   public destroy(): void {
+    this.onDestroy();
     super.destroy(true);
   }
 }

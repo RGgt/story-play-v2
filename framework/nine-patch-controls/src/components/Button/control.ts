@@ -2,12 +2,13 @@ import {
   ECursorOptions,
   GameConfiguration,
   GameInputPointer,
+  SPAwareControl,
 } from '@rggt/game-base';
 import { NinePatch, NinePatchData } from '@rggt/nine-patch';
 import { ButtonOptions } from './types';
 import { defaultOptions } from './_types';
 
-class Button extends NinePatch {
+class Button extends NinePatch implements SPAwareControl {
   public Disabled = false;
 
   /**
@@ -48,7 +49,7 @@ class Button extends NinePatch {
 
   private _lPressed = false;
 
-  public processInput() {
+  public processSPInput() {
     if (!this._bounds) return;
 
     // Check if the cursor is over the component
@@ -76,10 +77,17 @@ class Button extends NinePatch {
     }
   }
 
+  public onDestroy = () => {};
+
   setActiveCursor() {
     GameConfiguration.gameReactions.reactToCursorOption(
       ECursorOptions.CanClick
     );
+  }
+
+  public override destroy(): void {
+    this.onDestroy();
+    super.destroy();
   }
 }
 export { Button };

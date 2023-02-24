@@ -2,6 +2,7 @@ import {
   ECursorOptions,
   GameConfiguration,
   GameInputPointer,
+  SPAwareControl,
 } from '@rggt/game-base';
 import { HighlightableOptions } from './types';
 
@@ -33,7 +34,10 @@ const defaultOptions: HighlightableConfig = {
   reactionToClick: undefined,
 };
 
-class Highlightable extends Phaser.GameObjects.Rectangle {
+class Highlightable
+  extends Phaser.GameObjects.Rectangle
+  implements SPAwareControl
+{
   fillColorInactive: number;
 
   fillAlphaInactive: number;
@@ -86,7 +90,7 @@ class Highlightable extends Phaser.GameObjects.Rectangle {
     this.reactToClick = reactionToClick;
   }
 
-  public processInput() {
+  public processSPInput() {
     if (!this._bounds) return;
 
     // Check if the cursor is over the component
@@ -130,7 +134,10 @@ class Highlightable extends Phaser.GameObjects.Rectangle {
     return this;
   }
 
+  public onDestroy = () => {};
+
   public destroy(): void {
+    this.onDestroy();
     super.destroy(true);
   }
 }

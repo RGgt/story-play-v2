@@ -3,6 +3,7 @@ import {
   ECursorOptions,
   GameInputPointer,
   DrawDebug,
+  SPAwareControl,
 } from '@rggt/game-base';
 import { HoledBackgroundBlockerStyle } from './types';
 
@@ -26,7 +27,10 @@ const defaultOptions: HoledBackgroundBlockerConfig = {
   reactionToClick: () => console.log('clicked'),
 };
 
-class HoledBackgroundBlocker extends Phaser.GameObjects.Rectangle {
+class HoledBackgroundBlocker
+  extends Phaser.GameObjects.Rectangle
+  implements SPAwareControl
+{
   protected _holeBounds: Phaser.Geom.Rectangle;
 
   protected _bounds: Phaser.Geom.Rectangle;
@@ -71,7 +75,7 @@ class HoledBackgroundBlocker extends Phaser.GameObjects.Rectangle {
     }
   }
 
-  public processInput() {
+  public processSPInput() {
     if (!this._holeBounds) return;
 
     // Check if the cursor is over the component
@@ -106,7 +110,10 @@ class HoledBackgroundBlocker extends Phaser.GameObjects.Rectangle {
     );
   }
 
+  public onDestroy = () => {};
+
   public destroy(): void {
+    this.onDestroy();
     this._debugRectangle?.destroy();
     super.destroy(true);
   }
