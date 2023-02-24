@@ -38,15 +38,7 @@ class Controller implements IWindowController {
         callbackClose();
       },
       onPageChanged: async (pageIndex: number) => {
-        Controller._setActivePage(pageIndex);
-        const newSlotsData = await Controller._getSlotsData(
-          parameters.game,
-          parameters.serviceSaveLoad,
-          pageIndex
-        );
-        dataModel.saveSlots = newSlotsData;
-        dataModel.pageIndex = pageIndex;
-        this.view?.updateOnPageChanged(scene, dataModel);
+        await this.onPageChanged(scene, parameters, dataModel, pageIndex);
       },
       onSaveToSlot: (pageIndex: number, slotIndex: number) => {
         console.log('attempt to save game intercepted');
@@ -64,6 +56,23 @@ class Controller implements IWindowController {
       onLoadFromSlot: (pageIndex: number, slotIndex: number) => {},
     };
     this.view = new View(scene, dataModel);
+  }
+
+  private async onPageChanged(
+    scene: Phaser.Scene,
+    parameters: SaveLoadParameters,
+    dataModel: DataModel,
+    pageIndex: number
+  ) {
+    Controller._setActivePage(pageIndex);
+    const newSlotsData = await Controller._getSlotsData(
+      parameters.game,
+      parameters.serviceSaveLoad,
+      pageIndex
+    );
+    dataModel.saveSlots = newSlotsData;
+    dataModel.pageIndex = pageIndex;
+    this.view?.updateOnPageChanged(scene, dataModel);
   }
 
   private static _getActivePage() {
