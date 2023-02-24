@@ -16,8 +16,7 @@ class Controller implements IWindowController {
   public async createDialogWindow(
     scene: Phaser.Scene,
     p: unknown,
-    onDestroy: () => void,
-    notifyControlsRecreated: () => void
+    onDestroy: () => void
   ) {
     const parameters = p as SaveLoadParameters;
     const activePageIndex = Controller._getActivePage();
@@ -48,7 +47,6 @@ class Controller implements IWindowController {
         dataModel.saveSlots = newSlotsData;
         dataModel.pageIndex = pageIndex;
         this.view?.updateOnPageChanged(scene, dataModel);
-        notifyControlsRecreated();
       },
       onSaveToSlot: (pageIndex: number, slotIndex: number) => {
         console.log('attempt to save game intercepted');

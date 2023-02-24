@@ -2,6 +2,7 @@ import {
   GameConfiguration,
   ECursorOptions,
   GameInputPointer,
+  SPAwareControl,
 } from '@rggt/game-base';
 import { PerimeterOptions } from './types';
 
@@ -23,7 +24,7 @@ const defaultOptions: PerimeterConfig = {
   },
 };
 
-class Perimeter extends Phaser.GameObjects.Rectangle {
+class Perimeter extends Phaser.GameObjects.Rectangle implements SPAwareControl {
   public reactToClick: (x: number, y: number) => void;
 
   protected _bounds: Phaser.Geom.Rectangle;
@@ -45,7 +46,8 @@ class Perimeter extends Phaser.GameObjects.Rectangle {
     this.setOrigin(0, 0);
   }
 
-  preUpdate() {
+  public processSPInput() {
+    if (!this.visible) return;
     if (!this._bounds) return;
 
     // Check if the cursor is over the component
@@ -75,7 +77,10 @@ class Perimeter extends Phaser.GameObjects.Rectangle {
     );
   }
 
+  public onDestroy = () => {};
+
   public destroy(): void {
+    this.onDestroy();
     super.destroy(true);
   }
 }
