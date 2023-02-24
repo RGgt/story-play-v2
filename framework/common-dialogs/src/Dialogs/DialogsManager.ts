@@ -38,11 +38,11 @@ class DialogsManager {
     await controller.createDialogWindow(
       this.scene,
       windowParameters,
-      this.destroy.bind(this)
+      this.removeBackgroundBlocker.bind(this)
     );
   }
 
-  private destroy() {
+  public destroy() {
     while (this._backgroundBlockers.length > 0) {
       this.removeBackgroundBlocker();
     }
