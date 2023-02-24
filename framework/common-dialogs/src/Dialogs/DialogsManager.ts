@@ -7,46 +7,27 @@ import Phaser from 'phaser';
 import { createWindowController } from './_createWindowController';
 
 class DialogsManager {
-  private _backgroundBlocker?: BackgroundBlocker;
+  private _backgroundBlockers: BackgroundBlocker[] = [];
 
-  private _blockersCount = 0;
-
-  public constructor(protected scene: Phaser.Scene) {
-    // code goes here
-  }
+  public constructor(protected scene: Phaser.Scene) {}
 
   private addBackgroundBlocker() {
-    if (this._backgroundBlocker) {
-      this._blockersCount += 1;
-    } else {
-      this._backgroundBlocker = createBackgroundBlocker(this.scene, {
-        fillAlpha: CommonWindowStyles.backgroundBlockerAlpha,
-        fillColor: CommonWindowStyles.backgroundBlockerColor,
-        reactionToClick: undefined,
-      });
-      this._blockersCount = 1;
-    }
+    const backgroundBlocker = createBackgroundBlocker(this.scene, {
+      fillAlpha: CommonWindowStyles.backgroundBlockerAlpha,
+      fillColor: CommonWindowStyles.backgroundBlockerColor,
+      reactionToClick: undefined,
+    });
+    this._backgroundBlockers.forEach((bb) => bb.setVisible(false));
+    this._backgroundBlockers.push(backgroundBlocker);
   }
 
   private removeBackgroundBlocker() {
-    if (this._blockersCount > 0) {
-      this._blockersCount -= 1;
-    }
-    if (this._blockersCount === 0) {
-      if (this._backgroundBlocker) this._backgroundBlocker.destroy();
-      this._backgroundBlocker = undefined;
-    }
-  }
-
-  private bringBackgroundBlockerToFront() {
-    if (this._backgroundBlocker) {
-      this._backgroundBlocker.destroy();
-      this._backgroundBlocker = createBackgroundBlocker(this.scene, {
-        fillAlpha: CommonWindowStyles.backgroundBlockerAlpha,
-        fillColor: CommonWindowStyles.backgroundBlockerColor,
-        reactionToClick: undefined,
-      });
-      this._backgroundBlocker.depth = -10;
+    const backgroundBlocker = this._backgroundBlockers.pop();
+    if (backgroundBlocker) backgroundBlocker.destroy();
+    if (this._backgroundBlockers.length > 0) {
+      this._backgroundBlockers[this._backgroundBlockers.length - 1].setVisible(
+        true
+      );
     }
   }
 
@@ -57,19 +38,14 @@ class DialogsManager {
     await controller.createDialogWindow(
       this.scene,
       windowParameters,
-      this.destroy.bind(this),
-      this.notifyControlsRecreated.bind(this)
+      this.removeBackgroundBlocker.bind(this)
     );
-
-    this.bringBackgroundBlockerToFront();
   }
 
-  private notifyControlsRecreated() {
-    this.bringBackgroundBlockerToFront();
-  }
-
-  private destroy() {
-    this.removeBackgroundBlocker();
+  public destroy() {
+    while (this._backgroundBlockers.length > 0) {
+      this.removeBackgroundBlocker();
+    }
   }
 }
 export { DialogsManager };
