@@ -139,7 +139,7 @@ class Controller implements IWindowController {
     // save details now
     // TODO: Save real data ❗
     await manager.saveGameDetails(trueSlotIndex, {
-      frame: `Frame_${trueSlotIndex}`,
+      warning: 'THIS IS DUMMY DATA! NO REAL DATA SAVED!',
     });
     // save header only if detail saved ok
     await manager.saveGameHeader(trueSlotIndex, {
