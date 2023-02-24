@@ -1,4 +1,7 @@
 const SaveAndLoadStyles = {
+  leftPanel: {
+    width: 400,
+  },
   saveSlots: {
     thumbnailWidth: 384,
     thumbnailHeight: 216,
