@@ -38,13 +38,8 @@ class DialogsManager {
     await controller.createDialogWindow(
       this.scene,
       windowParameters,
-      this.destroy.bind(this),
-      this.notifyControlsRecreated.bind(this)
+      this.destroy.bind(this)
     );
-  }
-
-  private notifyControlsRecreated() {
-    // this.bringBackgroundBlockerToFront();
   }
 
   private destroy() {
