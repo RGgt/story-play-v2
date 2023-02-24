@@ -68,7 +68,7 @@ class BackgroundBlocker
       } else {
         this._lPressed = false;
       }
-      // GameInputPointer.alreadyHandled = true;
+      GameInputPointer.alreadyHandled = true;
     } else {
       this._lPressed = false;
     }
