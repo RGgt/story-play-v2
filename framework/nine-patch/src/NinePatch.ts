@@ -2,6 +2,21 @@ import Phaser from 'phaser';
 import NinePatchData from './NinePatchData';
 
 export default class NinePatch extends Phaser.GameObjects.Group {
+  protected _visible = true;
+
+  public get visible() {
+    return this._visible;
+  }
+
+  public override setVisible(
+    value: boolean,
+    index?: number | undefined,
+    direction?: number | undefined
+  ): this {
+    this._visible = value;
+    return super.setVisible(value, index, direction);
+  }
+
   private spriteTL: Phaser.GameObjects.Sprite | undefined;
 
   private spriteT: Phaser.GameObjects.Sprite | undefined;
@@ -41,7 +56,6 @@ export default class NinePatch extends Phaser.GameObjects.Group {
         this.addFrames(textureName);
       });
     }
-
     this.calculateScales(width, height);
 
     const textureWidthMinusTwoCorners =
