@@ -48,7 +48,7 @@ class Button extends NinePatch {
 
   private _lPressed = false;
 
-  preUpdate() {
+  public processInput() {
     if (!this._bounds) return;
 
     // Check if the cursor is over the component

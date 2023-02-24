@@ -45,7 +45,7 @@ class Perimeter extends Phaser.GameObjects.Rectangle {
     this.setOrigin(0, 0);
   }
 
-  preUpdate() {
+  public processInput() {
     if (!this._bounds) return;
 
     // Check if the cursor is over the component

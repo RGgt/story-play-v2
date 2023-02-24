@@ -86,7 +86,7 @@ class Highlightable extends Phaser.GameObjects.Rectangle {
     this.reactToClick = reactionToClick;
   }
 
-  preUpdate() {
+  public processInput() {
     if (!this._bounds) return;
 
     // Check if the cursor is over the component

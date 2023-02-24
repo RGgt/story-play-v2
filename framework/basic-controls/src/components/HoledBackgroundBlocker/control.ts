@@ -71,7 +71,7 @@ class HoledBackgroundBlocker extends Phaser.GameObjects.Rectangle {
     }
   }
 
-  preUpdate() {
+  public processInput() {
     if (!this._holeBounds) return;
 
     // Check if the cursor is over the component
