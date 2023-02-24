@@ -1,4 +1,11 @@
-import { SaveGameManager, StorageManager } from '@rggt/game-base';
+import {
+  getMiniatureScreenshotBase64DataURL,
+  SaveGameManager,
+  StorageManager,
+  SaveAndLoadStyles,
+  GameVolatileState,
+  GameVolatileStateKeys,
+} from '@rggt/game-base';
 import { createButtonWithSimpleText } from '@rggt/nine-patch-controls';
 import EScenes from './EScenes';
 import SPScene from './SPScene';
@@ -15,7 +22,16 @@ export default class StoryPlayScene extends SPScene {
     this._storeManager
   );
 
-  onButtonClick() {
+  async onButtonClick() {
+    const b64 = await getMiniatureScreenshotBase64DataURL(
+      this.game,
+      SaveAndLoadStyles.saveSlots.thumbnailWidth,
+      SaveAndLoadStyles.saveSlots.thumbnailHeight
+    );
+    GameVolatileState.set(
+      GameVolatileStateKeys.MostRecentBase64Screenshot,
+      b64
+    );
     this.game.events.emit('show-dialog', 'SaveLoad', {
       title: 'Save or load',
       buttonTextClose: 'Resume playing',
