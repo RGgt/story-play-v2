@@ -4,8 +4,13 @@ export {
   GameConfiguration,
   GameConfigurationKeys,
 } from './basics/GameConfiguration';
+export {
+  GameVolatileState,
+  GameVolatileStateKeys,
+} from './basics/GameVolatileState';
 export { GameInputPointer } from './basics/GameInputPointer';
 export type { GameConfigurationValue } from './basics/GameConfiguration';
+export type { GameVolatileStateValue } from './basics/GameVolatileState';
 export type { DialogLifetimeController } from './@types/DialogLifetimeController';
 export type { GameReactions } from './@types/GameReactions';
 export type { SPAwareControl } from './@types/SPAwareControl';
