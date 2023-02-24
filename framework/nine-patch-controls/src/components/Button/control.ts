@@ -26,8 +26,10 @@ class Button extends NinePatch implements SPAwareControl {
         'btnHover',
         'btnPressed',
         'btnDisabled',
-        'btnPushed',
-        'btnDisabledPushed',
+        'btnPushedNormal',
+        'btnPushedHover',
+        'btnPushedPressed',
+        'btnPushedDisabled',
       ],
       310,
       60,
@@ -56,7 +58,7 @@ class Button extends NinePatch implements SPAwareControl {
     // Check if the cursor is over the component
     if (this.Disabled) {
       this._lPressed = false;
-      this.setTexture(this.Pushed ? 'btnDisabledPushed' : 'btnDisabled');
+      this.setTexture(this.Pushed ? 'btnPushedDisabled' : 'btnDisabled');
     } else if (
       !GameInputPointer.alreadyHandled &&
       this._bounds.contains(GameInputPointer.x, GameInputPointer.y)
@@ -65,15 +67,15 @@ class Button extends NinePatch implements SPAwareControl {
       GameInputPointer.alreadyHandled = true;
       if (GameInputPointer.button === 0 && GameInputPointer.isDown) {
         this._lPressed = true;
-        this.setTexture(this.Pushed ? 'btnHover' : 'btnPressed');
+        this.setTexture(this.Pushed ? 'btnPushedPressed' : 'btnPressed');
       } else {
         if (this._lPressed && this.reactToClick)
           this.reactToClick(GameInputPointer.x, GameInputPointer.y);
         this._lPressed = false;
-        this.setTexture(this.Pushed ? 'btnPressed' : 'btnHover');
+        this.setTexture(this.Pushed ? 'btnPushedHover' : 'btnHover');
       }
     } else {
-      this.setTexture(this.Pushed ? 'btnPushed' : 'btnNormal');
+      this.setTexture(this.Pushed ? 'btnPushedNormal' : 'btnNormal');
       this._lPressed = false;
     }
   }
