@@ -50,6 +50,7 @@ class BackgroundBlocker
   }
 
   public processSPInput() {
+    if (!this.visible) return;
     // Check if the cursor is over the component
     if (
       !GameInputPointer.alreadyHandled &&
