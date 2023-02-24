@@ -1,7 +1,8 @@
 import { DialogsManager } from '@rggt/common-dialogs';
 import EScenes from './EScenes';
+import SPScene from './SPScene';
 
-export default class DialogWindowsScene extends Phaser.Scene {
+export default class DialogWindowsScene extends SPScene {
   private _dialogsManager: DialogsManager;
 
   constructor() {

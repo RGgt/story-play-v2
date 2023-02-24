@@ -1,8 +1,9 @@
 import { SaveGameManager, StorageManager } from '@rggt/game-base';
 import { createButtonWithSimpleText } from '@rggt/nine-patch-controls';
 import EScenes from './EScenes';
+import SPScene from './SPScene';
 
-export default class StoryPlayScene extends Phaser.Scene {
+export default class StoryPlayScene extends SPScene {
   constructor() {
     super(EScenes.StoryPlay);
     this.events = new Phaser.Events.EventEmitter();
