@@ -62,6 +62,10 @@ const miniatureBase64DataURLToTexture = (
 ) => {
   return new Promise<void>((resolve, reject) => {
     try {
+      if (!base64DataUrl) {
+        reject(new Error(`Missing game screenshot!`));
+        return;
+      }
       const image = new Image();
       image.crossOrigin = 'anonymous';
       image.addEventListener('error', (e: ErrorEvent) => {
