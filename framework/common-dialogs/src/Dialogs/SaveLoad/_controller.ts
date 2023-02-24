@@ -1,6 +1,8 @@
 import {
   GameConfiguration,
   GameConfigurationKeys,
+  GameVolatileState,
+  GameVolatileStateKeys,
   miniatureBase64DataURLToTexture,
   SaveAndLoadStyles,
   SaveGameManager,
@@ -40,22 +42,58 @@ class Controller implements IWindowController {
       onPageChanged: async (pageIndex: number) => {
         await this.onPageChanged(scene, parameters, dataModel, pageIndex);
       },
-      onSaveToSlot: (pageIndex: number, slotIndex: number) => {
-        console.log('attempt to save game intercepted');
-        parameters.game.events.emit('show-dialog', 'MessageBox', {
-          message: 'Your attempt to save game intercepted.\r\n\r\nCongrats!',
-        });
-
-        // get game index
-        const gameIndex =
-          pageIndex *
-            SaveAndLoadStyles.saveSlots.columns *
-            SaveAndLoadStyles.saveSlots.rows +
-          slotIndex;
+      onSaveToSlot: async (pageIndex: number, slotIndex: number) => {
+        const { isEmptySlot } = dataModel.saveSlots[slotIndex];
+        if (!isEmptySlot) {
+          parameters.game.events.emit('show-dialog', 'MessageBoxYesNo', {
+            message: 'This slot is not empty.\r\n\r\nOverwrite?',
+            callbackYes: async () => {
+              await this.onSaveToSlot(
+                scene,
+                parameters,
+                dataModel,
+                pageIndex,
+                slotIndex
+              );
+            },
+          });
+          return;
+        }
+        await this.onSaveToSlot(
+          scene,
+          parameters,
+          dataModel,
+          pageIndex,
+          slotIndex
+        );
       },
+
       onLoadFromSlot: (pageIndex: number, slotIndex: number) => {},
     };
     this.view = new View(scene, dataModel);
+  }
+
+  private async onSaveToSlot(
+    scene: Phaser.Scene,
+    parameters: SaveLoadParameters,
+    dataModel: DataModel,
+    pageIndex: number,
+    slotIndex: number
+  ) {
+    await Controller._saveSlotData(
+      parameters.game,
+      parameters.serviceSaveLoad,
+      pageIndex,
+      slotIndex
+    );
+    const newSlotsData = await Controller._getSlotsData(
+      parameters.game,
+      parameters.serviceSaveLoad,
+      pageIndex
+    );
+    dataModel.saveSlots = newSlotsData;
+    dataModel.pageIndex = pageIndex;
+    this.view?.updateOnPageChanged(scene, dataModel);
   }
 
   private async onPageChanged(
@@ -85,6 +123,31 @@ class Controller implements IWindowController {
 
   private static _setActivePage(index: number) {
     GameConfiguration.set(GameConfigurationKeys.ActiveSaveLoadPage, index + '');
+  }
+
+  private static async _saveSlotData(
+    game: Phaser.Game,
+    manager: SaveGameManager,
+    pageIndex: number,
+    slotIndex: number
+  ) {
+    const trueSlotIndex =
+      pageIndex *
+        SaveAndLoadStyles.saveSlots.columns *
+        SaveAndLoadStyles.saveSlots.rows +
+      slotIndex;
+    // save details now
+    // TODO: Save real data ❗
+    await manager.saveGameDetails(trueSlotIndex, {
+      frame: `Frame_${trueSlotIndex}`,
+    });
+    // save header only if detail saved ok
+    await manager.saveGameHeader(trueSlotIndex, {
+      label: `save #${trueSlotIndex}`,
+      b64Texture: GameVolatileState.get(
+        GameVolatileStateKeys.MostRecentBase64Screenshot
+      ),
+    });
   }
 
   private static async _getSlotsData(
