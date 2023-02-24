@@ -74,7 +74,9 @@ const miniatureBase64DataURLToTexture = (
         reject(new Error(`Error capturing game screen: ${e.message}`));
       });
       image.addEventListener('load', () => {
-        game.textures.remove(textureName);
+        if (game.textures.exists(textureName)) {
+          game.textures.remove(textureName);
+        }
         game.textures.addImage(textureName, image);
         resolve();
       });
