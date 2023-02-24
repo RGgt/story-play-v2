@@ -22,6 +22,9 @@ export default class SPScene extends Phaser.Scene {
     const index = this._inputProcessingSPList.indexOf(control);
     if (index !== -1) {
       this._inputProcessingSPList.splice(index, 1);
+      control.onDestroy = () => {
+        this.removeFromSPInputProcessingList(control);
+      };
     }
   }
 
