@@ -11,6 +11,7 @@ interface DataModel {
   onButtonClickClose: () => void;
   onPageChanged: (pageIndex: number) => void;
   onSaveToSlot: (pageIndex: number, slotIndex: number) => void;
+  onDeleteFromSlot: (pageIndex: number, slotIndex: number) => void;
   onLoadFromSlot: (pageIndex: number, slotIndex: number) => void;
 }
 

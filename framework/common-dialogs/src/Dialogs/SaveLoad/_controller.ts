@@ -67,7 +67,7 @@ class Controller implements IWindowController {
           slotIndex
         );
       },
-
+      onDeleteFromSlot: (pageIndex: number, slotIndex: number) => {},
       onLoadFromSlot: (pageIndex: number, slotIndex: number) => {},
     };
     this.view = new View(scene, dataModel);
