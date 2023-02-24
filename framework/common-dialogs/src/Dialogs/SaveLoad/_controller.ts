@@ -50,7 +50,19 @@ class Controller implements IWindowController {
         this.view?.updateOnPageChanged(scene, dataModel);
         notifyControlsRecreated();
       },
-      onSaveToSlot: (pageIndex: number, slotIndex: number) => {},
+      onSaveToSlot: (pageIndex: number, slotIndex: number) => {
+        console.log('attempt to save game intercepted');
+        parameters.game.events.emit('show-dialog', 'MessageBox', {
+          message: 'Your attempt to save game intercepted.\r\n\r\nCongrats!',
+        });
+
+        // get game index
+        const gameIndex =
+          pageIndex *
+            SaveAndLoadStyles.saveSlots.columns *
+            SaveAndLoadStyles.saveSlots.rows +
+          slotIndex;
+      },
       onLoadFromSlot: (pageIndex: number, slotIndex: number) => {},
     };
     this.view = new View(scene, dataModel);
