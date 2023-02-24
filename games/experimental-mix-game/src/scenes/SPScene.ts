@@ -28,10 +28,6 @@ export default class SPScene extends Phaser.Scene {
     }
   }
 
-  public clearSPInputProcessingList(): void {
-    this._inputProcessingSPList.splice(0, this._inputProcessingSPList.length);
-  }
-
   protected processSPInput() {
     if (GameInputPointer.alreadyHandled) return;
     this._inputProcessingSPList.forEach((control) => {
