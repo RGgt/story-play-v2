@@ -12,6 +12,9 @@ export default class SPScene extends Phaser.Scene {
   public addToSPInputProcessingList(control: SPAwareControl): void {
     if (this._inputProcessingSPList.indexOf(control) === -1) {
       this._inputProcessingSPList.unshift(control);
+      control.onDestroy = () => {
+        this.removeFromSPInputProcessingList(control);
+      };
     }
   }
 
