@@ -7,6 +7,7 @@ import {
   GameVolatileState,
   GameVolatileStateKeys,
   GameConfiguration,
+  TranslationData,
 } from '@rggt/game-base';
 import { createButtonWithSimpleText } from '@rggt/nine-patch-controls';
 import { CustomGameState } from '../state/CustomGameState';
@@ -71,6 +72,13 @@ export default class StoryPlayScene extends SPScene {
   }
 
   create() {
+    GameConfiguration.uITranslationData = this.cache.json.get(
+      'translation-ui'
+    ) as TranslationData;
+    GameConfiguration.translationData = this.cache.json.get(
+      'translation'
+    ) as TranslationData;
+
     createButtonWithSimpleText(
       this,
       {
