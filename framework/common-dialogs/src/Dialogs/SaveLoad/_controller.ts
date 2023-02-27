@@ -79,7 +79,9 @@ class Controller implements IWindowController {
         const { isEmptySlot } = dataModel.saveSlots[slotIndex];
         if (!isEmptySlot) {
           parameters.game.events.emit('show-dialog', 'MessageBoxYesNo', {
-            message: 'This slot is not empty.\r\n\r\nOverwrite?',
+            message: GameConfiguration.getUITranslation(
+              'SaveLoad.saveConfirmOverwriteMessage'
+            ),
             callbackYes: async () => {
               await this.onSaveToSlot(
                 scene,
@@ -102,7 +104,9 @@ class Controller implements IWindowController {
       },
       onDeleteFromSlot: (pageIndex: number, slotIndex: number) => {
         parameters.game.events.emit('show-dialog', 'MessageBoxYesNo', {
-          message: 'You cannot undo this operation.\n\n\nDelete game?',
+          message: GameConfiguration.getUITranslation(
+            'SaveLoad.deleteConfirmNoUndoMessage'
+          ),
           callbackYes: async () => {
             await this.onDeleteFromSlot(
               scene,
@@ -116,8 +120,9 @@ class Controller implements IWindowController {
       },
       onLoadFromSlot: (pageIndex: number, slotIndex: number) => {
         parameters.game.events.emit('show-dialog', 'MessageBoxYesNo', {
-          message:
-            'All unsaved changes to the current game will be lost.\n\n\nLoad game?',
+          message: GameConfiguration.getUITranslation(
+            'SaveLoad.loadConfirmLoseUnsavedMessage'
+          ),
           callbackYes: async () => {
             await this.onLoadFromSlot(
               scene,
