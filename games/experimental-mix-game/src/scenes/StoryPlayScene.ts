@@ -30,7 +30,15 @@ export default class StoryPlayScene extends SPScene {
     destroy: () => void;
   };
 
-  async onButtonClick() {
+  async onButtonSaveClick() {
+    await this.showSaveLoad('save');
+  }
+
+  async onButtonLoadClick() {
+    await this.showSaveLoad('load');
+  }
+
+  async showSaveLoad(viewMode: 'save' | 'load' | 'delete') {
     const b64 = await getMiniatureScreenshotBase64DataURL(
       this.game,
       SaveAndLoadStyles.saveSlots.thumbnailWidth,
@@ -48,6 +56,8 @@ export default class StoryPlayScene extends SPScene {
       buttonTextSave: 'Save',
       buttonTextLoad: 'Load',
       buttonTextDelete: 'Delete',
+      viewMode,
+
       callbackClose: this.onResumePlaying.bind(this),
       serviceSaveLoad: this._saveGameManager,
       game: this.game,
@@ -68,10 +78,23 @@ export default class StoryPlayScene extends SPScene {
         y: 200,
         width: 500,
         height: 150,
-        reactionToClick: this.onButtonClick.bind(this),
+        reactionToClick: this.onButtonSaveClick.bind(this),
       },
       {
-        text: 'hello world',
+        text: 'Save',
+      }
+    );
+    createButtonWithSimpleText(
+      this,
+      {
+        x: 200 + 524,
+        y: 200,
+        width: 500,
+        height: 150,
+        reactionToClick: this.onButtonLoadClick.bind(this),
+      },
+      {
+        text: 'Load',
       }
     );
     this._demoText = createTitleText(this, {
