@@ -13,5 +13,9 @@
     "yesButton": "Yes",
     "noButton": "No",
     "title": "Attention"
+  },
+  "MessageBox": {
+    "button": "Ok",
+    "title": "Information"
   }
 }
