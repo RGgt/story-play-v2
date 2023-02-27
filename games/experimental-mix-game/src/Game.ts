@@ -33,6 +33,9 @@ export default class Game extends Phaser.Game {
     ) => {
       reactToNewDialogRequest(this, lifetimeController);
     };
+    GameConfiguration.stateAccessor.setStateObject({
+      message: 'this is a dummy message!',
+    });
   }
 
   override step(time: number, delta: number): void {

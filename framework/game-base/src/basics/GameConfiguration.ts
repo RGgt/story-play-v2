@@ -1,4 +1,5 @@
 import { GameReactions } from '../@types/GameReactions';
+import { GameState } from '../@types/GameState';
 
 enum GameConfigurationKeys {
   AssetsFolder,
@@ -36,6 +37,17 @@ class GameConfigurationSingleton {
     reactToCursorOption: () => {},
     reactToError: () => {},
     reactToNewDialogRequest: () => {},
+  };
+
+  private _state: object = {};
+
+  public stateAccessor: GameState = {
+    setStateObject: (o: object) => {
+      this._state = o;
+    },
+    getStateObject: () => {
+      return this._state;
+    },
   };
 }
 

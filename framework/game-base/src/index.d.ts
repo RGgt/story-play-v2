@@ -15,6 +15,7 @@ export type { GameConfigurationValue } from './basics/GameConfiguration';
 export type { GameVolatileStateValue } from './basics/GameVolatileState';
 export type { DialogLifetimeController } from './@types/DialogLifetimeController';
 export type { GameReactions } from './@types/GameReactions';
+export type { GameState } from './@types/GameState';
 export type { SPAwareControl } from './@types/SPAwareControl';
 export { ECursorOptions };
 export { default as CommonWindowStyles } from './basics/Styles/CommonWindowStyles';
