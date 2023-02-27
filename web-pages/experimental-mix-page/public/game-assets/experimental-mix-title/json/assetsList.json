@@ -1,7 +1,8 @@
 {
   "json": {
     "story-flow": "{assets}/json/story-flow.json",
-    "translation": "{assets}/json/translation-en-GB.json"
+    "translation": "{assets}/json/translation-en-GB.json",
+    "translation-ui": "{assets}/json/ui-translation-en-GB.json"
   },
   "image": {
     "btnNormal": "{assets}/images/gui/normal.png",
