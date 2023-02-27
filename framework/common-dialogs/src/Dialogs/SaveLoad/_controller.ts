@@ -165,10 +165,10 @@ class Controller implements IWindowController {
         SaveAndLoadStyles.saveSlots.rows +
       slotIndex;
     // save details now
-    // TODO: Save real data ❗
-    await manager.saveGameDetails(trueSlotIndex, {
-      warning: 'THIS IS DUMMY DATA! NO REAL DATA SAVED!',
-    });
+    await manager.saveGameDetails(
+      trueSlotIndex,
+      GameConfiguration.stateAccessor.getStateObject()
+    );
     // save header only if detail saved ok
     await manager.saveGameHeader(trueSlotIndex, {
       label: `save #${trueSlotIndex}`,

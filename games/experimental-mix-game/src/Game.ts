@@ -34,7 +34,8 @@ export default class Game extends Phaser.Game {
       reactToNewDialogRequest(this, lifetimeController);
     };
     GameConfiguration.stateAccessor.setStateObject({
-      message: 'this is a dummy message!',
+      message: 'This is a dummy message!',
+      note: 'The game is not doing anything yet, so there is currently no real data.',
     });
   }
 
