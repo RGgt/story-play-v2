@@ -15,6 +15,7 @@ export type { DialogLifetimeController } from './@types/DialogLifetimeController
 export type { GameReactions } from './@types/GameReactions';
 export type { GameState } from './@types/GameState';
 export type { SPAwareControl } from './@types/SPAwareControl';
+export type { TranslationData } from './@types/TranslationData';
 export { ECursorOptions };
 export { default as CommonWindowStyles } from './basics/Styles/CommonWindowStyles';
 export { default as DrawDebug } from './basics/Styles/DrawDebug';

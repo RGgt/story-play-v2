@@ -1,5 +1,6 @@
 import { GameReactions } from '../@types/GameReactions';
 import { GameState } from '../@types/GameState';
+import { TranslationData } from '../@types/TranslationData';
 
 enum GameConfigurationKeys {
   AssetsFolder,
@@ -49,6 +50,66 @@ class GameConfigurationSingleton {
       return this._state;
     },
   };
+
+  public translationData: TranslationData = {};
+
+  public uITranslationData: TranslationData = {};
+
+  public getTranslation(data: string) {
+    try {
+      if (!this.translationData) throw new Error('No translation data!');
+      const pathParts = data.split('.');
+      const newKey = pathParts[0];
+      const newChildren = pathParts.slice(1);
+      return this._getTranslationValue(
+        this.translationData,
+        newKey,
+        newChildren
+      );
+    } catch (err: unknown) {
+      this.gameReactions.reactToError(
+        new Error(`Invalid UI translation code '${data}'`)
+      );
+      return '';
+    }
+  }
+
+  public getUITranslation(data: string) {
+    try {
+      if (!this.uITranslationData) throw new Error('No UI translation data!');
+      const pathParts = data.split('.');
+      const newKey = pathParts[0];
+      const newChildren = pathParts.slice(1);
+      return this._getTranslationValue(
+        this.uITranslationData,
+        newKey,
+        newChildren
+      );
+    } catch (err: unknown) {
+      this.gameReactions.reactToError(
+        new Error(`Invalid UI translation code '${data}'`)
+      );
+      return '';
+    }
+  }
+
+  private _getTranslationValue(
+    selectedNode: TranslationData,
+    key: string,
+    children: string[]
+  ): string {
+    if (children.length === 0) {
+      if (selectedNode[key]) return selectedNode[key] as string;
+      throw new Error(`Value not found for key '${key}'`);
+    }
+    const newKey = children[0];
+    const newChildren = children.slice(1);
+    return this._getTranslationValue(
+      selectedNode[key] as TranslationData,
+      newKey,
+      newChildren
+    ) as string;
+  }
 }
 
 export const GameConfiguration = GameConfigurationSingleton.Instance;
