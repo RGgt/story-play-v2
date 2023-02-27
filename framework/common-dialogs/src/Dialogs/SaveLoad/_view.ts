@@ -231,6 +231,7 @@ class View {
       x: this._contentStartX + leftPlaneWidth,
       y: this._contentStartY + this.SPACING,
       slots: dataModel.saveSlots,
+      slotTextEmpty: dataModel.slotTextEmpty,
       viewMode: dataModel.viewMode,
       onSlotClicked,
     });

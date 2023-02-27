@@ -1,7 +1,12 @@
 {
   "SaveLoad": {
-    "saveTitle": "- Save - ",
-    "loadTitle": "- Load - ",
-    "deleteTitle": "- Delete - "
-  },
+    "saveTitle": "- SAVE - ",
+    "loadTitle": "- LOAD - ",
+    "deleteTitle": "- DELETE - ",
+    "closeButton": "Return",
+    "saveButton": "Save",
+    "loadButton": "Load",
+    "deleteButton": "Delete",
+    "emptySLot": "EMPTY\nSLOT"
+  }
 }

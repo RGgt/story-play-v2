@@ -10,6 +10,7 @@ interface SaveLoadParameters {
   buttonTextSave?: string;
   buttonTextLoad?: string;
   buttonTextDelete?: string;
+  slotTextEmpty?: string;
   callbackClose?: () => void;
   serviceSaveLoad: SaveGameManager;
   game: Phaser.Game;

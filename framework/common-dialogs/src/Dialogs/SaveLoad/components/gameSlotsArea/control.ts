@@ -42,7 +42,7 @@ class GameSlotsArea {
       viewMode: options.viewMode,
       textureName: options.slots[index].textureName ?? '',
       labelText: options.slots[index].labelText ?? '',
-      largeText: options.slots[index].isEmptySlot ? 'EMPTY\r\nSLOT' : '',
+      largeText: options.slots[index].isEmptySlot ? options.slotTextEmpty : '',
       slotsAreaX: options.x,
       slotsAreaY: options.y,
       onClick,

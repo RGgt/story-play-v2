@@ -31,14 +31,31 @@ class Controller implements IWindowController {
 
     const callbackClose = parameters.callbackClose ?? (() => {});
     const dataModel: DataModel = {
-      buttonTextClose: parameters.buttonTextClose ?? '##Close',
-      buttonTextSave: parameters.buttonTextSave ?? '##Save',
-      buttonTextLoad: parameters.buttonTextLoad ?? '##Load',
-      buttonTextDelete: parameters.buttonTextDelete ?? '##Delete',
+      buttonTextClose: GameConfiguration.getUITranslation(
+        parameters.buttonTextClose ?? 'SaveLoad.closeButton'
+      ),
+      buttonTextSave: GameConfiguration.getUITranslation(
+        parameters.buttonTextSave ?? 'SaveLoad.saveButton'
+      ),
+      buttonTextLoad: GameConfiguration.getUITranslation(
+        parameters.buttonTextLoad ?? 'SaveLoad.loadButton'
+      ),
+      buttonTextDelete: GameConfiguration.getUITranslation(
+        parameters.buttonTextDelete ?? 'SaveLoad.deleteButton'
+      ),
       viewMode: parameters.viewMode,
-      titleSave: parameters.titleSave ?? '##Save',
-      titleLoad: parameters.titleLoad ?? '##Load',
-      titleDelete: parameters.titleDelete ?? '##Delete',
+      titleSave: GameConfiguration.getUITranslation(
+        parameters.titleSave ?? 'SaveLoad.saveTitle'
+      ),
+      titleLoad: GameConfiguration.getUITranslation(
+        parameters.titleLoad ?? 'SaveLoad.loadTitle'
+      ),
+      titleDelete: GameConfiguration.getUITranslation(
+        parameters.titleDelete ?? 'SaveLoad.deleteTitle'
+      ),
+      slotTextEmpty: GameConfiguration.getUITranslation(
+        parameters.slotTextEmpty ?? 'SaveLoad.emptySLot'
+      ),
       pageIndex: 0,
       saveSlots: slotsData,
       onButtonClickClose: () => {

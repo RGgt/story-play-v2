@@ -11,6 +11,7 @@ interface DataModel {
   buttonTextSave: string;
   buttonTextLoad: string;
   buttonTextDelete: string;
+  slotTextEmpty: string;
   viewMode: 'save' | 'load' | 'delete';
   pageIndex: number;
   saveSlots: SaveSlotOptions[];
