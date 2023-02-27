@@ -39,6 +39,15 @@ class Controller implements IWindowController {
         onDestroy();
         callbackClose();
       },
+      onButtonClickActivateSave: () => {
+        const state = GameConfiguration.stateAccessor.getStateObject();
+        console.log(state);
+        parameters.game.events.emit('show-dialog', 'MessageBox', {
+          message: `You activated the Save mode!\n\nThe game says:\n"${
+            (state as unknown as { message: string }).message
+          }"`,
+        });
+      },
       onPageChanged: async (pageIndex: number) => {
         await this.onPageChanged(scene, parameters, dataModel, pageIndex);
       },

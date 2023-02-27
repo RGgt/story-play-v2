@@ -137,7 +137,7 @@ class View {
         y: leftPanelBox.getTop() + this.SPACING,
         width: SaveAndLoadStyles.leftPanel.width - 2 * this.SPACING,
         height: this.BUTTON_HEIGHT,
-        reactionToClick: dataModel.onButtonClickClose,
+        reactionToClick: dataModel.onButtonClickActivateSave,
       },
       { text: 'Save' }
     );

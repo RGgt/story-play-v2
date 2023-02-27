@@ -9,6 +9,7 @@ interface DataModel {
   pageIndex: number;
   saveSlots: SaveSlotOptions[];
   onButtonClickClose: () => void;
+  onButtonClickActivateSave: () => void;
   onPageChanged: (pageIndex: number) => void;
   onSaveToSlot: (pageIndex: number, slotIndex: number) => void;
   onDeleteFromSlot: (pageIndex: number, slotIndex: number) => void;
