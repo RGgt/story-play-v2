@@ -2,6 +2,7 @@ import { SaveGameManager } from '@rggt/game-base';
 
 interface SaveLoadParameters {
   isSaveMode?: boolean;
+  viewMode: 'save' | 'load' | 'delete';
   titleSave?: string;
   titleLoad?: string;
   titleDelete?: string;

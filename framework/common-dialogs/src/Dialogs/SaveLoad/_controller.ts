@@ -35,7 +35,7 @@ class Controller implements IWindowController {
       buttonTextSave: parameters.buttonTextSave ?? '##Save',
       buttonTextLoad: parameters.buttonTextLoad ?? '##Load',
       buttonTextDelete: parameters.buttonTextDelete ?? '##Delete',
-      viewMode: 'save',
+      viewMode: parameters.viewMode,
       titleSave: parameters.titleSave ?? '##Save',
       titleLoad: parameters.titleLoad ?? '##Load',
       titleDelete: parameters.titleDelete ?? '##Delete',
