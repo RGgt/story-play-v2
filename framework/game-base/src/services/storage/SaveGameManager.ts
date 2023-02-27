@@ -23,7 +23,7 @@ class SaveGameManager {
   }
 
   private static _getHeaderKey(slotIndex: number) {
-    return `save_header_${slotIndex}`;
+    return `save_${slotIndex}_header`;
   }
 
   async saveGameDetails(slotIndex: number, value: unknown): Promise<void> {
@@ -46,7 +46,7 @@ class SaveGameManager {
   }
 
   private static _getDetailsKey(slotIndex: number) {
-    return `save_details_${slotIndex}`;
+    return `save_${slotIndex}_details`;
   }
 }
 export { SaveGameManager };
