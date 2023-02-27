@@ -1,3 +1,4 @@
+import { GameConfiguration } from '@rggt/game-base';
 import { View } from './_view';
 import { MessageBoxParameters } from './types';
 import { IWindowController } from '../_IWindowController';
@@ -15,10 +16,16 @@ class Controller implements IWindowController {
     const callbackYes = parameters.callbackYes ?? (() => {});
     const callbackNo = parameters.callbackNo ?? (() => {});
     const dataModel: DataModel = {
-      buttonTextYes: parameters.buttonTextYes ?? 'Yes',
-      buttonTextNo: parameters.buttonTextNo ?? 'No',
+      buttonTextYes: GameConfiguration.getUITranslation(
+        parameters.buttonTextYes ?? 'MessageBoxYesNo.yesButton'
+      ),
+      buttonTextNo: GameConfiguration.getUITranslation(
+        parameters.buttonTextNo ?? 'MessageBoxYesNo.noButton'
+      ),
       message: parameters.message,
-      title: parameters.title ?? 'Attention!',
+      title: GameConfiguration.getUITranslation(
+        parameters.title ?? 'MessageBoxYesNo.title'
+      ),
       width: parameters.width ?? 1000,
     };
     const behaviorModel: BehaviorModel = {

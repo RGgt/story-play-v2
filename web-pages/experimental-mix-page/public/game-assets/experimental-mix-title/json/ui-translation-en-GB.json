@@ -8,5 +8,10 @@
     "loadButton": "Load",
     "deleteButton": "Delete",
     "emptySLot": "EMPTY\nSLOT"
+  },
+  "MessageBoxYesNo": {
+    "yesButton": "Yes",
+    "noButton": "No",
+    "title": "Attention"
   }
 }
