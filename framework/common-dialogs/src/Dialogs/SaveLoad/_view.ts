@@ -16,16 +16,16 @@ import { PaginationSlotsArea } from './components/paginationArea/control';
 import { getPaginationAreaHeight } from './components/paginationArea/main';
 
 interface InnerStructure {
-  background: { destroy: () => void };
-  titleText: { destroy: () => void };
-  topLine: { destroy: () => void };
-  slotsArea: { destroy: () => void };
-  paginationArea: { destroy: () => void };
-  buttonClose: { destroy: () => void };
-  buttonSave: { destroy: () => void };
-  buttonLoad: { destroy: () => void };
-  buttonDelete: { destroy: () => void };
-  leftPanelBox: { destroy: () => void };
+  background?: { destroy: () => void };
+  titleText?: { destroy: () => void };
+  topLine?: { destroy: () => void };
+  slotsArea?: { destroy: () => void };
+  paginationArea?: { destroy: () => void };
+  buttonClose?: { destroy: () => void };
+  buttonSave?: { destroy: () => void };
+  buttonLoad?: { destroy: () => void };
+  buttonDelete?: { destroy: () => void };
+  leftPanelBox?: { destroy: () => void };
 }
 class View {
   private readonly SPACING = CommonWindowStyles.spacing;
@@ -98,25 +98,29 @@ class View {
         getPageSlotsAreaHeight() + this.SPACING + getPaginationAreaHeight(),
     });
 
-    const slotsArea = new GameSlotsArea(scene, {
-      pageIndex: dataModel.pageIndex,
-      x: this._contentStartX + leftPlaneWidth,
-      y: this._contentStartY + this.SPACING,
-      slots: dataModel.saveSlots,
-      onSlotClicked: dataModel.onSaveToSlot,
-    });
+    // const slotsArea = new GameSlotsArea(scene, {
+    //   pageIndex: dataModel.pageIndex,
+    //   x: this._contentStartX + leftPlaneWidth,
+    //   y: this._contentStartY + this.SPACING,
+    //   slots: dataModel.saveSlots,
+    //   onSlotClicked: dataModel.onSaveToSlot,
+    // });
 
-    const paginationArea = new PaginationSlotsArea(scene, {
-      activePageIndex: dataModel.pageIndex,
-      availableWidth: this._dialogWidth - 2 * this.SPACING,
-      x: this._contentStartX + leftPlaneWidth,
-      y:
-        this._contentStartY +
-        this.SPACING +
-        getPageSlotsAreaHeight() +
-        this.SPACING,
-      onPageChanged: dataModel.onPageChanged,
-    });
+    // const paginationArea = new PaginationSlotsArea(scene, {
+    //   activePageIndex: dataModel.pageIndex,
+    //   availableWidth: this._dialogWidth - 2 * this.SPACING,
+    //   x: this._contentStartX + leftPlaneWidth,
+    //   y:
+    //     this._contentStartY +
+    //     this.SPACING +
+    //     getPageSlotsAreaHeight() +
+    //     this.SPACING,
+    //   onPageChanged: dataModel.onPageChanged,
+    // });
+
+    this.innerStructure = {};
+
+    this.updateOnPageChanged(scene, dataModel);
 
     const buttonClose = createButtonWithSimpleText(
       scene,
@@ -178,11 +182,10 @@ class View {
     );
 
     this.innerStructure = {
+      ...this.innerStructure,
       background,
       titleText,
       topLine,
-      slotsArea,
-      paginationArea,
       buttonClose,
       buttonSave,
       buttonLoad,
@@ -193,7 +196,7 @@ class View {
 
   public updateOnPageChanged(scene: Phaser.Scene, dataModel: DataModel) {
     const leftPlaneWidth = SaveAndLoadStyles.leftPanel.width + this.SPACING;
-    this.innerStructure.slotsArea.destroy();
+    if (this.innerStructure.slotsArea) this.innerStructure.slotsArea.destroy();
     this.innerStructure.slotsArea = new GameSlotsArea(scene, {
       pageIndex: dataModel.pageIndex,
       x: this._contentStartX + leftPlaneWidth,
@@ -202,7 +205,8 @@ class View {
       onSlotClicked: dataModel.onSaveToSlot,
     });
 
-    this.innerStructure.paginationArea.destroy();
+    if (this.innerStructure.paginationArea)
+      this.innerStructure.paginationArea.destroy();
     this.innerStructure.paginationArea = new PaginationSlotsArea(scene, {
       activePageIndex: dataModel.pageIndex,
       availableWidth: this._dialogWidth - 2 * this.SPACING,
@@ -233,16 +237,16 @@ class View {
   }
 
   destroy() {
-    this.innerStructure.background.destroy();
-    this.innerStructure.titleText.destroy();
-    this.innerStructure.topLine.destroy();
-    this.innerStructure.slotsArea.destroy();
-    this.innerStructure.paginationArea.destroy();
-    this.innerStructure.buttonClose.destroy();
-    this.innerStructure.buttonSave.destroy();
-    this.innerStructure.buttonLoad.destroy();
-    this.innerStructure.buttonDelete.destroy();
-    this.innerStructure.leftPanelBox.destroy();
+    this.innerStructure.background?.destroy();
+    this.innerStructure.titleText?.destroy();
+    this.innerStructure.topLine?.destroy();
+    this.innerStructure.slotsArea?.destroy();
+    this.innerStructure.paginationArea?.destroy();
+    this.innerStructure.buttonClose?.destroy();
+    this.innerStructure.buttonSave?.destroy();
+    this.innerStructure.buttonLoad?.destroy();
+    this.innerStructure.buttonDelete?.destroy();
+    this.innerStructure.leftPanelBox?.destroy();
   }
 }
 
