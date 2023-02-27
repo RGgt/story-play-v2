@@ -84,7 +84,7 @@ class Controller implements IWindowController {
       },
       onDeleteFromSlot: (pageIndex: number, slotIndex: number) => {
         parameters.game.events.emit('show-dialog', 'MessageBoxYesNo', {
-          message: 'You cannot undo this operation.\n\n\nDelete savegame?',
+          message: 'You cannot undo this operation.\n\n\nDelete game?',
           callbackYes: async () => {
             await this.onDeleteFromSlot(
               scene,
@@ -97,7 +97,19 @@ class Controller implements IWindowController {
         });
       },
       onLoadFromSlot: (pageIndex: number, slotIndex: number) => {
-        console.log('you chose to load a game');
+        parameters.game.events.emit('show-dialog', 'MessageBoxYesNo', {
+          message:
+            'All unsaved changes to the current game will be lost.\n\n\nLoad game?',
+          callbackYes: async () => {
+            await this.onLoadFromSlot(
+              scene,
+              parameters,
+              dataModel,
+              pageIndex,
+              slotIndex
+            );
+          },
+        });
       },
     };
     this.view = new View(scene, dataModel);
@@ -134,6 +146,29 @@ class Controller implements IWindowController {
     slotIndex: number
   ) {
     await Controller._deleteSlotData(
+      parameters.game,
+      parameters.serviceSaveLoad,
+      pageIndex,
+      slotIndex
+    );
+    const newSlotsData = await Controller._getSlotsData(
+      parameters.game,
+      parameters.serviceSaveLoad,
+      pageIndex
+    );
+    dataModel.saveSlots = newSlotsData;
+    dataModel.pageIndex = pageIndex;
+    this.view?.updateOnPageChanged(scene, dataModel);
+  }
+
+  private async onLoadFromSlot(
+    scene: Phaser.Scene,
+    parameters: SaveLoadParameters,
+    dataModel: DataModel,
+    pageIndex: number,
+    slotIndex: number
+  ) {
+    await Controller._loadSlotData(
       parameters.game,
       parameters.serviceSaveLoad,
       pageIndex,
@@ -227,6 +262,22 @@ class Controller implements IWindowController {
     await manager.deleteGameDetails(trueSlotIndex);
     // delete header only if detail saved ok
     await manager.deleteGameHeader(trueSlotIndex);
+  }
+
+  private static async _loadSlotData(
+    game: Phaser.Game,
+    manager: SaveGameManager,
+    pageIndex: number,
+    slotIndex: number
+  ) {
+    const trueSlotIndex =
+      pageIndex *
+        SaveAndLoadStyles.saveSlots.columns *
+        SaveAndLoadStyles.saveSlots.rows +
+      slotIndex;
+    // load details now
+    const state = await manager.loadGameDetails(trueSlotIndex);
+    GameConfiguration.stateAccessor.setStateObject(state as object);
   }
 
   private static async _getSlotsData(
