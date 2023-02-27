@@ -83,7 +83,18 @@ class Controller implements IWindowController {
         );
       },
       onDeleteFromSlot: (pageIndex: number, slotIndex: number) => {
-        console.log('you chose to delete a game');
+        parameters.game.events.emit('show-dialog', 'MessageBoxYesNo', {
+          message: 'You cannot undo this operation.\n\n\nDelete savegame?',
+          callbackYes: async () => {
+            await this.onDeleteFromSlot(
+              scene,
+              parameters,
+              dataModel,
+              pageIndex,
+              slotIndex
+            );
+          },
+        });
       },
       onLoadFromSlot: (pageIndex: number, slotIndex: number) => {
         console.log('you chose to load a game');
@@ -100,6 +111,29 @@ class Controller implements IWindowController {
     slotIndex: number
   ) {
     await Controller._saveSlotData(
+      parameters.game,
+      parameters.serviceSaveLoad,
+      pageIndex,
+      slotIndex
+    );
+    const newSlotsData = await Controller._getSlotsData(
+      parameters.game,
+      parameters.serviceSaveLoad,
+      pageIndex
+    );
+    dataModel.saveSlots = newSlotsData;
+    dataModel.pageIndex = pageIndex;
+    this.view?.updateOnPageChanged(scene, dataModel);
+  }
+
+  private async onDeleteFromSlot(
+    scene: Phaser.Scene,
+    parameters: SaveLoadParameters,
+    dataModel: DataModel,
+    pageIndex: number,
+    slotIndex: number
+  ) {
+    await Controller._deleteSlotData(
       parameters.game,
       parameters.serviceSaveLoad,
       pageIndex,
@@ -176,6 +210,23 @@ class Controller implements IWindowController {
         GameVolatileStateKeys.MostRecentBase64Screenshot
       ),
     });
+  }
+
+  private static async _deleteSlotData(
+    game: Phaser.Game,
+    manager: SaveGameManager,
+    pageIndex: number,
+    slotIndex: number
+  ) {
+    const trueSlotIndex =
+      pageIndex *
+        SaveAndLoadStyles.saveSlots.columns *
+        SaveAndLoadStyles.saveSlots.rows +
+      slotIndex;
+    // delete details now
+    await manager.deleteGameDetails(trueSlotIndex);
+    // delete header only if detail saved ok
+    await manager.deleteGameHeader(trueSlotIndex);
   }
 
   private static async _getSlotsData(
