@@ -121,12 +121,8 @@ class View {
     this.innerStructure = {
       ...this.innerStructure,
       background,
-      // titleText,
       topLine,
       buttonClose,
-      // buttonSave,
-      // buttonLoad,
-      // buttonDelete,
       leftPanelBox,
     };
   }
@@ -152,7 +148,7 @@ class View {
         title = dataModel.titleDelete;
         break;
       default:
-        throw new Error('Invalid vie mode!');
+        throw new Error('Invalid view mode!');
     }
     const titleText = createDialogTitleText(scene, {
       x: this._titleCenterX,
@@ -169,7 +165,7 @@ class View {
         height: this.BUTTON_HEIGHT,
         reactionToClick: dataModel.onButtonClickActivateSave,
       },
-      { text: 'Save' }
+      { text: dataModel.buttonTextSave }
     );
     buttonSave.button.Pushed = dataModel.viewMode === 'save';
 
@@ -182,7 +178,7 @@ class View {
         height: this.BUTTON_HEIGHT,
         reactionToClick: dataModel.onButtonClickActivateLoad,
       },
-      { text: 'Load' }
+      { text: dataModel.buttonTextLoad }
     );
     buttonLoad.button.Pushed = dataModel.viewMode === 'load';
 
@@ -201,7 +197,7 @@ class View {
         height: this.BUTTON_HEIGHT,
         reactionToClick: dataModel.onButtonClickActivateDelete,
       },
-      { text: 'Delete' }
+      { text: dataModel.buttonTextDelete }
     );
     buttonDelete.button.Pushed = dataModel.viewMode === 'delete';
 

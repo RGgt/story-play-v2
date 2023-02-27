@@ -8,6 +8,9 @@ interface DataModel {
   titleLoad: string;
   titleDelete: string;
   buttonTextClose: string;
+  buttonTextSave: string;
+  buttonTextLoad: string;
+  buttonTextDelete: string;
   viewMode: 'save' | 'load' | 'delete';
   pageIndex: number;
   saveSlots: SaveSlotOptions[];

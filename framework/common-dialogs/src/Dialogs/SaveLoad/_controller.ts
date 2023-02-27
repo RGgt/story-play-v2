@@ -30,11 +30,14 @@ class Controller implements IWindowController {
 
     const callbackClose = parameters.callbackClose ?? (() => {});
     const dataModel: DataModel = {
-      buttonTextClose: parameters.buttonTextClose ?? 'Close',
+      buttonTextClose: parameters.buttonTextClose ?? '##Close',
+      buttonTextSave: parameters.buttonTextSave ?? '##Save',
+      buttonTextLoad: parameters.buttonTextLoad ?? '##Load',
+      buttonTextDelete: parameters.buttonTextDelete ?? '##Delete',
       viewMode: 'save',
-      titleSave: parameters.titleSave ?? 'Save ###',
-      titleLoad: parameters.titleLoad ?? 'Load ###',
-      titleDelete: parameters.titleDelete ?? 'Delete ###',
+      titleSave: parameters.titleSave ?? '##Save',
+      titleLoad: parameters.titleLoad ?? '##Load',
+      titleDelete: parameters.titleDelete ?? '##Delete',
       pageIndex: 0,
       saveSlots: slotsData,
       onButtonClickClose: () => {
