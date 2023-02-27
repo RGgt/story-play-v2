@@ -99,7 +99,7 @@ export default class StoryPlayScene extends SPScene {
     );
     this._demoText = createTitleText(this, {
       x: 1920 / 2,
-      y: 1080 / 2,
+      y: 1080 / 2 + 200,
       text: this._composeSampleText(),
     });
   }
@@ -109,6 +109,6 @@ export default class StoryPlayScene extends SPScene {
     ${
       (GameConfiguration.stateAccessor.getStateObject() as CustomGameState)
         .gameStartTime
-    }`;
+    }\n\nCurrently, a new game is started each time you refresh the page`;
   }
 }
