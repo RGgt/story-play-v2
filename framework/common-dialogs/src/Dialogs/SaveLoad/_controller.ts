@@ -4,6 +4,7 @@ import {
   GameVolatileState,
   GameVolatileStateKeys,
   miniatureBase64DataURLToTexture,
+  nowToShortText,
   SaveAndLoadStyles,
   SaveGameManager,
 } from '@rggt/game-base';
@@ -243,7 +244,7 @@ class Controller implements IWindowController {
     );
     // save header only if detail saved ok
     await manager.saveGameHeader(trueSlotIndex, {
-      label: `save #${trueSlotIndex}`,
+      label: nowToShortText(),
       b64Texture: GameVolatileState.get(
         GameVolatileStateKeys.MostRecentBase64Screenshot
       ),
