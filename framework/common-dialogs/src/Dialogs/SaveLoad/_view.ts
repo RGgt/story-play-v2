@@ -212,13 +212,27 @@ class View {
   public updateOnPageChanged(scene: Phaser.Scene, dataModel: DataModel) {
     const leftPlaneWidth = SaveAndLoadStyles.leftPanel.width + this.SPACING;
     if (this.innerStructure.slotsArea) this.innerStructure.slotsArea.destroy();
+    let onSlotClicked: (pageIndex: number, slotIndex: number) => void;
+    switch (dataModel.viewMode) {
+      case 'save':
+        onSlotClicked = dataModel.onSaveToSlot;
+        break;
+      case 'load':
+        onSlotClicked = dataModel.onLoadFromSlot;
+        break;
+      case 'delete':
+        onSlotClicked = dataModel.onDeleteFromSlot;
+        break;
+      default:
+        throw new Error('Invalid view mode!');
+    }
     this.innerStructure.slotsArea = new GameSlotsArea(scene, {
       pageIndex: dataModel.pageIndex,
       x: this._contentStartX + leftPlaneWidth,
       y: this._contentStartY + this.SPACING,
       slots: dataModel.saveSlots,
       viewMode: dataModel.viewMode,
-      onSlotClicked: dataModel.onSaveToSlot,
+      onSlotClicked,
     });
 
     if (this.innerStructure.paginationArea)

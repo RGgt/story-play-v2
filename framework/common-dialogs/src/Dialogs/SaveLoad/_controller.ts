@@ -82,8 +82,12 @@ class Controller implements IWindowController {
           slotIndex
         );
       },
-      onDeleteFromSlot: (pageIndex: number, slotIndex: number) => {},
-      onLoadFromSlot: (pageIndex: number, slotIndex: number) => {},
+      onDeleteFromSlot: (pageIndex: number, slotIndex: number) => {
+        console.log('you chose to delete a game');
+      },
+      onLoadFromSlot: (pageIndex: number, slotIndex: number) => {
+        console.log('you chose to load a game');
+      },
     };
     this.view = new View(scene, dataModel);
   }
