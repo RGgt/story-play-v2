@@ -1,3 +1,4 @@
+import { createTitleText } from '@rggt/basic-controls';
 import {
   getMiniatureScreenshotBase64DataURL,
   SaveGameManager,
@@ -5,6 +6,7 @@ import {
   SaveAndLoadStyles,
   GameVolatileState,
   GameVolatileStateKeys,
+  GameConfiguration,
 } from '@rggt/game-base';
 import { createButtonWithSimpleText } from '@rggt/nine-patch-controls';
 import EScenes from './EScenes';
@@ -21,6 +23,11 @@ export default class StoryPlayScene extends SPScene {
   private _saveGameManager: SaveGameManager = new SaveGameManager(
     this._storeManager
   );
+
+  private _demoText?: {
+    text: Phaser.GameObjects.Text;
+    destroy: () => void;
+  };
 
   async onButtonClick() {
     const b64 = await getMiniatureScreenshotBase64DataURL(
@@ -47,9 +54,17 @@ export default class StoryPlayScene extends SPScene {
   }
 
   onResumePlaying() {
-    this.game.events.emit('show-dialog', 'MessageBox', {
-      message: 'You returned to playing the game.\r\n\r\nCongrats!',
-    });
+    // this.game.events.emit('show-dialog', 'MessageBox', {
+    //   message: `You returned to playing the game.\r\n\r\nCongrats!\nThe game you are playing now was started at ${
+    //     GameConfiguration.stateAccessor.getStateObject().startTime
+    //   }`,
+    // });
+    console.log('onResumePlaying', this._demoText);
+    if (this._demoText) {
+      this._demoText.text.text =
+        GameConfiguration.stateAccessor.getStateObject().startTime;
+      console.log('updating time');
+    }
   }
 
   create() {
@@ -66,5 +81,10 @@ export default class StoryPlayScene extends SPScene {
         text: 'hello world',
       }
     );
+    this._demoText = createTitleText(this, {
+      x: 1920 / 2,
+      y: 1080 / 2,
+      text: GameConfiguration.stateAccessor.getStateObject().startTime,
+    });
   }
 }
