@@ -108,6 +108,9 @@ class Controller implements IWindowController {
               pageIndex,
               slotIndex
             );
+            this.destroy();
+            onDestroy();
+            callbackClose();
           },
         });
       },
