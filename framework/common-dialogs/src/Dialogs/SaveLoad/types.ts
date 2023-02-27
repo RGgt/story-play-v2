@@ -2,7 +2,9 @@ import { SaveGameManager } from '@rggt/game-base';
 
 interface SaveLoadParameters {
   isSaveMode?: boolean;
-  title?: string;
+  titleSave?: string;
+  titleLoad?: string;
+  titleDelete?: string;
   buttonTextClose?: string;
   callbackClose?: () => void;
   serviceSaveLoad: SaveGameManager;

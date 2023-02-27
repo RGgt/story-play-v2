@@ -33,8 +33,10 @@ export default class StoryPlayScene extends SPScene {
       b64
     );
     this.game.events.emit('show-dialog', 'SaveLoad', {
-      title: 'Save or load',
-      buttonTextClose: 'Resume playing',
+      titleSave: 'Save',
+      titleLoad: 'Load',
+      titleDelete: 'Delete',
+      buttonTextClose: 'Return',
       callbackClose: this.onResumePlaying.bind(this),
       serviceSaveLoad: this._saveGameManager,
       game: this.game,

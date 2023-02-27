@@ -31,7 +31,10 @@ class Controller implements IWindowController {
     const callbackClose = parameters.callbackClose ?? (() => {});
     const dataModel: DataModel = {
       buttonTextClose: parameters.buttonTextClose ?? 'Close',
-      title: parameters.title ?? 'Save/Load!',
+      viewMode: 'save',
+      titleSave: parameters.titleSave ?? 'Save ###',
+      titleLoad: parameters.titleLoad ?? 'Load ###',
+      titleDelete: parameters.titleDelete ?? 'Delete ###',
       pageIndex: 0,
       saveSlots: slotsData,
       onButtonClickClose: () => {
@@ -39,14 +42,14 @@ class Controller implements IWindowController {
         onDestroy();
         callbackClose();
       },
-      onButtonClickActivateSave: () => {
-        const state = GameConfiguration.stateAccessor.getStateObject();
-        console.log(state);
-        parameters.game.events.emit('show-dialog', 'MessageBox', {
-          message: `You activated the Save mode!\n\nThe game says:\n"${
-            (state as unknown as { message: string }).message
-          }"`,
-        });
+      onButtonClickActivateSave: async () => {
+        await this.onViewModeChanged(scene, dataModel, 'save');
+      },
+      onButtonClickActivateLoad: async () => {
+        await this.onViewModeChanged(scene, dataModel, 'load');
+      },
+      onButtonClickActivateDelete: async () => {
+        await this.onViewModeChanged(scene, dataModel, 'delete');
       },
       onPageChanged: async (pageIndex: number) => {
         await this.onPageChanged(scene, parameters, dataModel, pageIndex);
@@ -120,6 +123,15 @@ class Controller implements IWindowController {
     dataModel.saveSlots = newSlotsData;
     dataModel.pageIndex = pageIndex;
     this.view?.updateOnPageChanged(scene, dataModel);
+  }
+
+  private async onViewModeChanged(
+    scene: Phaser.Scene,
+    dataModel: DataModel,
+    newViewMode: 'save' | 'load' | 'delete'
+  ) {
+    dataModel.viewMode = newViewMode;
+    this.view?.updateOnViewModeChanged(scene, dataModel);
   }
 
   private static _getActivePage() {

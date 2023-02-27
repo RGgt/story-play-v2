@@ -40,6 +40,12 @@ class View {
 
   private readonly _contentStartY: number;
 
+  private readonly _leftPanelY: number;
+
+  private readonly _titleCenterX: number;
+
+  private readonly _titleCenterY: number;
+
   public returnValue?: number;
 
   private innerStructure: InnerStructure;
@@ -61,8 +67,6 @@ class View {
       getPageSlotsAreaHeight() +
       this.SPACING +
       getPaginationAreaHeight() +
-      // this.SPACING +
-      // this.BUTTON_HEIGHT +
       this.SPACING;
 
     const background = createCentralPanelBox(scene, {
@@ -70,12 +74,11 @@ class View {
       height: panelWindowBackgroundHeight,
     });
     const bkgRect = background.getBound();
-    const titleText = createDialogTitleText(scene, {
-      x: background.getCenter().x,
-      y: background.getTop() + this.SPACING + dialogTitleTextHeight / 2,
-      maxWidth: this._dialogWidth - 2 * this.SPACING,
-      text: dataModel.title,
-    });
+
+    this._titleCenterX = background.getCenter().x;
+    this._titleCenterY =
+      background.getTop() + this.SPACING + dialogTitleTextHeight / 2;
+
     const topLine = createLine(scene, {
       height: this.LINE_TICKNESS,
       width: bkgRect.width - 2 * this.SPACING,
@@ -97,30 +100,11 @@ class View {
       height:
         getPageSlotsAreaHeight() + this.SPACING + getPaginationAreaHeight(),
     });
-
-    // const slotsArea = new GameSlotsArea(scene, {
-    //   pageIndex: dataModel.pageIndex,
-    //   x: this._contentStartX + leftPlaneWidth,
-    //   y: this._contentStartY + this.SPACING,
-    //   slots: dataModel.saveSlots,
-    //   onSlotClicked: dataModel.onSaveToSlot,
-    // });
-
-    // const paginationArea = new PaginationSlotsArea(scene, {
-    //   activePageIndex: dataModel.pageIndex,
-    //   availableWidth: this._dialogWidth - 2 * this.SPACING,
-    //   x: this._contentStartX + leftPlaneWidth,
-    //   y:
-    //     this._contentStartY +
-    //     this.SPACING +
-    //     getPageSlotsAreaHeight() +
-    //     this.SPACING,
-    //   onPageChanged: dataModel.onPageChanged,
-    // });
+    this._leftPanelY = leftPanelBox.getTop();
 
     this.innerStructure = {};
 
-    this.updateOnPageChanged(scene, dataModel);
+    this.updateOnViewModeChanged(scene, dataModel);
 
     const buttonClose = createButtonWithSimpleText(
       scene,
@@ -131,44 +115,83 @@ class View {
         height: this.BUTTON_HEIGHT,
         reactionToClick: dataModel.onButtonClickClose,
       },
-      { text: 'Return' }
+      { text: dataModel.buttonTextClose }
     );
 
+    this.innerStructure = {
+      ...this.innerStructure,
+      background,
+      // titleText,
+      topLine,
+      buttonClose,
+      // buttonSave,
+      // buttonLoad,
+      // buttonDelete,
+      leftPanelBox,
+    };
+  }
+
+  public updateOnViewModeChanged(scene: Phaser.Scene, dataModel: DataModel) {
+    if (this.innerStructure.buttonSave)
+      this.innerStructure.buttonSave.destroy();
+    if (this.innerStructure.buttonLoad)
+      this.innerStructure.buttonLoad.destroy();
+    if (this.innerStructure.buttonDelete)
+      this.innerStructure.buttonDelete.destroy();
+    if (this.innerStructure.titleText) this.innerStructure.titleText.destroy();
+
+    let title;
+    switch (dataModel.viewMode) {
+      case 'save':
+        title = dataModel.titleSave;
+        break;
+      case 'load':
+        title = dataModel.titleLoad;
+        break;
+      case 'delete':
+        title = dataModel.titleDelete;
+        break;
+      default:
+        throw new Error('Invalid vie mode!');
+    }
+    const titleText = createDialogTitleText(scene, {
+      x: this._titleCenterX,
+      y: this._titleCenterY,
+      maxWidth: this._dialogWidth - 2 * this.SPACING,
+      text: title,
+    });
     const buttonSave = createButtonWithSimpleText(
       scene,
       {
         x: this._contentStartX + this.SPACING,
-        y: leftPanelBox.getTop() + this.SPACING,
+        y: this._leftPanelY + this.SPACING,
         width: SaveAndLoadStyles.leftPanel.width - 2 * this.SPACING,
         height: this.BUTTON_HEIGHT,
         reactionToClick: dataModel.onButtonClickActivateSave,
       },
       { text: 'Save' }
     );
-    buttonSave.button.Pushed = true;
+    buttonSave.button.Pushed = dataModel.viewMode === 'save';
 
     const buttonLoad = createButtonWithSimpleText(
       scene,
       {
         x: this._contentStartX + this.SPACING,
-        y:
-          leftPanelBox.getTop() +
-          this.SPACING +
-          this.BUTTON_HEIGHT +
-          this.SPACING,
+        y: this._leftPanelY + this.SPACING + this.BUTTON_HEIGHT + this.SPACING,
         width: SaveAndLoadStyles.leftPanel.width - 2 * this.SPACING,
         height: this.BUTTON_HEIGHT,
-        reactionToClick: dataModel.onButtonClickClose,
+        reactionToClick: dataModel.onButtonClickActivateLoad,
       },
       { text: 'Load' }
     );
+    buttonLoad.button.Pushed = dataModel.viewMode === 'load';
 
     const buttonDelete = createButtonWithSimpleText(
       scene,
       {
         x: this._contentStartX + this.SPACING,
         y:
-          leftPanelBox.getTop() +
+          this._leftPanelY +
           this.SPACING +
           this.BUTTON_HEIGHT +
           this.SPACING +
@@ -176,22 +199,18 @@ class View {
           this.SPACING,
         width: SaveAndLoadStyles.leftPanel.width - 2 * this.SPACING,
         height: this.BUTTON_HEIGHT,
-        reactionToClick: dataModel.onButtonClickClose,
+        reactionToClick: dataModel.onButtonClickActivateDelete,
       },
       { text: 'Delete' }
     );
+    buttonDelete.button.Pushed = dataModel.viewMode === 'delete';
 
-    this.innerStructure = {
-      ...this.innerStructure,
-      background,
-      titleText,
-      topLine,
-      buttonClose,
-      buttonSave,
-      buttonLoad,
-      buttonDelete,
-      leftPanelBox,
-    };
+    this.innerStructure.buttonSave = buttonSave;
+    this.innerStructure.buttonLoad = buttonLoad;
+    this.innerStructure.buttonDelete = buttonDelete;
+    this.innerStructure.titleText = titleText;
+
+    this.updateOnPageChanged(scene, dataModel);
   }
 
   public updateOnPageChanged(scene: Phaser.Scene, dataModel: DataModel) {
@@ -202,6 +221,7 @@ class View {
       x: this._contentStartX + leftPlaneWidth,
       y: this._contentStartY + this.SPACING,
       slots: dataModel.saveSlots,
+      viewMode: dataModel.viewMode,
       onSlotClicked: dataModel.onSaveToSlot,
     });
 
@@ -229,7 +249,7 @@ class View {
       x: 0,
       y: 0,
       maxWidth: dialogWidth - 2 * this.SPACING,
-      text: dataModel.title,
+      text: dataModel.titleSave,
     });
     const textHeight = tempText.text.getBounds().height;
     tempText.destroy();

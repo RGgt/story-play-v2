@@ -42,16 +42,19 @@ class GameSlot {
       y: slotTop + slotHeight / 2,
       maxWidth: slotWidth,
     });
-    const boxHighlightable = createHighlightable(scene, {
-      width: slotWidth,
-      height: slotHeight,
-      x: slotLeft,
-      y: slotTop,
-      reactionToClick: () => {
-        const index = options.slotIndex;
-        if (options.onClick) options.onClick(index);
-      },
-    });
+    const boxHighlightable =
+      options.viewMode !== 'save'
+        ? undefined
+        : createHighlightable(scene, {
+            width: slotWidth,
+            height: slotHeight,
+            x: slotLeft,
+            y: slotTop,
+            reactionToClick: () => {
+              const index = options.slotIndex;
+              if (options.onClick) options.onClick(index);
+            },
+          });
 
     const slotBox = createGroupBox(scene, {
       width: slotWidth,

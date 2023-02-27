@@ -1,4 +1,5 @@
 interface GameSlotOptions {
+  viewMode: 'save' | 'load' | 'delete';
   slotIndex: number;
   slotsAreaY: number;
   slotsAreaX: number;

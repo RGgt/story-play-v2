@@ -5,6 +5,7 @@ interface PageSlotsAreaOptions {
   x: number;
   y: number;
   slots: SaveSlotOptions[];
+  viewMode: 'save' | 'load' | 'delete';
   onSlotClicked?: (pageIndex: number, slotIndex: number) => void;
 }
 export type { PageSlotsAreaOptions };

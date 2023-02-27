@@ -4,12 +4,17 @@ interface SaveSlotOptions {
   labelText?: string;
 }
 interface DataModel {
-  title: string;
+  titleSave: string;
+  titleLoad: string;
+  titleDelete: string;
   buttonTextClose: string;
+  viewMode: 'save' | 'load' | 'delete';
   pageIndex: number;
   saveSlots: SaveSlotOptions[];
   onButtonClickClose: () => void;
   onButtonClickActivateSave: () => void;
+  onButtonClickActivateLoad: () => void;
+  onButtonClickActivateDelete: () => void;
   onPageChanged: (pageIndex: number) => void;
   onSaveToSlot: (pageIndex: number, slotIndex: number) => void;
   onDeleteFromSlot: (pageIndex: number, slotIndex: number) => void;
