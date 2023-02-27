@@ -56,9 +56,7 @@ export default class StoryPlayScene extends SPScene {
 
   onResumePlaying() {
     if (this._demoText) {
-      this._demoText.text.text = (
-        GameConfiguration.stateAccessor.getStateObject() as CustomGameState
-      ).gameStartTime;
+      this._demoText.text.text = this._composeSampleText();
     }
   }
 
@@ -79,9 +77,15 @@ export default class StoryPlayScene extends SPScene {
     this._demoText = createTitleText(this, {
       x: 1920 / 2,
       y: 1080 / 2,
-      text: (
-        GameConfiguration.stateAccessor.getStateObject() as CustomGameState
-      ).gameStartTime,
+      text: this._composeSampleText(),
     });
+  }
+
+  private _composeSampleText() {
+    return `This is the game that was originally started
+    ${
+      (GameConfiguration.stateAccessor.getStateObject() as CustomGameState)
+        .gameStartTime
+    }`;
   }
 }
