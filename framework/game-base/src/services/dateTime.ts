@@ -35,10 +35,10 @@ const formatDate = (date: Date, format: string) => {
 };
 
 const dateToShortText = (date: Date) => {
-  return formatDate(date, 'yyyy-mm-dd hh-ii-ss');
+  return formatDate(date, 'ddd, mmm dd yyyy,\n hh:ii:ss');
 };
 
 const nowToShortText = () => {
-  return formatDate(new Date(), 'yyyy-mm-dd hh-ii-ss');
+  return formatDate(new Date(), 'ddd, mmm dd yyyy,\n hh:ii:ss');
 };
 export { formatDate, dateToShortText, nowToShortText };
