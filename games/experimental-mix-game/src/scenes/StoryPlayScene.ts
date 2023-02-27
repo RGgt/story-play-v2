@@ -9,6 +9,7 @@ import {
   GameConfiguration,
 } from '@rggt/game-base';
 import { createButtonWithSimpleText } from '@rggt/nine-patch-controls';
+import { CustomGameState } from '../state/CustomGameState';
 import EScenes from './EScenes';
 import SPScene from './SPScene';
 
@@ -54,16 +55,10 @@ export default class StoryPlayScene extends SPScene {
   }
 
   onResumePlaying() {
-    // this.game.events.emit('show-dialog', 'MessageBox', {
-    //   message: `You returned to playing the game.\r\n\r\nCongrats!\nThe game you are playing now was started at ${
-    //     GameConfiguration.stateAccessor.getStateObject().startTime
-    //   }`,
-    // });
-    console.log('onResumePlaying', this._demoText);
     if (this._demoText) {
-      this._demoText.text.text =
-        GameConfiguration.stateAccessor.getStateObject().startTime;
-      console.log('updating time');
+      this._demoText.text.text = (
+        GameConfiguration.stateAccessor.getStateObject() as CustomGameState
+      ).gameStartTime;
     }
   }
 
@@ -84,7 +79,9 @@ export default class StoryPlayScene extends SPScene {
     this._demoText = createTitleText(this, {
       x: 1920 / 2,
       y: 1080 / 2,
-      text: GameConfiguration.stateAccessor.getStateObject().startTime,
+      text: (
+        GameConfiguration.stateAccessor.getStateObject() as CustomGameState
+      ).gameStartTime,
     });
   }
 }

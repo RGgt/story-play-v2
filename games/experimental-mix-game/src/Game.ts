@@ -37,7 +37,7 @@ export default class Game extends Phaser.Game {
     GameConfiguration.stateAccessor.setStateObject({
       message: 'This is a dummy message!',
       note: 'The game is not doing anything yet, so there is currently no real data.',
-      startTime: formatDate(new Date(), 'ddd, mmm dd yyyy,\n hh:ii:ss'),
+      gameStartTime: formatDate(new Date(), 'ddd, mmm dd yyyy,\n hh:ii:ss'),
     });
   }
 
