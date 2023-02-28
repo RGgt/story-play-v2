@@ -25,3 +25,7 @@ gitHubPages
 
 .vscode
 .env
+
+//other experiments
+web-pages/experimental-mix-page/public/game-assets/*
+!web-pages/experimental-mix-page/public/game-assets/experimental-mix-title
