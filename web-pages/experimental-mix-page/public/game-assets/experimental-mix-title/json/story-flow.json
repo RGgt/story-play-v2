@@ -1,272 +1,17 @@
 {
-  "startingFrame": "forward",
+  "startingFrame": "forward0",
   "endingFrame": "finish_001",
   "frames": [
     {
-      "code": "forward",
+      "code": "forward0",
       "components": [
         {
           "code": "background",
           "data": "click_areas"
         },
         {
-          "code": "jumper",
-          "data": "intro_000"
-        },
-        {
-          "code": "narration",
-          "data": "foreword_01"
-        }
-      ]
-    },
-    {
-      "code": "intro_000",
-      "components": [
-        {
-          "code": "background",
-          "data": "frame_1_05"
-        },
-        {
-          "code": "jumper",
-          "data": "intro_000b"
-        },
-        {
-          "code": "story-title",
-          "data": "story_title"
-        },
-        {
-          "code": "story-subtitle-center",
-          "data": "story_subtitle_1"
-        },
-        {
-          "code": "narration",
-          "data": "narration_on_story_title"
-        }
-      ]
-    },
-    {
-      "code": "intro_000b",
-      "components": [
-        {
-          "code": "background",
-          "data": "frame_1_05"
-        },
-        {
-          "code": "jumper",
-          "data": "intro_000c"
-        },
-        {
-          "code": "story-title",
-          "data": "story_title"
-        },
-        {
-          "code": "story-subtitle-center",
-          "data": "story_subtitle_2"
-        },
-        {
-          "code": "narration"
-        }
-      ]
-    },
-    {
-      "code": "intro_000c",
-      "components": [
-        {
-          "code": "background",
-          "data": "frame_1_05"
-        },
-        {
-          "code": "jumper",
-          "data": "intro_000d"
-        },
-        {
-          "code": "story-title",
-          "data": "story_title"
-        },
-        {
-          "code": "story-subtitle-center",
-          "data": "story_subtitle_3"
-        },
-        {
-          "code": "narration"
-        }
-      ]
-    },
-    {
-      "code": "intro_000d",
-      "components": [
-        {
-          "code": "background",
-          "data": "frame_1_05"
-        },
-        {
-          "code": "jumper",
-          "data": "intro_001"
-        },
-        {
-          "code": "story-title"
-        },
-        {
-          "code": "story-subtitle-center"
-        },
-        {
-          "code": "narration"
-        }
-      ]
-    },
-    {
-      "code": "intro_001",
-      "components": [
-        {
-          "code": "background"
-        },
-        {
-          "code": "jumper",
-          "data": "intro_002"
-        },
-        {
-          "code": "narration",
-          "data": "txt_intro_001"
-        }
-      ]
-    },
-    {
-      "code": "intro_002",
-      "components": [
-        {
-          "code": "background",
-          "data": "frame_1_05"
-        },
-        {
-          "code": "jumper",
-          "data": "intro_002b"
-        },
-        {
-          "code": "narration",
-          "data": "txt_intro_002"
-        }
-      ]
-    },
-    {
-      "code": "intro_002b",
-      "components": [
-        {
-          "code": "background"
-        },
-        {
-          "code": "narration",
-          "data": ""
-        },
-        {
-          "code": "jumper",
-          "data": "intro_003"
-        }
-      ]
-    },
-    {
-      "code": "intro_003",
-      "components": [
-        {
-          "code": "background-pulse",
-          "data": "frame_13_05",
-          "config": {
-            "repeats": 1,
-            "scale": 1.5,
-            "speed": 1000
-          }
-        },
-        {
-          "code": "jumper",
-          "data": "intro_003b"
-        },
-        {
-          "code": "narration",
-          "data": "txt_intro_003"
-        }
-      ]
-    },
-    {
-      "code": "intro_003b",
-      "components": [
-        {
-          "code": "background"
-        },
-        {
-          "code": "narration"
-        },
-        {
-          "code": "jumper",
-          "data": "intro_004"
-        }
-      ]
-    },
-    {
-      "code": "intro_004",
-      "components": [
-        {
-          "code": "background-animate",
-          "data": "frame_13_05",
-          "config": {
-            "frames": [
-              "frame_1_08_10",
-              "frame_1_08_11",
-              "frame_1_08_12",
-              "frame_1_08_13",
-              "frame_1_08_14",
-              "frame_1_08_15",
-              "frame_1_08_16",
-              "frame_1_08_17"
-            ],
-            "repeats": 0,
-            "frameRate": 12
-          }
-        },
-        {
-          "code": "jumper",
-          "data": "intro_004b"
-        },
-        {
-          "code": "narration",
-          "data": "txt_intro_004"
-        }
-      ]
-    },
-    {
-      "code": "intro_004b",
-      "components": [
-        {
-          "code": "background-animate"
-        },
-        {
-          "code": "jumper",
-          "data": "intro_005"
-        },
-        {
-          "code": "narration"
-        }
-      ]
-    },
-    {
-      "code": "intro_005",
-      "components": [
-        {
-          "code": "background-animate",
-          "data": "frame_13_05",
-          "config": {
-            "frames": [
-              "frame_1_08_10",
-              "frame_1_08_11",
-              "frame_1_08_12",
-              "frame_1_08_13",
-              "frame_1_08_14",
-              "frame_1_08_15",
-              "frame_1_08_16",
-              "frame_1_08_17"
-            ],
-            "repeats": -1,
-            "yo-yo": true,
-            "frameRate": 12
-          }
+          "code": "quick-text",
+          "data": "Frame: forward0"
         },
         {
           "code": "jumper",
@@ -274,7 +19,36 @@
         },
         {
           "code": "narration",
-          "data": "txt_intro_005"
+          "data": "foreword_01"
+        },
+        {
+          "code": "story-title",
+          "data": "story_title"
+        }
+      ]
+    },
+    {
+      "code": "forward",
+      "components": [
+        {
+          "code": "background",
+          "data": "transparent"
+        },
+        {
+          "code": "quick-text",
+          "data": "Frame: forward"
+        },
+        {
+          "code": "jumper",
+          "data": "forward0",
+          "config": {
+            "no_back": false,
+            "no_menu": false
+          }
+        },
+        {
+          "code": "narration",
+          "data": "foreword_01"
         }
       ]
     }
