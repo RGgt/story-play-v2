@@ -28,7 +28,7 @@ function createSubtitleTextAlignCenter(
     shadowBlur: 4,
     shadowOffsetX: 2,
     shadowOffsetY: 2,
-    textSize: '36px',
+    textSize: '56px',
     textFontFamily: 'SerifFont',
     textColor: options.colorOverwrite ?? 'white',
     textBackgroundColor: 'transparent',
