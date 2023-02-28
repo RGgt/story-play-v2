@@ -46,6 +46,7 @@ const loadAssetFromNode = async (
       await loadAudio(scene, type, key, data, pathFixer);
       break;
     case 'image':
+    case 'gui-image':
       await loadImage(scene, type, key, data, pathFixer);
       break;
     case 'svg':
