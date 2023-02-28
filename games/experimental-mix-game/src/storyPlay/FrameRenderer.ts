@@ -100,6 +100,7 @@ class FrameRenderer {
       case 'story-subtitle-center':
         this._largeTextsRenderer.renderStorySubtitleCenter(
           componentData.data,
+          componentData.config,
           index
         );
         break;

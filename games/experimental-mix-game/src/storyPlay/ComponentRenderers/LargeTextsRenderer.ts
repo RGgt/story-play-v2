@@ -30,7 +30,7 @@ class LargeTextsRenderer {
     this._StoryTitle?.text.setDepth(index * 10);
   }
 
-  renderStorySubtitleCenter(data: string, index: number) {
+  renderStorySubtitleCenter(data: string, config: object, index: number) {
     if (data == null) {
       this._StorySubtitle_1?.destroy();
       return;
@@ -38,6 +38,11 @@ class LargeTextsRenderer {
     if (this._StorySubtitle_1) {
       this._StorySubtitle_1?.destroy();
     }
+    const configDefault = {
+      // colorOverwrite: string
+    };
+    const newConfig = { ...configDefault, ...config };
+
     const text = GameConfiguration.getTranslation(data);
     const screenCenterY = CommonWindowStyles.screen.centerY;
     let y = screenCenterY;
@@ -47,6 +52,7 @@ class LargeTextsRenderer {
     const customComponent = this._placeGameSubtitleCenterText(
       this.scene,
       text,
+      newConfig,
       y
     );
     this._StorySubtitle_1 = customComponent;
@@ -71,6 +77,7 @@ class LargeTextsRenderer {
   private _placeGameSubtitleCenterText(
     scene: Phaser.Scene,
     text: string,
+    config: { colorOverwrite?: string },
     y: number
   ) {
     const screenCenterX =
@@ -80,6 +87,7 @@ class LargeTextsRenderer {
       y,
       text,
       maxWidth: 1920,
+      colorOverwrite: config.colorOverwrite,
     });
     scene.add.existing(customComponent.text);
     return customComponent;
