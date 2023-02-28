@@ -34,11 +34,11 @@ export default class Game extends Phaser.Game {
     ) => {
       reactToNewDialogRequest(this, lifetimeController);
     };
-    GameConfiguration.stateAccessor.setStateObject({
-      message: 'This is a dummy message!',
-      note: 'The game is not doing anything yet, so there is currently no real data.',
-      gameStartTime: formatDate(new Date(), 'on ddd, mmm dd yyyy, at hh:ii:ss'),
-    });
+    // GameConfiguration.stateAccessor.setStateObject({
+    //   message: 'This is a dummy message!',
+    //   note: 'The game is not doing anything yet, so there is currently no real data.',
+    //   gameStartTime: formatDate(new Date(), 'on ddd, mmm dd yyyy, at hh:ii:ss'),
+    // });
   }
 
   override step(time: number, delta: number): void {
