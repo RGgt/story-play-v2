@@ -3,6 +3,9 @@ function createBackgroundImage(scene: Phaser.Scene, name: string) {
     scene.cameras.main.worldView.x + scene.cameras.main.width / 2;
   const screenCenterY =
     scene.cameras.main.worldView.y + scene.cameras.main.height / 2;
+  if (!scene.game.textures.exists(name)) {
+    throw new Error(`Attempt to load uncached texture '${name}' as background`);
+  }
   const sprite = scene.add.sprite(screenCenterX, screenCenterY, name);
   return { background: sprite };
 }
@@ -16,6 +19,11 @@ function createBackgroundImagePulsing(
     scene.cameras.main.worldView.x + scene.cameras.main.width / 2;
   const screenCenterY =
     scene.cameras.main.worldView.y + scene.cameras.main.height / 2;
+  if (!scene.game.textures.exists(name)) {
+    throw new Error(
+      `Attempt to load uncached texture '${name}' for pulsing background`
+    );
+  }
   const sprite = scene.add.sprite(screenCenterX, screenCenterY, name);
   const pulseTween = scene.tweens.add({
     targets: sprite, // the image to animate
@@ -40,6 +48,11 @@ function createBackgroundAnimation(
     scene.cameras.main.worldView.y + scene.cameras.main.height / 2;
   const sprite = scene.add.sprite(screenCenterX, screenCenterY, name);
   const animationFrames = config.frames.map((frameName) => {
+    if (!scene.game.textures.exists(frameName)) {
+      throw new Error(
+        `Attempt to load uncached texture '${frameName}' as animated background`
+      );
+    }
     return { key: frameName };
   });
   const animation = scene.anims.create({
