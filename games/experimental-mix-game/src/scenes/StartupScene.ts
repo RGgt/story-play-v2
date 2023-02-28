@@ -17,7 +17,7 @@ export default class StartupScene extends Phaser.Scene {
         this,
         'image',
         'cursor_disabled',
-        `${assetsFolder}/images/gui/cursor_disabled.png`
+        `${assetsFolder}/gui/cursor_disabled.png`
       );
       await loadAsset(this, 'image', 'logo', `${assetsFolder}/images/logo.png`);
       await loadAsset(
