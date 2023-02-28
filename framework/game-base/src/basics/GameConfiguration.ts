@@ -68,7 +68,7 @@ class GameConfigurationSingleton {
       );
     } catch (err: unknown) {
       this.gameReactions.reactToError(
-        new Error(`Invalid UI translation code '${data}'`)
+        new Error(`Invalid translation code '${data}'`)
       );
       return '';
     }
