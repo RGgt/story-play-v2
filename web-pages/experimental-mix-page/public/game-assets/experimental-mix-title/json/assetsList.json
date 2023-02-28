@@ -19,7 +19,9 @@
     "panel": "{assets}/images/gui/panel.png",
     "group_box": "{assets}/images/gui/group_box.png",
     "line": "{assets}/images/gui/line.png",
-    "screenshot_0_5": "{assets}/images/SAMPLE_screenshot_0_5.jpg"
+    "screenshot_0_5": "{assets}/images/SAMPLE_screenshot_0_5.jpg",
+    "click_areas": "{assets}/images/click_areas.png",
+    "transparent": "{assets}/images/transparent.png"
   },
   "svg": {
     "test": "{assets}/images/vite.svg"
