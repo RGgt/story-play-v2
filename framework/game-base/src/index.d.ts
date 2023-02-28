@@ -21,6 +21,7 @@ export type { TranslationData } from './@types/TranslationData';
 export { ECursorOptions };
 export { default as CommonWindowStyles } from './basics/Styles/CommonWindowStyles';
 export { default as DrawDebug } from './basics/Styles/DrawDebug';
+export { default as JumperStyle } from './basics/Styles/JumperStyle';
 export { default as SaveAndLoadStyles } from './basics/Styles/SaveAndLoadStyles';
 
 export {
