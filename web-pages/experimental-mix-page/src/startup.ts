@@ -9,6 +9,12 @@ async function start() {
     GameConfigurationKeys.AssetsFolder,
     'game-assets/experimental-mix-title'
   );
+  if (import.meta.env.VITE_USE_CUSTOM_ASSETS_FOLDER.toUpperCase() === 'YES') {
+    GameConfiguration.set(
+      GameConfigurationKeys.AssetsFolder,
+      import.meta.env.VITE_CUSTOM_ASSETS_FOLDER
+    );
+  }
   GameConfiguration.set(GameConfigurationKeys.HtmlContainer, 'game-container');
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
