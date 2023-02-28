@@ -51,6 +51,20 @@ class GameConfigurationSingleton {
     },
   };
 
+  private _stableData: object = {};
+
+  public stableDataAccessor: {
+    setStableData: (o: object) => void;
+    getStableData: () => object;
+  } = {
+    setStableData: (o: object) => {
+      this._stableData = o;
+    },
+    getStableData: () => {
+      return this._stableData;
+    },
+  };
+
   public translationData: TranslationData = {};
 
   public uITranslationData: TranslationData = {};
