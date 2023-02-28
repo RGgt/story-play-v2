@@ -32,8 +32,8 @@ class Perimeter extends Phaser.GameObjects.Rectangle implements SPAwareControl {
   protected _lPressed = false;
 
   constructor(scene: Phaser.Scene, options: PerimeterOptions) {
-    const fillColor = 0x00ff;
-    const fillAlpha = 0.5;
+    const fillColor = 0xffffff;
+    const fillAlpha = 0.0;
     const x = options.x ?? defaultOptions.x;
     const y = options.y ?? defaultOptions.y;
     const width = options.width ?? defaultOptions.width;
