@@ -1,4 +1,3 @@
-import { createTitleText } from '@rggt/basic-controls';
 import {
   getMiniatureScreenshotBase64DataURL,
   SaveGameManager,
@@ -9,8 +8,7 @@ import {
   GameConfiguration,
   TranslationData,
 } from '@rggt/game-base';
-import { createButtonWithSimpleText } from '@rggt/nine-patch-controls';
-import { CustomGameState } from '../state/CustomGameState';
+import { GameFlowPlayer } from '../storyPlay/GameFlowPlayer';
 import EScenes from './EScenes';
 import SPScene from './SPScene';
 
@@ -25,6 +23,8 @@ export default class StoryPlayScene extends SPScene {
   private _saveGameManager: SaveGameManager = new SaveGameManager(
     this._storeManager
   );
+
+  private _gameFlowPlayer = new GameFlowPlayer(this);
 
   private _demoText?: {
     text: Phaser.GameObjects.Text;
@@ -59,8 +59,23 @@ export default class StoryPlayScene extends SPScene {
   }
 
   onResumePlaying() {
-    if (this._demoText) {
-      this._demoText.text.text = this._composeSampleText();
+    this._gameFlowPlayer?.loadGame();
+  }
+
+  async gameFlowEventsHandler(eventCode: string, eventParameters: unknown) {
+    switch (eventCode) {
+      case 'advance-to-frame':
+        this._gameFlowPlayer?.advanceToFrame(eventParameters as string);
+        break;
+      case 'rollback-to-frame':
+        this._gameFlowPlayer?.rollbackToFrame(eventParameters as string);
+        break;
+      case 'request-game-menu':
+        await this.showSaveLoad('load');
+        break;
+
+      default:
+        throw new Error(`Invalid event game flow code '${eventCode}'`);
     }
   }
 
@@ -72,44 +87,17 @@ export default class StoryPlayScene extends SPScene {
       'translation'
     ) as TranslationData;
 
-    createButtonWithSimpleText(
-      this,
-      {
-        x: 200,
-        y: 200,
-        width: 500,
-        height: 150,
-        reactionToClick: this.onButtonSaveClick.bind(this),
-      },
-      {
-        text: 'Save',
-      }
+    GameConfiguration.stableDataAccessor.setStableData(
+      this.cache.json.get('story-flow')
     );
-    createButtonWithSimpleText(
-      this,
-      {
-        x: 200 + 524,
-        y: 200,
-        width: 500,
-        height: 150,
-        reactionToClick: this.onButtonLoadClick.bind(this),
-      },
-      {
-        text: 'Load',
-      }
-    );
-    this._demoText = createTitleText(this, {
-      x: 1920 / 2,
-      y: 1080 / 2 + 200,
-      text: this._composeSampleText(),
-    });
-  }
 
-  private _composeSampleText() {
-    return `This is the game that was originally started
-    ${
-      (GameConfiguration.stateAccessor.getStateObject() as CustomGameState)
-        .gameStartTime
-    }\n\nCurrently, a new game is started each time you refresh the page`;
+    this.game.events.on(
+      'game-flow-event',
+      this.gameFlowEventsHandler.bind(this),
+      this
+    );
+
+    this._gameFlowPlayer = new GameFlowPlayer(this);
+    this._gameFlowPlayer.restartGame();
   }
 }
