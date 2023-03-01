@@ -25,6 +25,8 @@ class FrameRenderer {
 
   private readonly _stateUpdatesProcessor: ImplicitStateUpdater;
 
+  private readonly _pastFrameComponents: Set<string>;
+
   constructor(private scene: Phaser.Scene) {
     this._backgroundRenderer = new BackgroundRenderer(this.scene);
     this._narrationRenderer = new NarratorRenderer(this.scene);
@@ -32,12 +34,14 @@ class FrameRenderer {
     this._largeTextsRenderer = new LargeTextsRenderer(this.scene);
     this._quickText = new QuickText(this.scene);
     this._stateUpdatesProcessor = new ImplicitStateUpdater(this.scene);
+    this._pastFrameComponents = new Set<string>();
   }
 
   private _renderFrame(
     frameData: FrameData,
     updateState: 'yes' | 'undo' | 'no'
   ) {
+    // render the new components
     try {
       frameData.components.forEach((value, index) =>
         this._renderComponent(value, index, updateState)
@@ -66,19 +70,9 @@ class FrameRenderer {
   ) {
     switch (componentData.code) {
       case 'background':
-        this._backgroundRenderer.renderBackground(componentData.data, index);
-        break;
-      case 'background-pulse':
-        this._backgroundRenderer.renderBackgroundPulse(
+        this._backgroundRenderer.renderBackground(
           componentData.data,
-          componentData.config,
-          index
-        );
-        break;
-      case 'background-animate':
-        this._backgroundRenderer.renderBackgroundAnimate(
-          componentData.data,
-          componentData.config,
+          componentData.config as { type: string },
           index
         );
         break;

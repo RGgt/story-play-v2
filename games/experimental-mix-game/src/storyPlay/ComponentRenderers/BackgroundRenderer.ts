@@ -19,7 +19,31 @@ class BackgroundRenderer {
 
   constructor(private scene: Phaser.Scene) {}
 
-  public renderBackground(data: string, index: number) {
+  public renderBackground(
+    data: string,
+    config: { type: string },
+    index: number
+  ) {
+    if (config == null) {
+      this._renderBackgroundStatic(data, index);
+      return;
+    }
+    switch (config.type) {
+      case 'static':
+        this._renderBackgroundStatic(data, index);
+        break;
+      case 'pulsing':
+        this._renderBackgroundPulse(data, config, index);
+        break;
+      case 'animated':
+        this._renderBackgroundAnimate(data, config, index);
+        break;
+      default:
+        throw new Error(`Invalid background type '${config.type}'`);
+    }
+  }
+
+  private _renderBackgroundStatic(data: string, index: number) {
     if (data == null) {
       this._backgroundFadeOutTween?.stop();
       this._backgroundFadeInTween?.stop();
@@ -93,7 +117,7 @@ class BackgroundRenderer {
     }
   }
 
-  renderBackgroundPulse(data: string, config: object, index: number) {
+  private _renderBackgroundPulse(data: string, config: object, index: number) {
     if (data == null) {
       this._backgroundFadeOutTween?.stop();
       this._backgroundFadeInTween?.stop();
@@ -184,7 +208,11 @@ class BackgroundRenderer {
     }
   }
 
-  renderBackgroundAnimate(data: string, config: object, index: number) {
+  private _renderBackgroundAnimate(
+    data: string,
+    config: object,
+    index: number
+  ) {
     if (data == null) {
       this._backgroundFadeOutTween?.stop();
       this._backgroundFadeInTween?.stop();
@@ -276,7 +304,7 @@ class BackgroundRenderer {
     }
   }
 
-  public Cleanup() {
+  public cleanup() {
     this._backgroundFadeOutTween?.remove();
     this._backgroundFadeInTween?.remove();
     this._backgroundSpriteOld?.destroy();
