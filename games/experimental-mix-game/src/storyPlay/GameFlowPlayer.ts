@@ -46,9 +46,10 @@ class GameFlowPlayer {
   }
 
   public rollbackToFrame(data: string) {
-    this._state.currentFrame = data;
     if (this._state.history && this._state.history.length > 1) {
       this._state.history.pop();
+      this._state.currentFrame =
+        this._state.history.at(this._state.history.length - 1) ?? '';
       const frameData = this._getFrameData();
       this._frameRenderer.rollbackToFrame(frameData);
     }
