@@ -41,6 +41,18 @@ class FrameRenderer {
     frameData: FrameData,
     updateState: 'yes' | 'undo' | 'no'
   ) {
+    // remove the components to which we may play transitions
+    frameData.components.forEach((value) => {
+      const componentCode = value.code;
+      if (this._pastFrameComponents.has(componentCode))
+        this._pastFrameComponents.delete(componentCode);
+    });
+
+    // cleanup whatever remained
+    this._pastFrameComponents.forEach((value) => {
+      this._cleanupComponent(value);
+    });
+
     // render the new components
     try {
       frameData.components.forEach((value, index) =>
@@ -61,6 +73,34 @@ class FrameRenderer {
 
   public refreshFrame(frameData: FrameData) {
     this._renderFrame(frameData, 'no');
+  }
+
+  private _cleanupComponent(componentCode: string) {
+    switch (componentCode) {
+      case 'background':
+        this._backgroundRenderer.cleanup();
+        break;
+      case 'jumper':
+        this._jumperRenderer.cleanup();
+        break;
+      case 'narration':
+        this._narrationRenderer.cleanup();
+        break;
+      case 'story-title':
+        this._largeTextsRenderer.cleanup();
+        break;
+      case 'quick-text':
+        this._quickText.cleanup();
+        break;
+      case 'story-subtitle-center':
+        this._largeTextsRenderer.cleanup();
+        break;
+      case 'state-update':
+        // nothing
+        break;
+      default:
+        throw new Error(`Invalid component code '${componentCode}'`);
+    }
   }
 
   private _renderComponent(
