@@ -108,6 +108,8 @@ class FrameRenderer {
     index: number,
     updateState: 'yes' | 'undo' | 'no'
   ) {
+    if (!this._pastFrameComponents.has(componentData.code))
+      this._pastFrameComponents.add(componentData.code);
     switch (componentData.code) {
       case 'background':
         this._backgroundRenderer.renderBackground(
