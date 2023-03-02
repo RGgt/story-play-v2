@@ -77,7 +77,8 @@ class BackgroundRenderer {
         data
       ));
       this._backgroundSprite.setDepth(index * 10);
-      this._backgroundSprite.setAlpha(1);
+      const startingAlpha = 1;
+      this._backgroundSprite.setAlpha(startingAlpha);
       // fade out the old background
       this._backgroundFadeOutTween = this.scene.tweens.add({
         targets: this._backgroundSpriteOld, // the image to animate
@@ -96,7 +97,7 @@ class BackgroundRenderer {
       });
       this._backgroundFadeInTween = this.scene.tweens.add({
         targets: this._backgroundSprite, // the image to animate
-        alpha: { from: 0, to: 1 },
+        alpha: { from: startingAlpha, to: 1 },
         ease: 'Cubic.EaseOut',
         duration: 1000,
         yoyo: false,
@@ -160,7 +161,8 @@ class BackgroundRenderer {
       } = createBackgroundImagePulsing(this.scene, data, newConfig));
 
       this._backgroundSprite.setDepth(index * 10);
-      this._backgroundSprite.setAlpha(1);
+      const startingAlpha = 1;
+      this._backgroundSprite.setAlpha(startingAlpha);
       // fade out the old background
       this._backgroundFadeOutTween = this.scene.tweens.add({
         targets: this._backgroundSpriteOld, // the image to animate
@@ -179,7 +181,7 @@ class BackgroundRenderer {
       });
       this._backgroundFadeInTween = this.scene.tweens.add({
         targets: this._backgroundSprite, // the image to animate
-        alpha: { from: 0, to: 1 },
+        alpha: { from: startingAlpha, to: 1 },
         ease: 'Cubic.EaseOut',
         duration: 1000,
         yoyo: false,
@@ -255,7 +257,8 @@ class BackgroundRenderer {
       } = createBackgroundAnimation(this.scene, 'main', newConfig));
 
       this._backgroundSprite.setDepth(index * 10);
-      this._backgroundSprite.setAlpha(1);
+      const startingAlpha = 1;
+      this._backgroundSprite.setAlpha(startingAlpha);
       // fade out the old background
       this._backgroundFadeOutTween = this.scene.tweens.add({
         targets: this._backgroundSpriteOld, // the image to animate
@@ -274,7 +277,7 @@ class BackgroundRenderer {
       });
       this._backgroundFadeInTween = this.scene.tweens.add({
         targets: this._backgroundSpriteOld, // the image to animate
-        alpha: { from: 0, to: 1 },
+        alpha: { from: startingAlpha, to: 1 },
         ease: 'Cubic.EaseOut',
         duration: 1000,
         yoyo: false,
