@@ -45,7 +45,7 @@ class GameFlowPlayer {
     this._frameRenderer.advanceToFrame(frameData);
   }
 
-  public rollbackToFrame(data: string) {
+  public rollbackToFrame() {
     if (this._state.history && this._state.history.length > 1) {
       this._state.history.pop();
       this._state.currentFrame =

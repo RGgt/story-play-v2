@@ -68,7 +68,7 @@ export default class StoryPlayScene extends SPScene {
         this._gameFlowPlayer?.advanceToFrame(eventParameters as string);
         break;
       case 'rollback-to-frame':
-        this._gameFlowPlayer?.rollbackToFrame(eventParameters as string);
+        this._gameFlowPlayer?.rollbackToFrame();
         break;
       case 'request-game-menu':
         await this.showSaveLoad('load');
