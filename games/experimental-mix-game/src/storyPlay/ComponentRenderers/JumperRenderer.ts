@@ -6,8 +6,8 @@ class JumperRenderer {
   constructor(private scene: Phaser.Scene) {}
 
   renderJumper(data: string, config: object) {
+    this._frameNavigator?.destroy();
     if (data == null) {
-      this._frameNavigator?.destroy();
       return;
     }
     const configDefault = {
