@@ -12,6 +12,13 @@
     "loadConfirmLoseUnsavedMessage": "All unsaved changes to the current game will be lost.\n\n\nLoad game?",
     "deleteConfirmNoUndoMessage": "You cannot undo this operation.\n\n\nDelete game?"
   },
+  "MainMenu": {
+    "title": "- Main Menu - ",
+    "resumeButton": "Resume",
+    "newButton": "New Game",
+    "saveLoadButton": "Save/Load",
+    "preferencesButton": "Toggle Fullscreen"
+  },
   "MessageBoxYesNo": {
     "yesButton": "Yes",
     "noButton": "No",
