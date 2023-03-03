@@ -5,8 +5,10 @@
     "translation-ui": "{assets}/json/ui-translation-en-GB.json"
   },
   "image": {
-    "click_areas": "{assets}/images/click_areas.png",
-    "transparent": "{assets}/images/transparent.png"
+    "frame_1_00": "{assets}/images/frame_1_00.jpg",
+    "frame_1_02": "{assets}/images/frame_1_02.jpg",
+    "frame_1_03": "{assets}/images/frame_1_03.jpg",
+    "frame_1_05": "{assets}/images/frame_1_05.jpg"
   },
   "gui-image": {
     "btnNormal": "{assets}/gui/normal.png",
@@ -23,13 +25,5 @@
     "panel": "{assets}/gui/panel.png",
     "group_box": "{assets}/gui/group_box.png",
     "line": "{assets}/gui/line.png"
-  },
-  "svg": {
-    "test": "{assets}/images/vite.svg"
-  },
-  "audio": {
-    "music": {
-      "wav": "{assets}/audio/music.wav"
-    }
   }
 }

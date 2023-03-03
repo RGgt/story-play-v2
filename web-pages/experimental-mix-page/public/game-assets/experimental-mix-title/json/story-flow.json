@@ -1,60 +1,211 @@
 {
-  "startingFrame": "forward0",
+  "startingFrame": "intro_001",
   "endingFrame": "finish_001",
   "frames": [
     {
-      "code": "forward0",
+      "code": "intro_001",
       "components": [
         {
           "code": "background",
-          "config": {
-            "type": "pulsing",
-            "repeats": 1,
-            "scale": 1.5,
-            "speed": 1000
-          },
-          "data": "click_areas"
-        },
-        {
-          "code": "quick-text",
-          "data": "Frame: forward0"
+          "data": "frame_1_00"
         },
         {
           "code": "jumper",
-          "data": "forward"
-        },
-        {
-          "code": "narration",
-          "data": "foreword_01"
-        },
-        {
-          "code": "story-title",
           "data": "story_title"
         }
       ]
     },
     {
-      "code": "forward",
+      "code": "story_title",
       "components": [
         {
           "code": "background",
-          "data": "transparent"
+          "data": "frame_1_02"
         },
         {
-          "code": "quick-text",
-          "data": "Frame: forward"
+          "code": "story-title",
+          "data": "story_title"
         },
         {
           "code": "jumper",
-          "data": "forward0",
+          "data": "story_author"
+        }
+      ]
+    },
+    {
+      "code": "story_author",
+      "components": [
+        {
+          "code": "background",
+          "data": "frame_1_02"
+        },
+        {
+          "code": "story-title",
+          "data": "story_title"
+        },
+        {
+          "code": "story-subtitle-center",
+          "data": "story_author",
           "config": {
-            "no_back": false,
-            "no_menu": false
+            "colorOverwrite": "#078A9F"
           }
         },
         {
+          "code": "jumper",
+          "data": "story_graphics"
+        }
+      ]
+    },
+    {
+      "code": "story_graphics",
+      "components": [
+        {
+          "code": "background",
+          "data": "frame_1_02"
+        },
+        {
+          "code": "story-title",
+          "data": "story_title"
+        },
+        {
+          "code": "story-subtitle-center",
+          "data": "story_graphics",
+          "config": {
+            "colorOverwrite": "#FF8300"
+          }
+        },
+        {
+          "code": "jumper",
+          "data": "story_translator"
+        }
+      ]
+    },
+    {
+      "code": "story_translator",
+      "components": [
+        {
+          "code": "background",
+          "data": "frame_1_02"
+        },
+        {
+          "code": "story-title",
+          "data": "story_title"
+        },
+        {
+          "code": "story-subtitle-center",
+          "data": "story_translator",
+          "config": {
+            "colorOverwrite": "#0AC8E9"
+          }
+        },
+        {
+          "code": "jumper",
+          "data": "frame_1_00"
+        }
+      ]
+    },
+    {
+      "code": "frame_1_00",
+      "components": [
+        {
+          "code": "background",
+          "data": "frame_1_02"
+        },
+        {
           "code": "narration",
-          "data": "foreword_01"
+          "data": "frame_1_00"
+        },
+        {
+          "code": "jumper",
+          "data": "frame_1_01"
+        }
+      ]
+    },
+    {
+      "code": "frame_1_01",
+      "components": [
+        {
+          "code": "background",
+          "data": "frame_1_00"
+        },
+        {
+          "code": "narration",
+          "data": "frame_1_01"
+        },
+        {
+          "code": "jumper",
+          "data": "frame_1_02"
+        }
+      ]
+    },
+    {
+      "code": "frame_1_02",
+      "components": [
+        {
+          "code": "background",
+          "data": "frame_1_02"
+        },
+        {
+          "code": "narration",
+          "data": "frame_1_02"
+        },
+        {
+          "code": "jumper",
+          "data": "frame_1_03"
+        }
+      ]
+    },
+    {
+      "code": "frame_1_03",
+      "components": [
+        {
+          "code": "background",
+          "data": "frame_1_03"
+        },
+        {
+          "code": "narration",
+          "data": "frame_1_03"
+        },
+        {
+          "code": "jumper",
+          "data": "frame_1_04"
+        }
+      ]
+    },
+    {
+      "code": "frame_1_04",
+      "components": [
+        {
+          "code": "background",
+          "data": "frame_1_03"
+        },
+        {
+          "code": "narration",
+          "data": "frame_1_04"
+        },
+        {
+          "code": "jumper",
+          "data": "frame_1_05"
+        }
+      ]
+    },
+    {
+      "code": "frame_1_05",
+      "components": [
+        {
+          "code": "background",
+          "data": "frame_1_05"
+        },
+        {
+          "code": "narration",
+          "data": "frame_1_05"
+        },
+        {
+          "code": "jumper",
+          "config": {
+            "no_forward": true
+          },
+          "data": "frame_1_05"
         }
       ]
     }

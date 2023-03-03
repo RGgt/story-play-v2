@@ -1,13 +1,13 @@
 {
-  "foreword_01": "This is a story-like slideshow that feature some important components and behaviors that I want in my games.\r\n\r\n\r\nWhat do you see here is NOT a story, but a test ground for my code! Click anywhere to continue exploring.",
-  "story_title": "A Story About a Beautiful\r\nDate",
-  "narration_on_story_title": "Did you notice the green and orange rectangles in the previous screen?\r\nClicking on the left part of the screen, where the green rectangle was, will navigate back to previous frame.\r\n\r\nClicking on the top right corner, where the orange rectangle was, will open the game's menu. Play with these!",
-  "story_subtitle_1": "- A story by Author -",
-  "story_subtitle_2": "- Illustrated by Illustrator1 and Illustrator2 -",
-  "story_subtitle_3": "- Translated into English by Translator -",
-  "txt_intro_001": "Background should have disappeared and there should be a text area for subtitles, where you read this text.",
-  "txt_intro_002": "This frame has a background and some subtitles.",
-  "txt_intro_003": "Previous screen should have some area reserved for subtitles, but NO subtitle should be actually shown. Also, it should have NO background.\r\n\r\nThis screen should have a zoom in/out animation that loops ONLY TWICE.",
-  "txt_intro_004": "Previous screen should have NO area reserved for subtitles at all. Also, it should have NO background.\r\n\r\nThis screen should have an animation that loops ONLY ONCE.",
-  "txt_intro_005": "This screen should have an animation that loops FOREVER."
+  "story_title": "A Story About a Beautiful\r\nDish",
+  "story_author": "- A story by Author -",
+  "story_graphics": "- Illustrated by A. Photographer -",
+  "story_translator": "- Translated into English by Mr. Translator -",
+  "frame_1_00": "This is a story-like slideshow that feature some important components and behaviors that I want in my games.\r\n\r\n\r\nWhat do you see here is NOT a story, but a test ground for my code! You can start exploring.",
+  "frame_1_01": "Besides clicking in the corresponding areas, you can use arrow keys to navigate back (LEFT and DOWN keys) and forth (RIGHT and UP keys).",
+  "frame_1_02": "The navigation by using keys or clicking on the corresponding areas of the screen should work, even you do not see the helper texts. Try it now.",
+  "frame_1_03": "In the menu window, which opens when you click on the top right corner of the screen, there is a button for toggling fullscreen mode on/off. It should work on all browsers, desktops and mobiles.",
+  "frame_1_04": "Also in the main menu is a button to open the Save/Load dialog. That dialog should also be 100% functional, on all browsers, all devices.",
+  "frame_1_05": "Try saving, loading, restarting, resuming and so on. \nPlay with it. All should work.\n\nThank you.",
+  "end": "done"
 }
