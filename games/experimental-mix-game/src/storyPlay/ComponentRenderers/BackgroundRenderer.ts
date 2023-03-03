@@ -4,6 +4,37 @@ import {
   createBackgroundImagePulsing,
 } from '@rggt/basic-controls';
 
+interface BackgroundRendererConfig {
+  type: string;
+  pulse?: PulsingBackgroundRendererConfig;
+  animate?: AnimatedBackgroundRendererConfig;
+}
+interface PulsingBackgroundRendererConfig {
+  scale: number;
+  speed: number;
+  repeats: number;
+  yoyo: boolean;
+}
+interface AnimatedBackgroundRendererConfig {
+  frames: string[];
+  repeats: number;
+  frameRate: number;
+  yoyo: boolean;
+}
+const configDefaultPulse = {
+  scale: 2.0,
+  speed: 2200,
+  repeats: -1,
+  yoyo: true,
+};
+
+const configDefaultAnimate = {
+  frames: [] as string[],
+  repeats: -1,
+  frameRate: 8,
+  yoyo: false,
+};
+
 class BackgroundRenderer {
   private _backgroundSprite?: Phaser.GameObjects.Sprite;
 
@@ -21,7 +52,7 @@ class BackgroundRenderer {
 
   public renderBackground(
     data: string,
-    config: { type: string },
+    config: BackgroundRendererConfig,
     index: number
   ) {
     if (config == null) {
@@ -33,10 +64,18 @@ class BackgroundRenderer {
         this._renderBackgroundStatic(data, index);
         break;
       case 'pulsing':
-        this._renderBackgroundPulse(data, config, index);
+        this._renderBackgroundPulse(
+          data,
+          config.pulse ?? configDefaultPulse,
+          index
+        );
         break;
       case 'animated':
-        this._renderBackgroundAnimate(data, config, index);
+        this._renderBackgroundAnimate(
+          data,
+          config.animate ?? configDefaultAnimate,
+          index
+        );
         break;
       default:
         throw new Error(`Invalid background type '${config.type}'`);
@@ -118,7 +157,11 @@ class BackgroundRenderer {
     }
   }
 
-  private _renderBackgroundPulse(data: string, config: object, index: number) {
+  private _renderBackgroundPulse(
+    data: string,
+    config: PulsingBackgroundRendererConfig,
+    index: number
+  ) {
     if (data == null) {
       this._backgroundFadeOutTween?.stop();
       this._backgroundFadeInTween?.stop();
@@ -147,14 +190,7 @@ class BackgroundRenderer {
       this._backgroundSpriteOld = this._backgroundSprite;
       this._backgroundSpriteOld.setDepth(depthOld);
       // create new background below it
-      const configDefault = {
-        scale: 2.0,
-        speed: 2200,
-        repeats: -1,
-        yoyo: true,
-      };
-      const newConfig = { ...configDefault, ...config };
-
+      const newConfig = { ...configDefaultPulse, ...config };
       ({
         background: this._backgroundSprite,
         pulseTween: this._backgroundPulseTween,
@@ -194,13 +230,7 @@ class BackgroundRenderer {
         },
       });
     } else {
-      const configDefault = {
-        scale: 2.0,
-        speed: 2200,
-        repeats: -1,
-        yoyo: true,
-      };
-      const newConfig = { ...configDefault, ...config };
+      const newConfig = { ...configDefaultPulse, ...config };
       ({
         background: this._backgroundSprite,
         pulseTween: this._backgroundPulseTween,
@@ -212,7 +242,7 @@ class BackgroundRenderer {
 
   private _renderBackgroundAnimate(
     data: string,
-    config: object,
+    config: AnimatedBackgroundRendererConfig,
     index: number
   ) {
     if (data == null) {
@@ -243,14 +273,7 @@ class BackgroundRenderer {
       this._backgroundSpriteOld = this._backgroundSprite;
       this._backgroundSpriteOld.setDepth(depthOld);
       // create new background below it
-      const strings: string[] = [];
-      const configDefault = {
-        frames: strings,
-        repeats: -1,
-        frameRate: 8,
-        yoyo: false,
-      };
-      const newConfig = { ...configDefault, ...config };
+      const newConfig = { ...configDefaultAnimate, ...config };
       ({
         background: this._backgroundSprite,
         animation: this._backgroundAnimation,
@@ -290,14 +313,7 @@ class BackgroundRenderer {
         },
       });
     } else {
-      const strings: string[] = [];
-      const configDefault = {
-        frames: strings,
-        repeats: -1,
-        frameRate: 8,
-        yoyo: false,
-      };
-      const newConfig = { ...configDefault, ...config };
+      const newConfig = { ...configDefaultAnimate, ...config };
       ({
         background: this._backgroundSprite,
         animation: this._backgroundAnimation,
@@ -316,3 +332,4 @@ class BackgroundRenderer {
   }
 }
 export { BackgroundRenderer };
+export type { BackgroundRendererConfig };

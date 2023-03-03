@@ -5,7 +5,10 @@ import {
   CustomStableData,
   FrameData,
 } from '../state/CustomStableData';
-import { BackgroundRenderer } from './ComponentRenderers/BackgroundRenderer';
+import {
+  BackgroundRenderer,
+  BackgroundRendererConfig,
+} from './ComponentRenderers/BackgroundRenderer';
 import {
   JumperRenderer,
   JumperRendererConfig,
@@ -117,7 +120,7 @@ class FrameRenderer {
       case 'background':
         this._backgroundRenderer.renderBackground(
           componentData.data,
-          componentData.config as { type: string },
+          componentData.config as BackgroundRendererConfig,
           index
         );
         break;
