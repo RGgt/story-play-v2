@@ -12,6 +12,7 @@ import CriticalErrorScene from './scenes/CriticalErrorScene';
 import CursorScene from './scenes/CursorScene';
 import DialogWindowsScene from './scenes/DialogWindowsScene';
 import InitialLoaderScene from './scenes/InitialLoaderScene';
+import KeyboardInputScene from './scenes/KeyboardInputScene';
 import StartupScene from './scenes/StartupScene';
 import StoryPlayScene from './scenes/StoryPlayScene';
 
@@ -53,6 +54,7 @@ export default class Game extends Phaser.Game {
   private static getScenes = (): Array<Phaser.Scene> => {
     return [
       new StartupScene(),
+      new KeyboardInputScene(),
       new InitialLoaderScene(),
       new StoryPlayScene(),
       new DialogWindowsScene(),
