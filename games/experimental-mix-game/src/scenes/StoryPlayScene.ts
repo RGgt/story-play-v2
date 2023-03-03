@@ -63,10 +63,23 @@ export default class StoryPlayScene extends SPScene {
       callbackNew: () => {
         this._gameFlowPlayer?.restartGame();
       },
-      callbackPreferences: () => {},
+      callbackPreferences: () => {
+        // TODO: Code a proper Preferences window
+        this.onToggleFullScreen();
+      },
     });
   }
 
+  private onToggleFullScreen() {
+    if (!document.fullscreenElement) {
+      this.game.canvas.focus();
+      this.game.canvas.requestFullscreen({ navigationUI: 'hide' }).catch(() => {
+        document.exitFullscreen();
+      });
+    } else {
+      document.exitFullscreen();
+    }
+  }
   onResumePlaying() {
     this._gameFlowPlayer?.loadGame();
   }
