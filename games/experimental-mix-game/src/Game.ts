@@ -35,6 +35,41 @@ export default class Game extends Phaser.Game {
     ) => {
       reactToNewDialogRequest(this, lifetimeController);
     };
+
+    this._listenKeyEventsCorrectly();
+  }
+
+  /**
+   * Attempt to fix an oversight of Phaser III which makes the game
+   * keep handling attached keys even if some other HTML elements
+   * have now the focus.
+   */
+  private _listenKeyEventsCorrectly() {
+    const { canvas } = this;
+
+    const parent = canvas.parentElement;
+    if (!parent) return;
+
+    parent.tabIndex = 0;
+    parent.focus();
+
+    // Add an event listener for the blur event
+    parent.addEventListener('blur', () => {
+      // Disable keyboard input when the canvas loses focus
+      this.input.keyboard.enabled = false;
+      // this.input.keyboard.stopListeners();
+    });
+
+    // Add an event listener for the focus event
+    parent.addEventListener('focus', () => {
+      // Enable keyboard input when the canvas regains focus
+      this.input.keyboard.enabled = true;
+    });
+
+    // Give game focus when clicked
+    parent.addEventListener('click', () => {
+      parent.focus();
+    });
   }
 
   override step(time: number, delta: number): void {
