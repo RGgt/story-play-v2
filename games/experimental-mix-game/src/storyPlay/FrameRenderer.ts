@@ -131,7 +131,11 @@ class FrameRenderer {
         );
         break;
       case 'narration':
-        this._narrationRenderer.renderNarration(componentData.data, index);
+        this._narrationRenderer.renderNarration(
+          componentData.data,
+          componentData.config,
+          index
+        );
         break;
       case 'story-title':
         this._largeTextsRenderer.renderStoryTitle(componentData.data, index);

@@ -1,6 +1,11 @@
 import { createNarrationText } from '@rggt/basic-controls';
 import { GameConfiguration } from '@rggt/game-base';
 
+interface NarratorRendererConfig {
+  colorOverwrite?: string;
+}
+const configDefault = {};
+
 class NarratorRenderer {
   private _narrationText?: Phaser.GameObjects.Text;
 
@@ -8,16 +13,23 @@ class NarratorRenderer {
 
   constructor(private scene: Phaser.Scene) {}
 
-  public renderNarration(data: string, index: number) {
+  public renderNarration(
+    data: string,
+    config: NarratorRendererConfig,
+    index: number
+  ) {
     this._narrationText?.destroy();
     this._narrationRectangle?.destroy();
     if (data == null) {
       return;
     }
+    const newConfig = { ...configDefault, ...config };
+
     const text = data !== '' ? GameConfiguration.getTranslation(data) : '';
     const [customComponent, rectangle] = this._placeNarrationText(
       this.scene,
-      text
+      text,
+      newConfig
     );
     this._narrationRectangle = rectangle;
     this._narrationText = customComponent;
@@ -27,7 +39,8 @@ class NarratorRenderer {
 
   private _placeNarrationText(
     scene: Phaser.Scene,
-    text: string
+    text: string,
+    config: NarratorRendererConfig
   ): [Phaser.GameObjects.Text, Phaser.GameObjects.Rectangle] {
     const x = 100;
     const y = 1080 - 250;
@@ -36,6 +49,7 @@ class NarratorRenderer {
       y,
       text,
       maxWidth: 1920 - 200,
+      colorOverwrite: config.colorOverwrite,
     });
     customComponent.text.setScrollFactor(0, -1);
     const rectangle = scene.add.rectangle(
@@ -56,3 +70,4 @@ class NarratorRenderer {
   }
 }
 export { NarratorRenderer };
+export type { NarratorRendererConfig };
