@@ -64,6 +64,22 @@ class Jumper extends Phaser.GameObjects.Rectangle implements SPAwareControl {
     if (!this.visible) return;
     if (!this._bounds) return;
 
+    if (!GameInputPointer.alreadyHandled) {
+      if (GameInputPointer.keyAutoForward) {
+        if (this.reactionToAdvance) {
+          GameInputPointer.alreadyHandled = true;
+          this.reactionToAdvance();
+          return;
+        }
+      }
+      if (GameInputPointer.keyAutoBackward) {
+        if (this.reactionToReturn) {
+          GameInputPointer.alreadyHandled = true;
+          this.reactionToReturn();
+          return;
+        }
+      }
+    }
     // Check if the cursor is over the component
     if (
       !GameInputPointer.alreadyHandled &&
