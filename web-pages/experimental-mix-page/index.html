@@ -10,6 +10,16 @@
   </head>
   <body>
     <div id="game-container"></div>
+    <dialog id="dlgTurnFullscreen" class="dialog-hidden">
+      <form method="dialog">
+        <p>Switch to fullscreen mode?</p>
+        <div>
+          <button id="cancel" type="reset">No</button>
+          <button id="confirm" type="submit">Yes</button>
+        </div>
+      </form>
+    </dialog>
+
     <script type="module" src="./src/startup.ts"></script>
   </body>
 </html>
