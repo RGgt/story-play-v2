@@ -19,6 +19,7 @@ class Controller implements IWindowController {
     const callbackSaveLoad = parameters.callbackSaveLoad ?? (() => {});
     const callbackPreferences = parameters.callbackPreferences ?? (() => {});
     const dataModel: DataModel = {
+      isGameStarted: parameters.isGameStarted,
       title: GameConfiguration.getUITranslation(
         parameters.title ?? 'MainMenu.title'
       ),
@@ -55,6 +56,7 @@ class Controller implements IWindowController {
         callbackPreferences();
       },
     };
+    console.log(dataModel.isGameStarted);
     this.view = new View(scene, dataModel);
   }
 

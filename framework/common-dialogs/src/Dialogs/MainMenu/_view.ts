@@ -145,6 +145,8 @@ class View {
       { text: dataModel.buttonTextResume }
     );
 
+    buttonResume.button.disabled = !dataModel.isGameStarted;
+
     this.innerStructure = {
       background,
       topLine,

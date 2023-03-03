@@ -31,15 +31,7 @@ export default class StoryPlayScene extends SPScene {
     destroy: () => void;
   };
 
-  async onButtonSaveClick() {
-    await this.showSaveLoad('save');
-  }
-
-  async onButtonLoadClick() {
-    await this.showSaveLoad('load');
-  }
-
-  async showSaveLoad(viewMode: 'save' | 'load' | 'delete') {
+  async showMainMenu(viewMode: 'save' | 'load' | 'delete') {
     const b64 = await getMiniatureScreenshotBase64DataURL(
       this.game,
       SaveAndLoadStyles.saveSlots.thumbnailWidth,
@@ -50,6 +42,7 @@ export default class StoryPlayScene extends SPScene {
       b64
     );
     this.game.events.emit('show-dialog', 'MainMenu', {
+      isGameStarted: true,
       callbackResume: this.onResumePlaying.bind(this),
       callbackSaveLoad: () => {
         this.game.events.emit('show-dialog', 'SaveLoad', {
@@ -80,6 +73,7 @@ export default class StoryPlayScene extends SPScene {
       document.exitFullscreen();
     }
   }
+
   onResumePlaying() {
     this._gameFlowPlayer?.loadGame();
   }
@@ -93,7 +87,7 @@ export default class StoryPlayScene extends SPScene {
         this._gameFlowPlayer?.rollbackToFrame();
         break;
       case 'request-game-menu':
-        await this.showSaveLoad('load');
+        await this.showMainMenu('load');
         break;
 
       default:
