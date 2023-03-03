@@ -1,20 +1,27 @@
 import { createJumper, Jumper } from '@rggt/basic-controls';
 
+interface JumperRendererConfig {
+  no_menu: boolean;
+  no_back: boolean;
+  no_forward: boolean;
+}
+
+const configDefault: JumperRendererConfig = {
+  no_menu: false,
+  no_back: false,
+  no_forward: false,
+};
 class JumperRenderer {
   private _frameNavigator?: Jumper;
 
   constructor(private scene: Phaser.Scene) {}
 
-  renderJumper(data: string, config: object) {
+  renderJumper(data: string, config: JumperRendererConfig) {
     this._frameNavigator?.destroy();
     if (data == null) {
       return;
     }
-    const configDefault = {
-      no_menu: false,
-      no_back: false,
-      no_forward: false,
-    };
+
     const newConfig = { ...configDefault, ...config };
 
     this._frameNavigator = this._placeJumper(this.scene, data, newConfig);
@@ -24,7 +31,7 @@ class JumperRenderer {
   private _placeJumper(
     scene: Phaser.Scene,
     data: string,
-    config: { no_menu: boolean; no_back: boolean; no_forward: boolean }
+    config: JumperRendererConfig
   ) {
     const reactionToAdvance = config.no_forward
       ? () => {}
@@ -68,3 +75,4 @@ class JumperRenderer {
   }
 }
 export { JumperRenderer };
+export type { JumperRendererConfig };

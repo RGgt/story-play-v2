@@ -6,7 +6,10 @@ import {
   FrameData,
 } from '../state/CustomStableData';
 import { BackgroundRenderer } from './ComponentRenderers/BackgroundRenderer';
-import { JumperRenderer } from './ComponentRenderers/JumperRenderer';
+import {
+  JumperRenderer,
+  JumperRendererConfig,
+} from './ComponentRenderers/JumperRenderer';
 import { LargeTextsRenderer } from './ComponentRenderers/LargeTextsRenderer';
 import { NarratorRenderer } from './ComponentRenderers/NarratorRenderer';
 import { QuickText } from './ComponentRenderers/QuickText';
@@ -121,7 +124,7 @@ class FrameRenderer {
       case 'jumper':
         this._jumperRenderer.renderJumper(
           componentData.data,
-          componentData.config
+          componentData.config as JumperRendererConfig
         );
         break;
       case 'narration':
