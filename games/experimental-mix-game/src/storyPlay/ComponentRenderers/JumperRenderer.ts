@@ -13,6 +13,7 @@ class JumperRenderer {
     const configDefault = {
       no_menu: false,
       no_back: false,
+      no_forward: false,
     };
     const newConfig = { ...configDefault, ...config };
 
@@ -23,22 +24,40 @@ class JumperRenderer {
   private _placeJumper(
     scene: Phaser.Scene,
     data: string,
-    config: { no_menu: boolean; no_back: boolean }
+    config: { no_menu: boolean; no_back: boolean; no_forward: boolean }
   ) {
-    const reactionToAdvance = () => {
-      this.scene.game.events.emit('game-flow-event', 'advance-to-frame', data);
-    };
-    const reactionToReturn = () => {
-      this.scene.game.events.emit('game-flow-event', 'rollback-to-frame', data);
-    };
-    const reactionToMenu = () => {
-      this.scene.game.events.emit('game-flow-event', 'request-game-menu', data);
-    };
+    const reactionToAdvance = config.no_forward
+      ? () => {}
+      : () => {
+          this.scene.game.events.emit(
+            'game-flow-event',
+            'advance-to-frame',
+            data
+          );
+        };
+    const reactionToReturn = config.no_back
+      ? reactionToAdvance
+      : () => {
+          this.scene.game.events.emit(
+            'game-flow-event',
+            'rollback-to-frame',
+            data
+          );
+        };
+    const reactionToMenu = config.no_menu
+      ? reactionToAdvance
+      : () => {
+          this.scene.game.events.emit(
+            'game-flow-event',
+            'request-game-menu',
+            data
+          );
+        };
 
     const customComponent = createJumper(scene, {
       reactionToAdvance,
-      reactionToReturn: config.no_back ? reactionToAdvance : reactionToReturn,
-      reactionToMenu: config.no_menu ? reactionToAdvance : reactionToMenu,
+      reactionToReturn,
+      reactionToMenu,
     });
     scene.add.existing(customComponent);
     return customComponent;
