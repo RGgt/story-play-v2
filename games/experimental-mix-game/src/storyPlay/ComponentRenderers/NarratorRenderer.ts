@@ -67,6 +67,7 @@ class NarratorRenderer {
 
   public cleanup() {
     this._narrationText?.destroy();
+    this._narrationRectangle?.destroy();
   }
 }
 export { NarratorRenderer };
