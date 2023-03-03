@@ -9,7 +9,7 @@ import { ButtonOptions } from './types';
 import { defaultOptions } from './_types';
 
 class Button extends NinePatch implements SPAwareControl {
-  public Disabled = false;
+  public disabled = false;
 
   /**
    * Pushed means that the button was pressed and remained pressed after that
@@ -46,7 +46,7 @@ class Button extends NinePatch implements SPAwareControl {
     super(data, scene);
     this.init(x, y, width, height);
     this.reactToClick = reactionToClick;
-    this.Disabled = disabled;
+    this.disabled = disabled;
   }
 
   private _lPressed = false;
@@ -56,7 +56,7 @@ class Button extends NinePatch implements SPAwareControl {
     if (!this._bounds) return;
 
     // Check if the cursor is over the component
-    if (this.Disabled) {
+    if (this.disabled) {
       this._lPressed = false;
       this.setTexture(this.Pushed ? 'btnPushedDisabled' : 'btnDisabled');
     } else if (
