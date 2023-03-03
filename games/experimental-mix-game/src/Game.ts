@@ -44,11 +44,7 @@ export default class Game extends Phaser.Game {
     GameInputPointer.button = pointer.button;
     GameInputPointer.isDown = pointer.isDown;
     GameInputPointer.alreadyHandled = false;
-    try {
-      Phaser.Game.prototype.step.call(this, time, delta);
-    } catch (err: unknown) {
-      GameConfiguration.gameReactions.reactToError(err as Error);
-    }
+    Phaser.Game.prototype.step.call(this, time, delta);
   }
 
   private static getScenes = (): Array<Phaser.Scene> => {
