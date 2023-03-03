@@ -1,6 +1,5 @@
 import {
   DialogLifetimeController,
-  formatDate,
   GameConfiguration,
   GameInputPointer,
 } from '@rggt/game-base';

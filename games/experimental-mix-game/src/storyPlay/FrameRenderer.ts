@@ -1,10 +1,5 @@
 import { GameConfiguration } from '@rggt/game-base';
-import { CustomGameState } from '../state/CustomGameState';
-import {
-  ComponentData,
-  CustomStableData,
-  FrameData,
-} from '../state/CustomStableData';
+import { ComponentData, FrameData } from '../state/CustomStableData';
 import {
   BackgroundRenderer,
   BackgroundRendererConfig,

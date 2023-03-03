@@ -118,7 +118,7 @@ export default class KeyboardInputScene extends Phaser.Scene {
     }
   }
 
-  override update(time: number, delta: number): void {
+  override update(time: number): void {
     this._checkKeyAutoForward(time);
     this._checkKeyAutoBackward(time);
     this._checkKeyTurnFullScreen(time);
