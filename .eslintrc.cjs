@@ -28,5 +28,7 @@ module.exports = {
     'no-extra-boolean-cast': 0,
     'no-param-reassign': ['error', { props: false }],
     'prefer-template': 0,
+    '@typescript-eslint/lines-between-class-members': 'warn',
+    '@typescript-eslint/no-inferrable-types': 'warn',
   },
 };
