@@ -38,6 +38,7 @@ export default class StartupScene extends Phaser.Scene {
       return;
     }
     this.scene.start(EScenes.Cursor);
+    this.scene.start(EScenes.KeyboardInput);
     this.scene.start(EScenes.InitialLoader);
   }
 }
