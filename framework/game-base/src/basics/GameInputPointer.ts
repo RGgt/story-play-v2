@@ -5,6 +5,10 @@ class GameInputPointerSingleton {
 
   public y = 0;
 
+  public keyAutoForward = false;
+
+  public keyAutoBackward = false;
+
   public button = 0;
 
   public isDown = false;
