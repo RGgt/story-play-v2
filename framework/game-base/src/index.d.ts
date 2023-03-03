@@ -23,6 +23,7 @@ export { default as CommonWindowStyles } from './basics/Styles/CommonWindowStyle
 export { default as DrawDebug } from './basics/Styles/DrawDebug';
 export { default as JumperStyle } from './basics/Styles/JumperStyle';
 export { default as SaveAndLoadStyles } from './basics/Styles/SaveAndLoadStyles';
+export { default as MainMenuStyles } from './basics/Styles/MainMenuStyles';
 
 export {
   saveScreenshotToFileDownload,

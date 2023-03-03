@@ -49,12 +49,21 @@ export default class StoryPlayScene extends SPScene {
       GameVolatileStateKeys.MostRecentBase64Screenshot,
       b64
     );
-    this.game.events.emit('show-dialog', 'SaveLoad', {
-      viewMode,
+    this.game.events.emit('show-dialog', 'MainMenu', {
+      callbackResume: this.onResumePlaying.bind(this),
+      callbackSaveLoad: () => {
+        this.game.events.emit('show-dialog', 'SaveLoad', {
+          viewMode,
 
-      callbackClose: this.onResumePlaying.bind(this),
-      serviceSaveLoad: this._saveGameManager,
-      game: this.game,
+          callbackClose: this.onResumePlaying.bind(this),
+          serviceSaveLoad: this._saveGameManager,
+          game: this.game,
+        });
+      },
+      callbackNew: () => {
+        this._gameFlowPlayer?.restartGame();
+      },
+      callbackPreferences: () => {},
     });
   }
 
